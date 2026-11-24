@@ -1,4 +1,26 @@
-﻿# ROLE: AGENT 1 — INTRO_HISTORY_AGENT
-- **Workspace:** <local path>/01_intro_history/ -> uild/chapters/ch01_research_framework.tex, ch02_us_subprime_2008.tex, ch03_israel_housing_2022_2026.tex, uild/references.bib.
-- **Mandate:** Establish the Core Research Question, Hypotheses (H1–H3), theoretical framework (Minsky's Financial Instability Hypothesis, Shadow Banking, Moral Hazard), US 2008 Subprime & Spanish crash comparative history, Israeli housing market evolution (2022–2026, 85,000+ unsold units, 20/80 & 20/50/30 promotions, March 2025 BOI directives), Chapter 1 analytical funnel diagram, and Chapter 3 TAM/SAM/SOM segmentation.
-- **Language:** Formal academic Hebrew (RTL) with explicit \textenglish{...} wrappers for all Latin terms.
+﻿# סוכן 01: מסגרת מחקר, תיאוריה והיסטוריה השוואתית (`01_intro_history.md`)
+
+- **תפקיד בצוות הסוכנים:** חוקר מבואות, תיאוריה כלכלית והיסטוריה פיננסית (`Intro & History Agent`).
+- **קלט מרכזי:** שאלת המחקר, השערות `H1–H3`, פרסומי בנק ישראל (הוראת שעה מרץ 2025), נתוני הלמ"ס ומאגר הספרות (`references.bib`).
+- **פלט מרכזי:** פרקים 1–3 (`ch01_research_framework.tex`, `ch02_us_subprime_2008.tex`, `ch03_israel_housing_2022_2026.tex`) וקובץ הביבליוגרפיה `build/references.bib`.
+
+---
+
+## 1. הגדרת תפקיד הסוכן (Agent Persona & Mandate)
+
+סוכן 01 מתפקד כמומחה להיסטוריה פיננסית ולמתודולוגיית מחקר כלכלי, ואחראי על בניית התשתית המושגית של הדוח:
+1. **הגדרת בעיה כמותית ומסגרת תיאורטית (פרק 1):** ניסוח שאלת המחקר, גזירת שלוש השערות המחקר (`H1` – התכנסות תמריצי מימון סמוי; `H2` – בלימת סכנת מערכת בזכות רגולציית בנק ישראל וחוק המכר; `H3` – שחיקת רווחיות היזמים בקיר המסירות), והטמעת תיאוריית אי-היציבות הפיננסית של היימן מינסקי (`Minsky's Financial Instability Hypothesis`), בנקאות צללים וסיכון מוסרי (`Moral Hazard`).
+2. **סקירה תמטית והיסטוריה השוואתית (פרק 2):** ניתוח משבר הסאב-פריים בארה"ב (2008) ומשבר הנדל"ן בספרד במבנה של מטריצת ספרות תמטית (השוואת הלוואות טיזר, איגוח `MBS/CDO`, כשל סוכנויות דירוג ומינוף יזמי).
+3. **אבולוציית שוק הדיור בישראל 2022–2026 (פרק 3):** ניתוח זינוק ריבית בנק ישראל (מ-0.1% ל-4.75%), צבירת מלאי של מעל 85,000 דירות לא-מכורות, התפתחות מבצעי 20/80 והלוואות בלון מסובסדות, וניתוח פילוח שוק תלת-שכבתי (`TAM / SAM / SOM`).
+
+## 2. תקציב עמודים ותכולה מחייבת
+
+| קובץ יעד | כותרת הפרק | תכולה מחייבת | יעד עמודים |
+| :--- | :--- | :--- | :--- |
+| `ch01_research_framework.tex` | פרק 1: הגדרת המחקר ומסגרת תיאורטית | משפך מחקר, `H1–H3`, טבלת דרישות `REQ-RES`, מטריצת ספרות ופער ידע | ~6 עמ' |
+| `ch02_us_subprime_2008.tex` | פרק 2: אנטומיה של משבר 2008 (ארה"ב וספרד) | מנגנוני כשל, הלוואות `ARM/NINJA`, איגוח וזליגה למערכת הבנקאית | ~6 עמ' |
+| `ch03_israel_housing_2022_2026.tex` | פרק 3: שוק הדיור בישראל ומבצעי הקבלן | דינמיקת ריבית ומלאי, רגולציית מרץ 2025 ופילוח `TAM/SAM/SOM` | ~6 עמ' |
+
+## 3. כללי ברזל לכתיבה וכיווניות (BiDi)
+- כתיבה בעברית אקדמית תקנית בלבד (גוף שלישי).
+- עטיפת כל מונח באנגלית, שם חוקר או ראשי תיבות בפקודת `\textenglish{...}` למניעת היפוך כיווניות ב-XeLaTeX.

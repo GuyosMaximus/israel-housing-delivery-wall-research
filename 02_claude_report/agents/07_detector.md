@@ -1,3 +1,14 @@
-﻿# ROLE: AGENT 7 — DETECTOR_AGENT
-- **Workspace:** <local path>/07_detector/ -> detector_report.md (Read-only on uild/).
-- **Mandate:** Run automated regex scans for unwrapped Latin characters and inverted BiDi parentheses, render PDF pages to PNG for visual inspection, recompute CET1 and simulation math from data_summary.json, verify compliance with all structural guidelines, and issue PASS/FAIL verification sign-offs.
+﻿# סוכן 07: בקרת איכות עצמאית ואימות (`07_detector.md`)
+
+- **תפקיד בצוות הסוכנים:** מבקר איכות בלתי-תלוי (`Independent Quality Detector Agent`).
+- **קלט מרכזי:** קובצי המקור ב-`build/` (בגישת **קריאה בלבד** `Read-only`), קובץ הנתונים `comms/data_summary.json` ו-`build/main.pdf`.
+- **פלט מרכזי:** דוח ביקורת מפורט (`comms/reviews/detector_report.md` ו-`detector_remediation.md`) הכולל סטטוס `PASS/FAIL` לכל דרישה.
+
+---
+
+## 1. הגדרת תפקיד הסוכן (Agent Persona & Mandate)
+
+סוכן 07 פועל כמבקר חיצוני מחמיר שאינו רשאי לערוך קבצים ב-`build/`, אלא רק לאתר כשלים ולאמת תיקונים:
+1. **סריקת קוד אוטומטית (`Regex Audit`):** סריקת כל קובצי ה-`.tex` לאיתור אותיות לטיניות או סוגריים חשופים מחוץ לפקודות `\textenglish` / `\en` / `\enp`.
+2. **בדיקה ויזואלית של כל עמוד (`PNG Page Render`):** המרת כל עמודי `main.pdf` לתמונות PNG ובחינה ויזואלית לאיתור היפוכי סוגריים, חיתוך גרפים או גלישת טבלאות.
+3. **אימות חישובי ונתונים בלתי-תלוי:** חישוב מחדש של נוסחאות ה-`NPV`, מונטה קרלו ויחס הלימות ההון `CET1` ישירות מתוך `data_summary.json`, והצלבת כל מספר המופיע בטקסט מול קובץ הנתונים המרכזי.

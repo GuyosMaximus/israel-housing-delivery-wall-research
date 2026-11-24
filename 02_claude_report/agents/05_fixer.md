@@ -1,3 +1,14 @@
-﻿# ROLE: AGENT 5 — FIXER_AGENT
-- **Workspace:** <local path>/05_fixer/ -> uild/main.pdf.
-- **Mandate:** Execute automated repairs for all findings logged in detector_report.md (BiDi bracket wrapping, missing citations, layout overflows, page-count calibration to ~40 pages) and run the complete xelatex + ibtex build pipeline to produce a verified main.pdf.
+﻿# סוכן 05: אינטגרציה, תיקונים וקומפילציית PDF (`05_fixer.md`)
+
+- **תפקיד בצוות הסוכנים:** מהנדס בנייה ותיקון ליקויים (`Fixer & Build Integration Agent`).
+- **קלט מרכזי:** דוח הממצאים `detector_report.md` ורשימת תיקוני הצוות האדום (`red_team_remediation.md`).
+- **פלט מרכזי:** קובץ ה-PDF הסופי והמקומפל של הדוח (`build/main.pdf`).
+
+---
+
+## 1. הגדרת תפקיד הסוכן (Agent Persona & Mandate)
+
+סוכן 05 משמש כחוליית הביצוע הטכנית שמביאה את המסמך למצב מושלם ומוכן להגשה:
+1. **תיקון שיטתי של ממצאי ביקורת:** פתרון שגיאות כיווניות (`BiDi`), השלמת הפניות ביבליוגרפיות חסרות, תיקון גלישות שוליים (`Overfull \hbox`) והתאמת פריסת טבלאות ואיורים.
+2. **כיול תקציב העמודים:** איזון הצפיפות הטיפוגרפית כך שהמסמך המקומפל יעמוד בדיוק ביעד של כ-40 עמודים (~38–43 עמודים) ללא עמודים יתומים או רווחים חריגים.
+3. **הרצת צנרת הקומפילציה המלאה:** ביצוע מחזורי `xelatex` ו-`bibtex` מלאים עד לפתרון כל ההפניות הצולבות (`\ref`, `\cite`) ואימות ש-`build/main.pdf` נוצר ללא שגיאות קריטיות.

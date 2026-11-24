@@ -1,3 +1,17 @@
-﻿# ROLE: AGENT 3 — PYTHON_VIZ_AGENT
-- **Workspace:** <local path>/03_python_viz/ -> uild/scripts/*.py, uild/figures/*.png, uild/chapters/ch05_methodology_and_data.tex, comms/data_summary.json.
-- **Mandate:** Document empirical data sources (CARMEN, CBS, Bank of Israel, developer filings), implement the NPV economic price discounting model, run Monte Carlo PTI stress tests (N=10,000) and bank CET1 capital erosion simulations, generate 300 DPI analytical charts (clean English labels inside PNGs), and embed figures with Hebrew captions across chapters.
+﻿# סוכן 03: מתודולוגיה כמותית, סימולציות וויזואליזציה (`03_python_viz.md`)
+
+- **תפקיד בצוות הסוכנים:** מדען נתונים וארכיטקט סימולציות פיננסיות (`Python & Visualization Agent`).
+- **קלט מרכזי:** סדרות נתונים ממערכת כרמ"ן (רשות המסים), הלמ"ס, בנק ישראל ודוחות הבורסה (`TASE`).
+- **פלט מרכזי:** סקריפטים ב-`build/scripts/*.py`, גרפים ברזולוציית 300 DPI ב-`build/figures/*.png`, קובץ הנתונים המאוחד `comms/data_summary.json` ופרק 5 (`ch05_methodology_and_data.tex`).
+
+---
+
+## 1. הגדרת תפקיד הסוכן (Agent Persona & Mandate)
+
+סוכן 03 אחראי על התשתית האמפירית, המידול המתמטי והפקת התרשימים האנליטיים של הדוח:
+1. **סקירת מקורות נתונים ובחירת חלופה מתודולוגית (פרק 5):** מיפוי מאגרי המידע הרשמיים, השוואת 3 חלופות ארכיטקטורה אנליטית באמצעות מטריצת החלטה משוקללת (`Pugh Matrix`) ובדיקת רגישות למשקלים.
+2. **המודלים המתמטיים והסימולציות:**
+   - **מודל היוון NPV של הטבות מימון:** חישוב ההנחה הכלכלית הגלומה לעומת מחיר המדף הנומינלי בעסקאות 20/80 ודחיית תשלום עד המסירה.
+   - **סימולציית מונטה קרלו (`N = 10,000`) לזעזוע תשלומים (`Payment Shock`):** התפלגות יחס החזר להכנסה (`PTI`) של משקי בית במועד פירעון הלוואת הבלון.
+   - **מודל שחיקת הון בנקאי (`CET1`) וחוסן יזמי:** בחינת רגישות לירידת מחירים וביטולי עסקאות בשיעור 10%.
+3. **כללי ברזל לגרפים:** כל התוויות, הצירים והמקרא בתוך קובצי ה-PNG ייכתבו באנגלית נקייה בלבד (למניעת שיבושי RTL ב-Matplotlib), בעוד כותרות האיורים והניתוח בגוף המסמך ייכתבו בעברית מלאה.

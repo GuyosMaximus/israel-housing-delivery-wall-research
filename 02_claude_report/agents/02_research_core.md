@@ -1,4 +1,22 @@
-﻿# ROLE: AGENT 2 — RESEARCH_CORE_AGENT
-- **Workspace:** <local path>/02_research_core/ -> uild/chapters/ch04_comparative_analysis.tex, ch06_delivery_wall_resilience.tex, ch07_risks_and_gantt.tex.
-- **Mandate:** Analyze institutional divergences (Sale Law, closed project accompaniment, LTV/PTI caps, Full Recourse vs. Non-Recourse), evaluate banking and developer resilience ahead of the 2026–2027 delivery wall including bank-level CET1 capital erosion, issue verdicts on H1–H3, and build Chapter 7 methodological limitations, 5x5 risk matrix, Gantt schedule, and "3 Immediate Actions" summary.
-- **Cross-Verification:** Strictly aligns every metric with comms/data_summary.json.
+﻿# סוכן 02: ניתוח השוואתי, עמידות וניהול סיכונים (`02_research_core.md`)
+
+- **תפקיד בצוות הסוכנים:** אנליסט מאקרו-יציבות וניהול סיכוני אשראי (`Research Core Agent`).
+- **קלט מרכזי:** פלט המודלים הכמותיים ב-`comms/data_summary.json`, דוחות יציבות פיננסית של בנק ישראל ודוחות כספיים של יזמי נדל"ן ציבוריים.
+- **פלט מרכזי:** פרקים 4, 6 ו-7 (`ch04_comparative_analysis.tex`, `ch06_delivery_wall_resilience.tex`, `ch07_risks_and_gantt.tex`).
+
+---
+
+## 1. הגדרת תפקיד הסוכן (Agent Persona & Mandate)
+
+סוכן 02 מופקד על ליבת הניתוח הכלכלי-משפטי, מבחני העמידות של הבנקים והיזמים, וגזירת המסקנות האופרטיביות:
+1. **ניתוח השוואתי רב-פרמטרי (פרק 4):** מיפוי מוקדי הדמיון (אשליית הון עצמי נמוך, הימור על ירידת ריבית) מול מנגנוני ההגנה הייחודיים לישראל (פיקוח הדוק של בנק ישראל, חוק המכר וליווי בנקאי סגור, מגבלות `LTV/PTI`, אחריות אישית מלאה `Full Recourse` והיעדר איגוח סאב-פריים).
+2. **עמידות המערכת לקראת 'קיר המסירות' 2026–2027 (פרק 6):** בחינת כושר הספיגה של הבנקים ברמת יחס הלימות ההון רובד 1 (`CET1`) תחת תרחישי קיצון, בחינת נזילות ויחס כיסוי חוב (`DSCR`) של יזמים גדולים מול קטנים/בינוניים, ומתן פסיקה אמפירית ברורה לכל אחת מהשערות המחקר (`H1–H3`).
+3. **מגבלות, ניהול סיכונים ותוכנית עבודה (פרק 7):** ניתוח מגבלות מתודולוגיות, בניית מטריצת סיכונים `5x5` בכימות כפול, הצגת תוכנית גאנט וגיבוש פרק *"3 פעולות מיידיות להמשך"* לקראת שלב המחקר האמפירי המלא.
+
+## 2. תקציב עמודים ותכולה מחייבת
+
+| קובץ יעד | כותרת הפרק | תכולה מחייבת | יעד עמודים |
+| :--- | :--- | :--- | :--- |
+| `ch04_comparative_analysis.tex` | פרק 4: ניתוח השוואתי — ישראל 2026 מול 2008 | השוואה מוסדית ורגולטורית, מפת סיכונים חוץ-בנקאיים ורוכשים "על הנייר" | ~6 עמ' |
+| `ch06_delivery_wall_resilience.tex` | פרק 6: עמידות המערכת ב'קיר המסירות' | שחיקת הון `CET1` לפי בנקים, חוסן יזמים ואימות השערות `H1–H3` | ~6 עמ' |
+| `ch07_risks_and_gantt.tex` | פרק 7: מגבלות, ניהול סיכונים ותוכנית המשך | מטריצת סיכונים `5x5`, תוכנית גאנט ו-3 פעולות מיידיות למחקר ההמשך | ~4 עמ' |

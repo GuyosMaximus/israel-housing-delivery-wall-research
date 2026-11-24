@@ -1,0 +1,181 @@
+% =====================================================================
+% פרק 7 — תוכנית עבודה, ניהול סיכונים וסיכום
+% RESEARCH_CORE_AGENT (Agent 2)
+% =====================================================================
+\chapter{ניהול סיכונים, תוכנית עבודה וסיכום}
+\label{ch:risks-gantt}
+
+\begin{managerbox}
+ממצאי פרק~\ref{ch:delivery-wall} מבוססים על מודלים מכוילים, ואת חלקם יש לתקף מול נתוני המסירות של \en{2026–2027}. פרק זה מתאר מה ייעשה בשלב המימוש, מי אחראי, מתי ומה עלול להשתבש, ונחתם בסיכום ובשלוש פעולות מיידיות.
+\end{managerbox}
+
+\section{פירוק העבודה, אחריות ולוח זמנים}
+\label{sec:ch7-wbs}
+
+\term{מבנה פירוק העבודה}{WBS} מחלק את שלב המימוש לחמש חבילות, שנגזרו מהפערים שזוהו: נתוני מסירות וביטולים ברמת הפרויקט, כיול המודלים לנתונים אלה, וחידוד אומדן ההפסד הבנקאי \enb{REQ-H3-01} בנתוני פרויקטים במקום בנתונים מצרפיים. טבלה~\ref{tab:ch7-wbs} מציגה לכל חבילה תוצר ו\term{מטריצת אחריות}{RACI}: מבצע (\en{R}), יועץ (\en{C}), מאשר (\en{A}). הצוות: שקד ניניו וגיא קובלרצ׳יק; מנחה: ד״ר יורם סגל.
+
+\begin{table}[!htb]
+\centering
+\caption[חבילות העבודה ומטריצת האחריות]{חבילות העבודה, התוצרים ומטריצת האחריות (\en{RACI})}
+\label{tab:ch7-wbs}
+\small
+\begin{tabularx}{\tabmaxwidth}{>{\centering\arraybackslash}p{1.2cm} R >{\centering\arraybackslash}p{0.9cm} >{\centering\arraybackslash}p{1.5cm} >{\centering\arraybackslash}p{0.8cm}}
+\toprule
+\hd{מזהה} & \hd{חבילה, משימות ותוצר} & \hd{ניניו} & \hd{קובלרצ׳יק} & \hd{סגל} \\
+\midrule
+\en{WP 1.0} & ספרות ומיפוי מבצעים ודוחות יזמים. \textbf{תוצר:} סקירה מעודכנת, מאגר מבצעים & \en{R} & \en{C} & \en{A} \\
+\en{WP 2.0} & נתונים מהלמ״ס, בנק ישראל ורשות המסים, ואימותם. \textbf{תוצר:} מאגר מאומת & \en{C} & \en{R} & \en{A} \\
+\en{WP 3.0} & כיול לנתונים; ראיונות עם בנקאי, שמאי ויזם. \textbf{תוצר:} מודלים מתוקפים & \en{C} & \en{R} & \en{A} \\
+\en{WP 4.0} & תרחישים ומודל ההון בנתוני פרויקט; בחינת \en{H1–H3}. \textbf{תוצר:} פרק תוצאות & \en{R} & \en{C} & \en{A} \\
+\en{WP 5.0} & כתיבה והגנה. \textbf{תוצר:} דוח ומצגת & \en{R} & \en{C} & \en{A} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\label{sec:ch7-gantt}לוח הזמנים מתפרס על \en{14} שבועות (איור~\ref{fig:ch7-gantt}). \term{הנתיב הקריטי}{Critical Path} עובר בסקירה, בנתונים, בכיול, בתרחישים (ובהם אומדן ההפסד המעודכן), בבחינת ההשערות ובכתיבה. אין בו מרווח; מרווח יש רק ב־\en{TSK-1.2} וב־\en{TSK-3.2}. נקבעו שתי אבני דרך לבקרה: \en{M-A} בסוף שבוע \en{7} (נתונים מאומתים ומודלים מכוילים) ו־\en{M-B} בסוף שבוע \en{11} (בחינת ההשערות הושלמה).
+
+\begin{figure}[!htb]
+\centering
+\begin{english}
+\begin{tikzpicture}[x=0.5cm, y=0.52cm, font=\footnotesize]
+  % weeks run right -> left (Hebrew orientation); task labels on the right
+  \foreach \w in {2,4,...,14}{ \fill[brandPale] (-\w+1,0.2) rectangle (-\w,-7.8); }
+  \foreach \w in {1,...,14}{ \node[font=\scriptsize\bfseries, text=brandNavy] at (-\w+0.5,0.6) {\w}; }
+  \foreach \w in {0,...,14}{ \draw[gray!35] (-\w,0.2) -- (-\w,-7.8); }
+  \draw[brandNavy, line width=0.8pt] (-14,0.2) -- (13.8,0.2);
+  \draw[brandNavy, line width=0.8pt] (-14,-7.8) -- (13.8,-7.8);
+  \node[font=\scriptsize\bfseries, text=brandNavy, anchor=east] at (13.7,0.6) {\he{משימה}};
+  \node[font=\scriptsize\bfseries, text=brandNavy] at (1.9,0.6) {\he{קודמות}};
+  \node[font=\scriptsize\bfseries, text=brandNavy] at (-7,1.2) {\he{שבוע}};
+  % ---- tasks: row / start week / length / code / label / critical ----
+  \foreach \r/\s/\l/\code/\lab/\crit/\pre in {
+     1/1/2/TSK-1.1/{סקירת ספרות}/1/{--},
+     2/1/4/TSK-1.2/{מיפוי מבצעים}/0/{--},
+     3/3/3/TSK-2.1/{איסוף ואימות נתונים}/1/{1.1},
+     4/6/2/TSK-3.1/{כיול מודלים}/1/{2.1},
+     5/5/4/TSK-3.2/{ראיונות מומחים}/0/{1.2},
+     6/8/2/TSK-4.1/{תרחישים ורגישות}/1/{3.1},
+     7/10/2/TSK-4.2/{בחינת השערות}/1/{4.1, 3.2},
+     8/12/3/TSK-5.1/{כתיבה והגנה}/1/{4.2}}{
+    \node[anchor=east] at (13.7,-\r+0.6) {\he{\lab}\ \ \texttt{\code}};
+    \node at (1.9,-\r+0.6) {\pre};
+    \ifnum\crit=1
+      \fill[brandRed!85, rounded corners=1pt] (-\s+1,-\r+0.82) rectangle (-\s-\l+1,-\r+0.38);
+    \else
+      \fill[brandSteel, rounded corners=1pt] (-\s+1,-\r+0.82) rectangle (-\s-\l+1,-\r+0.38);
+    \fi
+  }
+  % ---- milestones (end of week 7, end of week 11) ----
+  \foreach \t/\tag in {7/M-A, 11/M-B}{
+    \draw[brandAmber, dashed, line width=0.9pt] (-\t,0.2) -- (-\t,-7.8);
+    \node[diamond, fill=brandAmber, draw=black!60, inner sep=2pt] at (-\t,-8.15) {};
+    \node[font=\scriptsize\bfseries, anchor=north] at (-\t,-8.35) {\tag};
+  }
+  % ---- legend ----
+  \begin{scope}[shift={(0,-9.5)}]
+    \fill[brandRed!85] (8.8,0.15) rectangle (8.0,-0.15);
+    \node[anchor=east] at (7.8,0) {\he{נתיב קריטי}};
+    \fill[brandSteel] (3.6,0.15) rectangle (2.8,-0.15);
+    \node[anchor=east] at (2.6,0) {\he{משימה עם מרווח}};
+    \node[diamond, fill=brandAmber, draw=black!60, inner sep=2pt] at (-4.0,0) {};
+    \node[anchor=east] at (-4.5,0) {\he{אבן דרך}};
+  \end{scope}
+\end{tikzpicture}
+\end{english}
+\caption[תרשים גאנט לשלב המימוש]{תרשים גאנט לשלב המימוש (\en{14} שבועות): משימות, משימות קודמות, נתיב קריטי ואבני דרך}
+\label{fig:ch7-gantt}
+\end{figure}
+
+\section{ניתוח סיכונים ותוכנית הפחתה}
+\label{sec:ch7-risks}
+
+הסיכונים כאן הם של פרויקט המחקר, ולא של שוק הדיור. כל סיכון דורג לפי הסתברות $P$ והשפעה $I$ בסולם \en{1–5}, וציונו $R = P \times I$; ציון של \en{12} ומעלה מוגדר קריטי (טבלה~\ref{tab:ch7-risks} ואיור~\ref{fig:ch7-riskmatrix}).
+
+\begin{table}[!htb]
+\centering
+\caption{זיהוי סיכוני המחקר וכימותם}
+\label{tab:ch7-risks}
+\small
+\begin{tabularx}{\tabmaxwidth}{>{\centering\arraybackslash}p{2.4cm} R >{\centering\arraybackslash}p{0.6cm} >{\centering\arraybackslash}p{0.6cm} >{\centering\arraybackslash}p{0.7cm}}
+\toprule
+\hd{מזהה} & \hd{תרחיש הכשל} & \hd{\en{P}} & \hd{\en{I}} & \hd{\en{R}} \\
+\midrule
+\mbox{\en{RSK-DAT-01}} & נתוני מסירות וביטולים ברמת הפרויקט אינם מפורסמים או מתעכבים & \en{4} & \en{4} & \textbf{\en{16}} \\
+\mbox{\en{RSK-MOD-02}} & הפרמטרים המכוילים אינם מייצגים את האוכלוסייה בפועל & \en{3} & \en{4} & \textbf{\en{12}} \\
+\mbox{\en{RSK-SRC-03}} & נתון מרכזי זמין רק ממקור משני ואינו ניתן לאימות מול המפרסם & \en{3} & \en{4} & \textbf{\en{12}} \\
+\mbox{\en{RSK-SCH-04}} & הנתיב הקריטי ללא מרווח; עיכוב במשימה אחת מעכב את ההגשה & \en{3} & \en{3} & \en{9} \\
+\mbox{\en{RSK-SCP-05}} & התרחבות ההיקף, למשל לאשראי חוץ־בנקאי או לנדל״ן מסחרי & \en{3} & \en{3} & \en{9} \\
+\mbox{\en{RSK-ENV-06}} & שינוי בריבית או ברגולציה (כגון סיום הוראת השעה) משנה את בסיס התרחיש & \en{4} & \en{2} & \en{8} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[!htb]
+\centering
+\begin{english}
+\begin{tikzpicture}[x=2.25cm, y=0.84cm, font=\footnotesize]
+  % 5x5 matrix: x = impact I, y = probability P, score R = P*I; R >= 12 critical
+  \foreach \p in {1,...,5}{ \foreach \i in {1,...,5}{
+    \pgfmathtruncatemacro{\s}{\p*\i}
+    \ifnum\s>11 \def\cc{brandRed!60}\else\ifnum\s>4 \def\cc{brandAmber!45}\else \def\cc{brandGreen!35}\fi\fi
+    \fill[\cc, draw=white, line width=1.2pt] (\i-1,\p-1) rectangle (\i,\p);
+    \node[anchor=north west, font=\scriptsize, inner sep=1.5pt, text=black!75] at (\i-1,\p) {\s};
+  }}
+  \foreach \i in {1,...,5}{ \node[anchor=north] at (\i-0.5,-0.05) {\i}; }
+  \foreach \p in {1,...,5}{ \node[anchor=east] at (-0.03,\p-0.5) {\p}; }
+  \node[anchor=north] at (2.5,-0.6) {\he{השפעה} ($I$)};
+  \node[rotate=90, anchor=south] at (-0.22,2.5) {\he{הסתברות} ($P$)};
+  \begin{scope}[every node/.style={font=\footnotesize\bfseries, align=center, inner sep=0pt}]
+    \node at (3.6,3.5) {DAT-01};
+    \node at (3.6,2.5) {MOD-02\\[-3pt]SRC-03};
+    \node at (2.6,2.5) {SCH-04\\[-3pt]SCP-05};
+    \node at (1.6,3.5) {ENV-06};
+  \end{scope}
+  \begin{scope}[shift={(5.12,0)}]
+    \foreach \y/\c/\lab in {3.6/brandRed!60/{קריטי: \en{12–25}}, 2.5/brandAmber!45/{בינוני: \en{5–10}}, 1.4/brandGreen!35/{נמוך: \en{1–4}}}{
+      \fill[\c] (0,\y-0.25) rectangle (0.2,\y+0.25);
+      \node[anchor=west] at (0.25,\y) {\he{\lab}};
+    }
+  \end{scope}
+\end{tikzpicture}
+\end{english}
+\caption[מטריצת הסיכונים \en{5×5}]{מטריצת הסיכונים \en{5×5}: המספר בכל תא הוא $R$; המזהים לפי טבלה~\ref{tab:ch7-risks} (ללא הקידומת \en{RSK})}
+\label{fig:ch7-riskmatrix}
+\end{figure}
+
+\begin{table}[!htb]
+\centering
+\caption[פעולות מנע ותוכניות מגירה]{פעולות מנע, תוכניות מגירה וציון שיורי לסיכונים הקריטיים}
+\label{tab:ch7-mitigation}
+\small
+\begin{tabularx}{\tabmaxwidth}{>{\centering\arraybackslash}p{2.4cm} R R >{\centering\arraybackslash}p{1.3cm}}
+\toprule
+\hd{מזהה} & \hd{פעולת מנע} & \hd{תוכנית מגירה} & \hd{שיורי} \\
+\midrule
+\mbox{\en{RSK-DAT-01}} & פנייה בשבוע \en{1} לפיקוח על הבנקים ולהלמ״ס; דוחות יזמים ציבוריים & אומדן מנתוני האשראי ומדוחות היזמים & \en{8} (\en{2×4}) \\
+\mbox{\en{RSK-MOD-02}} & תיקוף בראיונות \enb{TSK-3.2}; הרחבת הרגישות & הצגת התוצאות כטווח ולא כערך נקודתי & \en{6} (\en{2×3}) \\
+\mbox{\en{RSK-SRC-03}} & איתור הפרסום הראשי ושימוש בו בלבד & השמטה, או הצגה כמקור משני & \en{4} (\en{1×4}) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+לשלושת הסיכונים הקריטיים נקבעו פעולת מנע, תוכנית מגירה וציון שיורי (טבלה~\ref{tab:ch7-mitigation}); שלושת האחרים נמצאים במעקב.
+\newpage
+\section{סיכום: מוכנים לשלב המימוש}
+\label{sec:ch7-summary}
+
+\paragraph{עיקרי הממצאים.}
+\begin{itemize}
+  \item \textbf{מנגנונים}: שלושה ממנגנוני הכשל של \en{2008} משוחזרים בישראל: דחיית מבחן היכולת, זעזוע תשלום מרוכז ובנייה לפני מכירה. שלושה אינם משוחזרים: מינוף מצרפי גבוה של משקי הבית, איגוח נרחב והיעדר חבות אישית. הדמיון לספרד גדול מהדמיון לארה״ב (פרק~\ref{ch:comparative}).
+  \item \textbf{\en{H1} נתמכת חלקית} ו־\textbf{\en{H2} נתמכת בתרחיש הבסיס}: כ־\pct{36} מהרוכשים במבצעים חוצים יחס החזר של \pct{40} ביום המסירה, וכ־\pct{16} חוצים את \pct{50} (סעיף~\ref{sec:ch6-buyers}).
+  \item \textbf{\en{H3} אינה נתמכת לפי הסף שנקבע מראש}: בתרחיש החמור ה־\en{DSCR} של היזם יורד ל־\en{0.77}, אך ההפסד הבנקאי הוא \en{14.2\%–21.3\%} מההון העצמי לפני מס, מעל \pct{10}. הממצא שברירי: אחרי מס הגרסאות חלוקות (\pct{13.9} ו־\pct{9.2}) והתוצאה אינה מכריעה, ובשיעור העברה של \en{0.5} שתיהן מתחת ל־\pct{10}. כשל רוכשים לבדו אינו יוצר הפסד בנקאי, ובאף אחד מהתרחישים שנבחנו בפרמטרי הבסיס (עד \en{40\%/40\%/24}) אין בנק היורד אל מתחת ל־\pct{6.5} (סעיף~\ref{sec:ch6-cet1}).
+\end{itemize}
+
+\paragraph{מוכנות.} המודלים, ובהם מודל ההון, בנויים ומשחזרים את תוצאותיהם. החסר העיקרי הוא נתונים ברמת הפרויקט, שיחליפו את ההנחות שבהן תלויה הקביעה על \en{H3} (\mbox{\en{RSK-DAT-01}}). הציון השיורי של כל הסיכונים הקריטיים נמוך מ־\en{12}, ולכן המחקר מוכן לשלב המימוש.
+
+\begin{keybox}[\en{3} פעולות מיידיות להמשך המחקר והיישום]
+\textbf{(\en{1}) בקשת נתונים} (קובלרצ׳יק, שבוע \en{1}): מסירות, ביטולים וכושר ספיגה ברמת הפרויקט, מהפיקוח על הבנקים ומהלמ״ס. \textbf{תוצר:} בקשה מוגשת ורשימת שדות.\par
+\textbf{(\en{2}) תיאום ראיונות} (קובלרצ׳יק, שבועות \en{1–2}): בנקאי מלווה, שמאי ויזם, לתיקוף שיעור ההעברה וכושר הספיגה. \textbf{תוצר:} שלושה מועדים ושאלון פרמטרים.\par
+\textbf{(\en{3}) פגישת התנעה} (ניניו, שבוע \en{1}): אישור המנחה לתוכנית העבודה, לאבני הדרך ולבחינה החוזרת של \en{H3} בסף \pct{10} ללא שינוי. \textbf{תוצר:} פרוטוקול מאושר.
+\end{keybox}

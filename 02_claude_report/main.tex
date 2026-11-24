@@ -1,0 +1,46 @@
+% =====================================================================
+%  main.tex — Housing Project prep report (Agent 4 / DESIGN_AGENT)
+%  Build from build/ (4 runs):
+%    lualatex -interaction=nonstopmode main.tex
+%    biber main
+%    lualatex -interaction=nonstopmode main.tex
+%    lualatex -interaction=nonstopmode main.tex
+% =====================================================================
+\documentclass[12pt,a4paper,oneside]{book}
+\input{preamble.tex}
+
+\begin{document}
+
+% ---------------- Front matter (roman numbering; cover = i, copyright = ii, both unprinted) ----------------
+\frontmatter
+\input{frontmatter/titlepage.tex}
+\input{frontmatter/copyright.tex}
+\input{frontmatter/abstract.tex}
+\tableofcontents
+\begingroup     % lists of figures and tables flow on after the TOC (page budget)
+\let\clearpage\relax \let\cleardoublepage\relax
+\vspace{1.5em}
+\ListWithTocEntry{\listoffigures}{\listfigurename}
+\vspace{1.5em}
+\ListWithTocEntry{\listoftables}{\listtablename}
+\endgroup
+\input{frontmatter/acronyms.tex}
+
+% ---------------- Main matter (arabic numbering) ----------------
+\mainmatter
+\input{chapters/ch01_research_framework.tex}
+\input{chapters/ch02_us_subprime_2008.tex}
+\input{chapters/ch03_israel_housing_2022_2026.tex}
+\input{chapters/ch04_comparative_analysis.tex}
+\input{chapters/ch05_methodology_and_data.tex}
+\input{chapters/ch06_delivery_wall_resilience.tex}
+\input{chapters/ch07_risks_and_gantt.tex}
+
+% ---------------- References (IEEE, biber) ----------------
+\backmatter
+\chapter{מקורות}                 % Hebrew RTL heading, in TOC, header "מקורות"
+\begin{english}                 % entries are English -> LTR, IEEE numbering
+\printbibliography[heading=none]
+\end{english}
+
+\end{document}

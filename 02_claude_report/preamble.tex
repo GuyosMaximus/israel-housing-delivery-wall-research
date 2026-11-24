@@ -1,0 +1,230 @@
+% =====================================================================
+%  preamble.tex — Housing Project prep report (Agent 4 / DESIGN_AGENT)
+%  Toolchain (binding, brief §4): LuaLaTeX + biber + biblatex(ieee)
+%    lualatex main ; biber main ; lualatex main ; lualatex main
+%  Iron rule: a problem that repeats across the document is fixed HERE,
+%  never by patching chapter text. Writers: request new commands via
+%  comms/inbox/to_agent4.md.
+% =====================================================================
+
+% ---------- Languages: Hebrew RTL main, English LTR ----------
+\usepackage[english, bidi=basic, layout=tabular.lists]{babel}
+\babelprovide[main, import]{hebrew}
+
+% ---------- Fonts: Hebrew David, English Times New Roman ----------
+\babelfont{rm}{Times New Roman}
+% David has no italic: synthesize slanted shapes so \emph/\textit work (Directive 5)
+\babelfont[hebrew]{rm}[Scale=1.1,
+  ItalicFont=David, ItalicFeatures={FakeSlant=0.15},
+  BoldItalicFont=David Bold, BoldItalicFeatures={FakeSlant=0.15}]{David}
+\babelfont{sf}{Arial}
+\babelfont[hebrew]{sf}{Arial}
+\babelfont{tt}[Scale=0.9]{Courier New}
+
+% ---------- Page: 2.5 cm margins + 0.5 cm binding gutter (right, RTL) ----------
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, right=3cm, left=2.5cm,
+            headheight=15pt]{geometry}
+\usepackage{setspace}
+\onehalfspacing                          % line spacing 1.5 (guide ch.11)
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0.25em}
+\usepackage{microtype}
+\raggedbottom
+
+% ---------- Colour palette (shared with Python charts — see chat_log) ----------
+\usepackage[table]{xcolor}
+\definecolor{brandNavy}{HTML}{1F3A5F}    % primary: headings, frames, series 1
+\definecolor{brandSteel}{HTML}{4A6FA5}   % secondary: series 2, sub-headings
+\definecolor{brandRed}{HTML}{B03A2E}     % risk / critical path / series 3
+\definecolor{brandAmber}{HTML}{D68910}   % warning / milestones / series 4
+\definecolor{brandGreen}{HTML}{1E8449}   % cash flow / safe / series 5
+\definecolor{brandOlive}{HTML}{8C8A4B}   % "why it matters to a manager"
+\definecolor{brandHead}{HTML}{DCE6F2}    % table header fill
+\definecolor{brandPale}{HTML}{EAF1FB}    % light fills
+% Data-chart palette (A3, colour-blind validated) — use for pgfplots/TikZ charts
+\definecolor{chartBlue}{HTML}{2A78D6}    % series 1
+\definecolor{chartOrange}{HTML}{EB6834}  % series 2
+\definecolor{chartGreen}{HTML}{1BAF7A}   % series 3
+\definecolor{chartCritical}{HTML}{C62828}% threshold / critical
+\definecolor{chartInk}{HTML}{0B0B0B}
+\definecolor{chartGrid}{HTML}{E4E3DF}
+
+% ---------- BiDi / English marking (guide ch.14, Prompt B1) ----------
+% \en{...}         English word / phrase / acronym / number / range / % / currency — ONE LTR unit
+% \textenglish{..} alias of \en (kept for compatibility)
+% \term{עברית}{English}  first use of a professional term: "עברית (English)"
+% \he{...}         Hebrew inside an English environment (diagram, formula, code)
+% \pct{25}         -> 25%   (LTR unit);  \deal{20/80} -> deal structure (LTR unit)
+% \nis{1,500}      -> ₪1,500 (LTR unit)
+% \mathhe{...}     Hebrew text inside math
+\newcommand{\en}[1]{\foreignlanguage{english}{#1}}
+\providecommand{\textenglish}[1]{\en{#1}}
+% \enb{English} -> (English): brackets + phrase in one unbreakable box
+\newcommand{\enb}[1]{\mbox{(\en{#1})}}
+\newcommand{\term}[2]{#1 \enb{#2}}
+\newcommand{\he}[1]{\foreignlanguage{hebrew}{#1}}
+% \enp{עברית}{English}   -> עברית (English); the brackets belong to the RTL run,
+%                        so they stay correct also inside an English block
+\newcommand{\enp}[2]{\he{#1 \enb{#2}}}
+\providecommand{\texthebrew}[1]{\he{#1}}
+\newcommand{\pct}[1]{\en{#1\%}}
+\newcommand{\deal}[1]{\en{#1}}                         % deal structure: \deal{20/80}
+\newcommand{\nis}[1]{\en{₪#1}}
+\newcommand{\mathhe}[1]{\text{\he{#1}}}
+% English (LTR) environment for diagrams and code; Hebrew inside via \he{}
+\newenvironment{english}{\begin{otherlanguage}{english}}{\end{otherlanguage}}
+
+% ---------- Placeholder marker (Detector greps for \todo) ----------
+\newcommand{\todo}[1]{\textcolor{brandRed}{\textbf{[להשלמה: #1]}}}
+
+% ---------- Headings ----------
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\color{brandNavy}}
+  {\large\color{brandSteel}פרק \thechapter}{0.3em}{\LARGE}
+  [\vspace{2pt}{\color{brandSteel}\titlerule[1.2pt]}]
+\titlespacing*{\chapter}{0pt}{0pt}{1.4em}
+\titleformat{\section}{\normalfont\Large\bfseries\color{brandNavy}}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{brandSteel}}{\thesubsection}{0.8em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{0.8em}{}
+\titlespacing*{\section}{0pt}{1.6ex plus .6ex minus .2ex}{0.8ex}
+\titlespacing*{\subsection}{0pt}{1.3ex plus .5ex minus .2ex}{0.5ex}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}                 % TOC: chapter / section / subsection / subsubsection
+
+% ---------- Header / footer ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\makeatletter
+\renewcommand{\chaptermark}[1]{\markboth{\if@mainmatter פרק \thechapter: \fi#1}{}}
+\makeatother
+\fancyhead[R]{\small\color{brandSteel}\leftmark}
+\fancyfoot[C]{\small\en{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\en{\thepage}}\renewcommand{\headrulewidth}{0pt}}
+
+% ---------- Tables (first column on the right; width <= 12.4 cm) ----------
+\usepackage{array, tabularx, booktabs, longtable, multirow, makecell}
+\renewcommand{\arraystretch}{1.25}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+% E = English (LTR) paragraph column, flexible width: whole cell is English
+% Tested quirks: \selectlanguage in a cell adds a blank line, so raw LuaTeX
+% dirs are used; with colortbl loaded (xcolor[table]) the alignment is
+% mirrored, so \raggedleft here yields visually LEFT-aligned English text.
+% otherlanguage* tells the bidi algorithm the text is English, so brackets at
+% the edge of the cell are not mirrored (R06).
+\newcolumntype{E}{>{\pardir TLT\textdir TLT\raggedleft\arraybackslash
+  \begin{otherlanguage*}{english}}X<{\end{otherlanguage*}}}
+\newcommand{\hd}[1]{\cellcolor{brandHead}\textbf{#1}}   % header cell
+\newlength{\tabmaxwidth}\setlength{\tabmaxwidth}{12.4cm} % use: \begin{tabularx}{\tabmaxwidth}{...}
+
+% ---------- Figures, TikZ, plots ----------
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, calc, fit, backgrounds, shadows}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{amsmath, amssymb}
+
+% ---------- Captions: figure below, table above; Hebrew names ----------
+\usepackage{caption}
+\captionsetup{font=small, labelfont={bf,color=brandNavy}, labelsep=colon, justification=centering}
+\captionsetup[table]{position=top, skip=6pt}
+\captionsetup[figure]{position=bottom, skip=6pt}
+\addto\captionshebrew{%
+  \renewcommand{\figurename}{איור}%
+  \renewcommand{\tablename}{טבלה}%
+  \renewcommand{\listfigurename}{רשימת האיורים}%
+  \renewcommand{\listtablename}{רשימת הטבלאות}%
+  \renewcommand{\contentsname}{תוכן העניינים}%
+  \renewcommand{\bibname}{מקורות}%
+  \renewcommand{\abstractname}{תקציר מנהלים}%
+}
+
+% ---------- Boxes (tcolorbox) ----------
+\usepackage[most]{tcolorbox}
+\tcbset{reportbox/.style={enhanced, breakable=false, arc=2mm, boxrule=0.8pt,
+        left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm,
+        before skip=8pt, after skip=8pt,
+        fonttitle=\bfseries\small, halign title=flush left}}
+% RTL-safe boxes: under LuaLaTeX bidi=basic a tcolorbox frame opened in RTL
+% mode is mirrored off the page. Fix (tested): open the box frame in an LTR
+% (english) group and switch the box content/title back to Hebrew.
+% Writers simply use \begin{keyfinding}...\end{keyfinding} — no extra markup.
+\tcbset{rtlsafe/.style={before upper=\selectlanguage{hebrew},
+        before title=\selectlanguage{hebrew}}}
+\newcommand{\NewReportBox}[4]{% #1 env name, #2 default title, #3 tcb options
+  \newtcolorbox{tcb@#1}[1][#2]{reportbox, rtlsafe, title={##1}, #3}%
+  \newenvironment{#1}[1][#2]%
+    {\begin{otherlanguage}{english}\begin{tcb@#1}[##1]}%
+    {\end{tcb@#1}\end{otherlanguage}}}
+\makeatletter
+% Opening of EVERY chapter: why this matters to a manager (brief §7)
+\NewReportBox{managerbox}{למה זה חשוב למנהל}{colback=brandOlive!8, colframe=brandOlive}{}
+% Key finding
+\NewReportBox{keyfinding}{ממצא מרכזי}{colback=brandPale, colframe=brandNavy,
+  borderline east={3pt}{0pt}{brandNavy}}{}
+% Methodology note (data, assumptions, "בהנחה כי" / "תרחיש")
+\NewReportBox{methodology}{הערה מתודולוגית}{colback=gray!6, colframe=brandSteel}{}
+% Research question / hypotheses (cover + ch01 + ch06)
+\NewReportBox{researchquestion}{שאלת המחקר}{colback=white, colframe=brandNavy, boxrule=1.1pt}{}
+% Risk / pitfall warning
+\NewReportBox{riskalert}{התראת סיכון}{colback=brandRed!5, colframe=brandRed}{}
+% Aliases matching the guide's template names
+\NewReportBox{keybox}{מסר מרכזי}{colback=brandAmber!6, colframe=brandAmber}{}
+\NewReportBox{warnbox}{שימו לב}{colback=brandRed!5, colframe=brandRed}{}
+\NewReportBox{projectbox}{בפרויקט שלנו}{colback=brandNavy!5, colframe=brandNavy}{}
+\makeatother
+
+% ---------- Code ----------
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small, backgroundcolor=\color{gray!8},
+        frame=single, rulecolor=\color{gray!40}, breaklines=true,
+        columns=fullflexible, keepspaces=true}
+
+% ---------- Single source of truth: report metadata ----------
+\newcommand{\ResearchQuestion}{%
+באיזו מידה מבצעי המימון הקבלניים (כגון \en{20/80} ו־\en{20/50/30}), הלוואות הבלון ומינוף היזמים בשוק הנדל״ן הישראלי (\en{2022–2026}) משחזרים את מנגנוני הכשל של משבר הסאב־פריים (\en{2008}) ומשבר הנדל״ן בספרד, ומהי עמידות המערכת הבנקאית והיזמית בישראל בפני גל חדלות פירעון בעת ״קיר המסירות״ של \en{2026–2027}?}
+\newcommand{\ReportTitle}{מבצעי מימון קבלניים ו״קיר המסירות״}
+\newcommand{\ReportSubtitle}{האם שוק הנדל״ן הישראלי משחזר את מנגנוני הכשל של \en{2008} ושל ספרד?}
+\newcommand{\ReportTitleEn}{Developer Financing Promotions and the “Delivery~Wall”}
+\newcommand{\ReportSubtitleEn}{Is the Israeli Housing Market Reproducing the Failure Mechanisms of 2008 and of Spain?}
+\newcommand{\ReportType}{עבודת מחקר על שוק הדיור}
+\newcommand{\Institution}{אוניברסיטת חיפה}
+\newcommand{\CourseLine}{קורס תכנות מונחה \en{AI}, החטיבה לבינה מלאכותית, סמסטר א׳ תשפ״ז}
+\newcommand{\Authors}{שקד ניניו, גיא קובלרצ׳יק}
+\newcommand{\Supervisor}{ד״ר יורם סגל}
+\newcommand{\ReportDate}{\en{\today}}
+
+% ---------- Bibliography: IEEE, biber ----------
+\usepackage{csquotes}
+% csquotes has no 'hebrew' style -> its fallback prints a bold "?" around every
+% quoted title (biblatex @online/@article titles). Map Hebrew to English quotes.
+\DeclareQuoteAlias{english}{hebrew}
+\usepackage[backend=biber, style=ieee, sorting=none]{biblatex}
+\addbibresource{references.bib}
+% D09: the ieee @online driver omits the publication date; print it after the organization.
+\usepackage{xpatch}
+\xpatchbibdriver{online}{\printlist{organization}}{\printlist{organization}\setunit{\addcomma\space}\printdate}{}{\GenericError{}{online date patch failed}{}{}}
+% Let long URLs/DOIs break anywhere (prevents overfull lines in the reference list)
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
+\AtBeginBibliography{\sloppy\emergencystretch=2em}
+
+% List of figures/tables with its TOC entry written right after the heading, so
+% the page number is correct when the list starts mid-page and runs over.
+\makeatletter
+\newcommand{\ListWithTocEntry}[2]{\begingroup
+  \let\report@starttoc\@starttoc
+  \def\@starttoc##1{\addcontentsline{toc}{chapter}{#2}\nobreak\report@starttoc{##1}}%
+  #1\endgroup}
+\makeatother
+
+% ---------- Hyperlinks (always last) ----------
+\usepackage[unicode, hidelinks, bookmarksnumbered]{hyperref}
+\usepackage{bookmark}

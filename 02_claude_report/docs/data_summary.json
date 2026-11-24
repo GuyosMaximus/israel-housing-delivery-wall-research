@@ -1,0 +1,2418 @@
+{
+  "generated": "2026-11-24T17:10:06",
+  "generator": "03_python_viz/run_all.py (Agent 3)",
+  "rule": "A1/A2: state as fact ONLY values with verified=true (or listed in verified_points); everything else must be framed as illustration / scenario / assumption in the Hebrew text.",
+  "data_status_legend": {
+    "official": "published decision/statistic; every value verified against the publisher",
+    "official_approx": "official series; only `verified_points` were checked - other anchors are interpolation inputs",
+    "calibrated": "model parameter chosen by the author; NOT data"
+  },
+  "last_verified_month": "2026-09-01",
+  "official_data": {
+    "boi_policy_rate": {
+      "unit": "% per year",
+      "period": "2021-01..2026-09",
+      "status": "official",
+      "source_key": "boi_rate_decisions",
+      "verified": true,
+      "verified_points": {
+        "2021-01": 0.1,
+        "2022-04": 0.35,
+        "2022-05": 0.75,
+        "2022-07": 1.25,
+        "2022-08": 2.0,
+        "2022-10": 2.75,
+        "2022-11": 3.25,
+        "2023-01": 3.75,
+        "2023-02": 4.25,
+        "2023-04": 4.5,
+        "2023-05": 4.75,
+        "2024-01": 4.5,
+        "2025-11": 4.25,
+        "2026-01": 4.0,
+        "2026-05": 3.75,
+        "2026-07": 3.5,
+        "2026-09": 3.25
+      },
+      "anchor_values": {
+        "2021-01": 0.1,
+        "2022-04": 0.35,
+        "2022-05": 0.75,
+        "2022-07": 1.25,
+        "2022-08": 2.0,
+        "2022-10": 2.75,
+        "2022-11": 3.25,
+        "2023-01": 3.75,
+        "2023-02": 4.25,
+        "2023-04": 4.5,
+        "2023-05": 4.75,
+        "2024-01": 4.5,
+        "2025-11": 4.25,
+        "2026-01": 4.0,
+        "2026-05": 3.75,
+        "2026-07": 3.5,
+        "2026-09": 3.25
+      },
+      "note": "Path 2021-2026 via boi_rate_decisions (Trading Economics); 2025-11, 2026-01, 2026-07, 2026-09 decisions from BoI primary releases. Held 3.25% on 2026-10-21 (single secondary source)."
+    },
+    "unsold_new_dwellings": {
+      "unit": "dwellings, end of month (not seasonally adjusted)",
+      "period": "2021-01..2026-09",
+      "status": "official_approx",
+      "source_key": [
+        "cbs_newdwellings",
+        "globes_2026_09_inventory",
+        "cbs_newdwellings_2026q3"
+      ],
+      "verified": true,
+      "verified_points": {
+        "2026-01": 86290,
+        "2026-07": 85000,
+        "2026-08": 85680,
+        "2026-09": 85080
+      },
+      "anchor_values": {
+        "2021-01": 49000,
+        "2021-12": 46000,
+        "2022-06": 48000,
+        "2022-12": 52000,
+        "2023-06": 56000,
+        "2023-12": 61000,
+        "2024-04": 65900,
+        "2025-04": 79410,
+        "2025-12": 86090,
+        "2026-01": 86290,
+        "2026-07": 85000,
+        "2026-08": 85680,
+        "2026-09": 85080
+      },
+      "note": "Sep-2026 SA value 86,666; 25.8 months of supply. CBS drops a unit 15 months after completion. Anchors before 2026 unverified."
+    },
+    "residential_transactions": {
+      "unit": "deals per month",
+      "period": "2021-01..2026-09",
+      "status": "official_approx",
+      "source_key": [
+        "semerenko_market",
+        "toi_housing_2026_10"
+      ],
+      "verified": true,
+      "verified_points": {
+        "2026-04": 5081,
+        "2026-05": 8246,
+        "2026-08": 7532
+      },
+      "anchor_values": {
+        "2021-01": 10500,
+        "2021-06": 12500,
+        "2021-12": 13000,
+        "2022-06": 10500,
+        "2022-12": 8000,
+        "2023-06": 7000,
+        "2023-12": 6800,
+        "2024-07": 7950,
+        "2025-07": 7073,
+        "2026-04": 5081,
+        "2026-05": 8246,
+        "2026-08": 7532,
+        "2026-09": 7000
+      },
+      "note": "Verified: Apr-26 5,081; May-26 8,246; Aug-26 7,532. NOT verified: 2025 total 84,879, '20-year low' claim. Anchors before 2026 unverified."
+    },
+    "dwelling_price_index": {
+      "unit": "index, Jan-2021 = 100",
+      "period": "2021-01..2026-09",
+      "status": "official_approx",
+      "source_key": [
+        "cbs_priceindex",
+        "cbs_priceindex_2026_222",
+        "toi_housing_2026_10"
+      ],
+      "verified": false,
+      "verified_points": {},
+      "anchor_values": {
+        "2021-01": 100.0,
+        "2022-01": 110.6,
+        "2023-01": 131.3,
+        "2024-01": 128.5,
+        "2025-01": 138.2,
+        "2025-08": 140.0,
+        "2026-01": 139.0,
+        "2026-08": 137.5,
+        "2026-09": 137.3
+      },
+      "note": "LEVELS UNVERIFIED (reconstruction). Verified y/y only: +0.5% Aug-Sep 2025; -2.0% Apr-May 2026; -1.8% Jul-Aug 2026."
+    },
+    "household_debt_gdp": {
+      "values": {
+        "US 2007Q4": 98.4,
+        "Israel 2025-12": 42.5
+      },
+      "unit": "% of GDP",
+      "period": "2007Q4 / 2025-12",
+      "status": "official",
+      "source_key": "bis_hhdebt",
+      "verified": true
+    }
+  },
+  "bank_capital_2026q3": {
+    "period": "2026-09-30",
+    "unit": "NIS m (min, reported: %)",
+    "status": "official",
+    "verified": true,
+    "legend": {
+      "D": "debts, construction + real-estate activity, Israel",
+      "T": "total credit risk, same sectors",
+      "P": "allowance for credit losses, same sectors",
+      "G": "guarantees to home buyers, nominal",
+      "E": "shareholders' equity",
+      "min": "required CET1 ratio",
+      "reported": "published CET1 ratio"
+    },
+    "source_key": [
+      "leumi_q3_2026",
+      "hapoalim_q3_2026",
+      "mizrahi_q3_2026",
+      "discount_q3_2026",
+      "fibi_q3_2026"
+    ],
+    "values": {
+      "Leumi": {
+        "CET1": 70936,
+        "RWA": 623358,
+        "min": 10.23,
+        "D": 149317,
+        "T": 238418,
+        "P": 3368,
+        "G": 47972,
+        "E": 71442,
+        "src": "leumi_q3_2026",
+        "reported": 11.38
+      },
+      "Hapoalim": {
+        "CET1": 67480,
+        "RWA": 580553,
+        "min": 10.24,
+        "D": 116083,
+        "T": 188829,
+        "P": 2575,
+        "G": 31513,
+        "E": 67530,
+        "src": "hapoalim_q3_2026",
+        "reported": 11.62
+      },
+      "Mizrahi-Tefahot": {
+        "CET1": 37170,
+        "RWA": 368119,
+        "min": 9.6,
+        "D": 54442,
+        "T": 98698,
+        "P": 709,
+        "G": 18293,
+        "E": 36667,
+        "src": "mizrahi_q3_2026",
+        "reported": 10.1
+      },
+      "Discount": {
+        "CET1": 35821,
+        "RWA": 347080,
+        "min": 9.21,
+        "D": 56484,
+        "T": 90415,
+        "P": 1251,
+        "G": 17480,
+        "E": 35098,
+        "src": "discount_q3_2026",
+        "reported": 10.32
+      },
+      "First International": {
+        "CET1": 14730,
+        "RWA": 143282,
+        "min": 9.24,
+        "D": 24491,
+        "T": 36206,
+        "P": 469,
+        "G": 2984,
+        "E": 14533,
+        "src": "fibi_q3_2026",
+        "reported": 10.28
+      }
+    }
+  },
+  "absorption_capacity_cdf": {
+    "value": [
+      [
+        0,
+        0
+      ],
+      [
+        0.25,
+        0.01
+      ],
+      [
+        0.3,
+        0.08
+      ],
+      [
+        0.4,
+        0.33
+      ],
+      [
+        0.5,
+        0.556
+      ],
+      [
+        0.75,
+        0.752
+      ],
+      [
+        1.0,
+        1.0
+      ]
+    ],
+    "status": "official points, spliced by the author",
+    "source_key": [
+      "boi_survey2025",
+      "leumi_q3_2026",
+      "hapoalim_q3_2026"
+    ],
+    "verified": true
+  },
+  "context_facts": {
+    "developer_credit_2025_bn_nis": {
+      "value": 69,
+      "prev_2024": 49,
+      "change_pct": 40,
+      "unit": "NIS bn",
+      "period": "2025",
+      "source_key": "boi2026_recredit",
+      "verified": true,
+      "status": "official",
+      "note": "Financial credit to residential construction projects, end-2024 -> end-2025 (primary text)"
+    },
+    "construction_re_share_business_credit": {
+      "value": 39,
+      "share_of_total_credit_to_public": 21,
+      "growth_2025_pct": 14,
+      "unit": "% of balance-sheet business credit",
+      "period": "2025",
+      "source_key": "boi2026_recredit",
+      "verified": true,
+      "status": "official",
+      "note": "Supersedes the 2024H1 value of ~40% (boi_fsr2024h1)"
+    },
+    "signing_to_mortgage_gap_months": {
+      "value": 8,
+      "earlier": "about 6 months (2018-2022)",
+      "unit": "months",
+      "period": "2025",
+      "source_key": "boi2026_resloans",
+      "verified": true,
+      "status": "official"
+    },
+    "absorption_capacity_avg": {
+      "value": 58,
+      "prev_2024": 70,
+      "unit": "%",
+      "period": "2025-12",
+      "source_key": [
+        "boi2026_recredit",
+        "boi_survey2025"
+      ],
+      "verified": true,
+      "status": "official",
+      "note": "Maximum fall in apartment sale prices without bank loss on the project, average. It is NOT a 58% drop in sales."
+    },
+    "absorption_below_40_share_of_credit": {
+      "value": 33,
+      "prev_2024": 22,
+      "unit": "% of credit to started projects",
+      "period": "2025-12",
+      "source_key": "boi_survey2025",
+      "verified": true,
+      "status": "official",
+      "note": "8% below 30"
+    },
+    "projects_construction_ahead_of_sales": {
+      "value": 44,
+      "prev_2024": 35,
+      "unit": "% of total exposure of the five groups",
+      "period": "2025-12",
+      "source_key": [
+        "boi2026_recredit",
+        "boi_survey2025"
+      ],
+      "verified": true,
+      "status": "official"
+    },
+    "cre_credit_split_2025": {
+      "value": {
+        "land": 104,
+        "of_which_residential_land": 81,
+        "residential_projects": 69,
+        "total": 367
+      },
+      "unit": "NIS bn",
+      "period": "2025-12",
+      "source_key": "boi_survey2025",
+      "verified": true,
+      "status": "official"
+    },
+    "boi_macro_stress_test_2025": {
+      "value": {
+        "cet1_drop_pp": 1.5,
+        "cet1_start": 11.5,
+        "cet1_trough": 10.0,
+        "cre_cumulative_loss_rate_pct": 3.3,
+        "total_credit_losses_bn": 84,
+        "cre_share_of_losses_pct": 20.9,
+        "price_cumulative_gap_pct": 15
+      },
+      "unit": "mixed",
+      "period": "scenario from 2024-12",
+      "source_key": "boi_survey2025",
+      "verified": true,
+      "status": "official",
+      "note": "Full macro scenario with income and dynamic balance sheet; not our model"
+    },
+    "mizrahi_construction_split_2026q3": {
+      "value": {
+        "guarantee_credit_risk_bn": 7.6,
+        "guarantees_nominal_bn": 18.3,
+        "project_assistance_share_of_onbalance_pct": 59
+      },
+      "unit": "NIS bn / %",
+      "period": "2026-09-30",
+      "source_key": "mizrahi_q3_2026",
+      "verified": true,
+      "status": "official",
+      "note": "7,613 vs nominal 18,293 NIS m; 32,470 of 54,876 NIS m = 59%"
+    },
+    "absorption_cdf_hapoalim_share": {
+      "value": 53,
+      "unit": "% of credit behind the 0.25/0.50/0.75 nodes",
+      "period": "2026-09-30",
+      "source_key": [
+        "leumi_q3_2026",
+        "hapoalim_q3_2026"
+      ],
+      "verified": true,
+      "status": "derived",
+      "note": "52,634 of 99,962 NIS m; Hapoalim p. 61 note 4: completed value; Leumi p. 80 note c: inventory prices"
+    },
+    "unsold_2025_12_seasonally_adjusted": {
+      "value": 83000,
+      "unit": "dwellings, approx., seasonally adjusted",
+      "period": "2025-12",
+      "source_key": "boi_annual2025_housing",
+      "verified": true,
+      "status": "official",
+      "note": "Fig 2 series is NOT seasonally adjusted (2025-12 anchor 86,090)"
+    },
+    "boi_stress_floor_cet1": {
+      "value": 6.5,
+      "unit": "%",
+      "period": "2024 survey",
+      "source_key": "boi_survey2024",
+      "verified": true,
+      "status": "official"
+    },
+    "promo_share_long_delivery_new_deals": {
+      "value": 31,
+      "unit": "% of new-dwelling deals, delivery > 1y",
+      "period": "2025-09",
+      "source_key": "mof_chiefecon_2025",
+      "verified": false,
+      "status": "press_secondary",
+      "note": "cited source predates/does not show the value; use promo_share_new_deals_2026_08"
+    },
+    "promo_share_new_deals_2026_08": {
+      "value": 30,
+      "superseded_value": 33,
+      "unit": "% of free-market developer sales, delivery >= 1 year, 5 monitored areas (Center, Tel Aviv, Hadera, Netanya, Beer Sheva)",
+      "period": "2026-08",
+      "source_key": [
+        "mof_review_2026_08",
+        "nadlancenter_2026_08_promos"
+      ],
+      "verified": true,
+      "status": "official"
+    },
+    "price_index_yoy": {
+      "value": {
+        "2025-08/09": 0.5,
+        "2026-04/05": -2.0,
+        "2026-07/08": -1.8
+      },
+      "unit": "% y/y",
+      "source_key": [
+        "cbs_priceindex",
+        "cbs_priceindex_2026_222",
+        "toi_housing_2026_10"
+      ],
+      "verified": true,
+      "status": "official / press_secondary"
+    },
+    "dwelling_stock_total": {
+      "value": 3020000,
+      "unit": "dwellings (stock), approx.",
+      "period": "mid-2025",
+      "source_key": "cbs_stock_2025",
+      "verified": true,
+      "status": "press_secondary (CBS register)",
+      "note": "CBS register includes estimates for several authorities that did not report"
+    },
+    "demographic_need_per_year": {
+      "value": 65500,
+      "unit": "dwellings per year (flow), approx.",
+      "period": "2026-2035",
+      "source_key": "boi_annual2025_housing",
+      "verified": true,
+      "status": "official",
+      "note": "p. 216, Strategic Housing Plan 2050"
+    },
+    "housing_transactions_2025": {
+      "value": 90700,
+      "unit": "transactions per year, approx.",
+      "period": "2025",
+      "source_key": "boi_annual2025_housing",
+      "verified": true,
+      "status": "official",
+      "note": "Table 8.1 p. 207: 90.7 thousand"
+    },
+    "new_homes_sold_2025": {
+      "value": 34000,
+      "unit": "dwellings per year, approx.",
+      "period": "2025",
+      "source_key": "boi_annual2025_housing",
+      "verified": true,
+      "status": "official"
+    },
+    "active_construction_stock": {
+      "value": 217200,
+      "unit": "dwellings (stock)",
+      "period": "2026-06",
+      "source_key": "cbs_construction_2026q2",
+      "verified": true,
+      "status": "press_secondary (CBS)",
+      "note": "includes dwellings not for sale"
+    },
+    "new_homes_sold_2026q3": {
+      "value": 9190,
+      "unit": "dwellings per quarter, approx.",
+      "period": "2026Q3",
+      "source_key": "cbs_newdwellings_2026q3",
+      "verified": true,
+      "status": "press_secondary (CBS)"
+    },
+    "months_of_supply": {
+      "value": 25.8,
+      "unit": "months",
+      "period": "2026-09",
+      "source_key": "cbs_newdwellings_2026q3",
+      "verified": true,
+      "status": "press_secondary (CBS)"
+    },
+    "promo_share_free_market_5_areas": {
+      "value": {
+        "2026-05": 20,
+        "2026-08": 30
+      },
+      "unit": "% of free-market developer sales with delivery >= 1 year, in 5 monitored areas (Center, Tel Aviv, Hadera, Netanya, Beer Sheva)",
+      "source_key": "mof_review_2026_08",
+      "verified": true,
+      "status": "official",
+      "note": "Primary source. SUPERSEDES promo_share_new_deals_2026_08 = 33: the press page 15575 says 'about a third' only in its headline; body and MoF say 30%."
+    },
+    "five_areas_share_of_free_market_sales": {
+      "value": 60,
+      "unit": "%, approx., since 2024-11",
+      "source_key": "mof_review_2026_08",
+      "verified": true,
+      "status": "official",
+      "note": "p. 11"
+    },
+    "free_market_developer_sales_2026_08": {
+      "value": 2072,
+      "unit": "dwellings per month",
+      "period": "2026-08",
+      "source_key": "mof_review_2026_08",
+      "verified": true,
+      "status": "official"
+    }
+  },
+  "derived_agent1": {
+    "implied_monthly_new_sales": {
+      "value": 3300,
+      "formula": "85080/25.8 = 3298",
+      "status": "derived"
+    },
+    "som2_monthly_5_areas": {
+      "value": 373,
+      "formula": "2072*0.60*0.30",
+      "status": "calibrated (assumption: upper estimate)",
+      "verified": false
+    },
+    "som2_monthly_national": {
+      "value": 622,
+      "formula": "2072*0.30",
+      "status": "calibrated (assumption: same prevalence nationwide)",
+      "verified": false
+    },
+    "som2_sensitivity_at_20pct": {
+      "value": [
+        249,
+        414
+      ],
+      "formula": "2072*0.60*0.20 ; 2072*0.20",
+      "status": "calibrated",
+      "verified": false
+    }
+  },
+  "calibrated_parameters": {
+    "npv_discount_rates": {
+      "value": [
+        0.05,
+        0.055,
+        0.06
+      ],
+      "status": "calibrated",
+      "verified": false
+    },
+    "npv_deferral_years": {
+      "value": 3.0,
+      "status": "calibrated",
+      "verified": false
+    },
+    "npv_deferred_share": {
+      "value": 0.8,
+      "status": "calibrated",
+      "verified": false
+    },
+    "mc_n": {
+      "value": 10000,
+      "status": "calibrated",
+      "verified": false
+    },
+    "mc_seed": {
+      "value": 20262027,
+      "status": "calibrated",
+      "verified": false
+    },
+    "mc_mortgage_rates": {
+      "value": [
+        0.04,
+        0.0525,
+        0.065
+      ],
+      "status": "calibrated",
+      "verified": false
+    },
+    "mc_price_median_nis": {
+      "value": 2400000,
+      "status": "calibrated",
+      "verified": false
+    },
+    "mc_price_sigma_log": {
+      "value": 0.3,
+      "status": "calibrated",
+      "verified": false
+    },
+    "mc_income_median_nis_month": {
+      "value": 26000,
+      "status": "calibrated",
+      "verified": false
+    },
+    "mc_income_sigma_log": {
+      "value": 0.35,
+      "status": "calibrated",
+      "verified": false
+    },
+    "mc_price_income_corr": {
+      "value": 0.55,
+      "status": "calibrated",
+      "verified": false
+    },
+    "mc_ltv_alpha_beta": {
+      "value": [
+        9.0,
+        4.0
+      ],
+      "status": "calibrated",
+      "verified": false
+    },
+    "mc_ltv_cap": {
+      "value": 0.75,
+      "status": "calibrated",
+      "verified": false
+    },
+    "mc_term_years_choices": {
+      "value": [
+        25,
+        30
+      ],
+      "status": "calibrated",
+      "verified": false
+    },
+    "mc_income_shock_sd": {
+      "value": 0.05,
+      "status": "calibrated",
+      "verified": false
+    },
+    "pti_risk_threshold": {
+      "value": 0.4,
+      "status": "calibrated",
+      "verified": false
+    },
+    "pti_hard_cap": {
+      "value": 0.5,
+      "status": "calibrated",
+      "verified": false
+    },
+    "us_teaser_rate": {
+      "value": 0.08,
+      "status": "calibrated",
+      "verified": false
+    },
+    "us_reset_rate": {
+      "value": 0.11,
+      "status": "calibrated",
+      "verified": false
+    },
+    "us_loan_usd": {
+      "value": 200000,
+      "status": "calibrated",
+      "verified": false
+    },
+    "us_initial_dti": {
+      "value": 0.4,
+      "status": "calibrated",
+      "verified": false
+    },
+    "il_price_nis": {
+      "value": 2500000,
+      "status": "calibrated",
+      "verified": false
+    },
+    "il_income_nis_month": {
+      "value": 28000,
+      "status": "calibrated",
+      "verified": false
+    },
+    "il_mortgage_rate": {
+      "value": 0.05,
+      "status": "calibrated",
+      "verified": false
+    },
+    "il_ltv_at_delivery": {
+      "value": 0.75,
+      "status": "calibrated",
+      "verified": false
+    },
+    "il_balloon_rate": {
+      "value": 0.055,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_units": {
+      "value": 200,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_presold_share": {
+      "value": 0.6,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_land_cost_share": {
+      "value": 0.3,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_construction_cost_share": {
+      "value": 0.45,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_soft_cost_share": {
+      "value": 0.08,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_loan_to_cost": {
+      "value": 0.7,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_loan_rate": {
+      "value": 0.0725,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_cost_inflation": {
+      "value": 0.05,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_balloon_subsidy_rate": {
+      "value": 0.055,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_balloon_share_of_presales": {
+      "value": 0.45,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_late_penalty_rent_nis": {
+      "value": 7500,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_cancel_threshold": {
+      "value": 0.05,
+      "status": "calibrated",
+      "verified": false
+    },
+    "dev_cancel_elasticity": {
+      "value": 2.0,
+      "status": "calibrated",
+      "verified": false
+    },
+    "bank_collateral_haircut": {
+      "value": 0.1,
+      "status": "calibrated",
+      "verified": false
+    },
+    "bank_guarantee_paid_in_share": {
+      "value": 0.3,
+      "status": "calibrated",
+      "verified": false
+    },
+    "cet1_res_share": {
+      "value": 0.4087193460490463,
+      "status": "calibrated; see cet1_model_spec.md",
+      "verified": false
+    },
+    "cet1_guarantee_draw": {
+      "value": 1.0,
+      "status": "calibrated; see cet1_model_spec.md",
+      "verified": false
+    },
+    "cet1_resale_discount": {
+      "value": 0.05,
+      "status": "calibrated; see cet1_model_spec.md",
+      "verified": false
+    },
+    "cet1_enforcement_cost": {
+      "value": 0.05,
+      "status": "calibrated; see cet1_model_spec.md",
+      "verified": false
+    },
+    "cet1_zeta": {
+      "value": 1.0,
+      "status": "calibrated; see cet1_model_spec.md",
+      "verified": false
+    },
+    "cet1_tax": {
+      "value": 0.3475,
+      "status": "calibrated; see cet1_model_spec.md",
+      "verified": false
+    },
+    "cet1_stress_floor": {
+      "value": 6.5,
+      "status": "calibrated; see cet1_model_spec.md",
+      "verified": false
+    },
+    "promo_share_of_new_sales": {
+      "value": {
+        "2021-01": 0.03,
+        "2022-06": 0.05,
+        "2023-03": 0.12,
+        "2023-12": 0.3,
+        "2024-06": 0.4,
+        "2025-02": 0.45,
+        "2025-04": 0.3,
+        "2025-09": 0.31,
+        "2026-05": 0.2,
+        "2026-08": 0.3,
+        "2026-09": 0.3
+      },
+      "status": "calibrated",
+      "verified": false,
+      "calibration_target": "20% May-2026 and 30% Aug-2026, free-market developer sales, delivery >= 1 year, 5 areas (mof_review_2026_08, p. 12)"
+    },
+    "new_dwelling_weight_in_transactions": {
+      "value": 0.38,
+      "status": "calibrated",
+      "verified": false
+    }
+  },
+  "simulation_outputs": {
+    "status": "calibrated - scenario results, never state as observed facts",
+    "fig1_payment_shock_2080_vs_teaser": {
+      "us_teaser_payment_usd": 1468,
+      "us_reset_payment_usd": 1889,
+      "us_pti_before": 0.4,
+      "us_pti_after": 0.515,
+      "us_payment_increase_pct": 28.8,
+      "il_mortgage_payment_nis": 10065,
+      "il_pti_after": 0.359,
+      "il_205030_interest_only_nis": 5729,
+      "il_205030_pti_before": 0.205,
+      "il_205030_payment_increase_pct": 75.7
+    },
+    "fig2_unsold_inventory_vs_rates": {
+      "unsold_first_month_above_85k": "2025-11-01",
+      "unsold_change_2021_01_to_last_pct": 73.6,
+      "transactions_peak_to_trough_pct": -60.9,
+      "corr_rate_vs_unsold": 0.683,
+      "corr_rate_vs_transactions": -0.937,
+      "yearly": {
+        "2021": {
+          "unsold_end": 46000.0,
+          "boi_rate_end": 0.1,
+          "transactions_avg": 12143.74
+        },
+        "2022": {
+          "unsold_end": 52000.0,
+          "boi_rate_end": 3.25,
+          "transactions_avg": 10291.1
+        },
+        "2023": {
+          "unsold_end": 61000.0,
+          "boi_rate_end": 4.75,
+          "transactions_avg": 7149.95
+        },
+        "2024": {
+          "unsold_end": 74931.34,
+          "boi_rate_end": 4.5,
+          "transactions_avg": 7571.09
+        },
+        "2025": {
+          "unsold_end": 86090.0,
+          "boi_rate_end": 4.25,
+          "transactions_avg": 6920.85
+        },
+        "2026": {
+          "unsold_end": 85080.0,
+          "boi_rate_end": 3.25,
+          "transactions_avg": 6687.62
+        }
+      }
+    },
+    "fig3_npv_price_discount_gap": {
+      "deal_discount_pct": {
+        "r=0.050": 10.89,
+        "r=0.055": 11.87,
+        "r=0.060": 12.83
+      },
+      "market_overstatement_peak_pct": 2.03,
+      "market_overstatement_peak_month": "2025-02-01",
+      "market_overstatement_last_pct": 1.35,
+      "price_index_last": 137.3,
+      "npv_index_last_r5.5": 135.4
+    },
+    "fig4_pti_monte_carlo": {
+      "rate_0.0400": {
+        "pti_median": 0.3085,
+        "pti_p90": 0.482,
+        "share_pti_above_40": 0.231,
+        "share_pti_above_50": 0.0842
+      },
+      "rate_0.0525": {
+        "pti_median": 0.3535,
+        "pti_p90": 0.5527,
+        "share_pti_above_40": 0.3605,
+        "share_pti_above_50": 0.1597
+      },
+      "rate_0.0650": {
+        "pti_median": 0.4015,
+        "pti_p90": 0.6267,
+        "share_pti_above_40": 0.5045,
+        "share_pti_above_50": 0.2665
+      },
+      "draws": {
+        "ltv_mean": 0.668,
+        "price_median": 2405102.794,
+        "income_median": 25924.219
+      }
+    },
+    "fig5_delivery_wall_resilience_heatmap": {
+      "grid_price_drops": [
+        0.0,
+        0.025,
+        0.05,
+        0.075,
+        0.1,
+        0.125,
+        0.15,
+        0.175,
+        0.2
+      ],
+      "grid_delays_months": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24
+      ],
+      "dscr_baseline": 1.293,
+      "dscr_worst": 0.765,
+      "coverage_baseline_pct": 118.3,
+      "coverage_worst_pct": 67.4,
+      "cells_dscr_below_1": "34/81",
+      "cells_coverage_below_100": "57/81",
+      "dscr_at_minus10_delay12": 1.045,
+      "dscr_grid": [
+        [
+          1.293,
+          1.275,
+          1.258,
+          1.238,
+          1.217,
+          1.195,
+          1.171,
+          1.147,
+          1.121
+        ],
+        [
+          1.257,
+          1.24,
+          1.223,
+          1.202,
+          1.181,
+          1.159,
+          1.136,
+          1.111,
+          1.086
+        ],
+        [
+          1.211,
+          1.194,
+          1.177,
+          1.157,
+          1.136,
+          1.114,
+          1.09,
+          1.066,
+          1.04
+        ],
+        [
+          1.166,
+          1.149,
+          1.131,
+          1.111,
+          1.09,
+          1.068,
+          1.045,
+          1.02,
+          0.995
+        ],
+        [
+          1.12,
+          1.103,
+          1.086,
+          1.066,
+          1.045,
+          1.022,
+          0.999,
+          0.975,
+          0.949
+        ],
+        [
+          1.074,
+          1.057,
+          1.04,
+          1.02,
+          0.999,
+          0.977,
+          0.953,
+          0.929,
+          0.903
+        ],
+        [
+          1.028,
+          1.011,
+          0.994,
+          0.974,
+          0.953,
+          0.931,
+          0.907,
+          0.883,
+          0.857
+        ],
+        [
+          0.982,
+          0.965,
+          0.948,
+          0.928,
+          0.907,
+          0.885,
+          0.861,
+          0.837,
+          0.811
+        ],
+        [
+          0.936,
+          0.919,
+          0.902,
+          0.882,
+          0.861,
+          0.838,
+          0.815,
+          0.791,
+          0.765
+        ]
+      ],
+      "coverage_grid_pct": [
+        [
+          118.3,
+          115.3,
+          112.4,
+          109.4,
+          106.4,
+          103.5,
+          100.5,
+          97.6,
+          94.6
+        ],
+        [
+          115.5,
+          112.6,
+          109.6,
+          106.7,
+          103.7,
+          100.8,
+          97.8,
+          94.8,
+          91.9
+        ],
+        [
+          112.1,
+          109.1,
+          106.2,
+          103.2,
+          100.2,
+          97.3,
+          94.3,
+          91.4,
+          88.4
+        ],
+        [
+          108.6,
+          105.6,
+          102.7,
+          99.7,
+          96.8,
+          93.8,
+          90.9,
+          87.9,
+          84.9
+        ],
+        [
+          105.1,
+          102.1,
+          99.2,
+          96.2,
+          93.3,
+          90.3,
+          87.4,
+          84.4,
+          81.4
+        ],
+        [
+          101.6,
+          98.6,
+          95.7,
+          92.7,
+          89.8,
+          86.8,
+          83.9,
+          80.9,
+          78.0
+        ],
+        [
+          98.1,
+          95.1,
+          92.2,
+          89.2,
+          86.3,
+          83.3,
+          80.4,
+          77.4,
+          74.4
+        ],
+        [
+          94.6,
+          91.6,
+          88.7,
+          85.7,
+          82.8,
+          79.8,
+          76.8,
+          73.9,
+          70.9
+        ],
+        [
+          91.1,
+          88.1,
+          85.1,
+          82.2,
+          79.2,
+          76.3,
+          73.3,
+          70.4,
+          67.4
+        ]
+      ]
+    },
+    "fig6_comparative_risk_2008_vs_2026": {
+      "US 2007": {
+        "Reported LTV": 80,
+        "Effective LTV": 95,
+        "Household debt / GDP": 98,
+        "Bank exposure to real estate": 55
+      },
+      "Spain 2007": {
+        "Reported LTV": 70,
+        "Effective LTV": 85,
+        "Household debt / GDP": 82,
+        "Bank exposure to real estate": 60
+      },
+      "Israel 2026": {
+        "Reported LTV": 60,
+        "Effective LTV": 85,
+        "Household debt / GDP": 43,
+        "Bank exposure to real estate": 39
+      },
+      "status": {
+        "Reported LTV": "calibrated - typical first-lien LTV at origination (Israel: BOI reports ~50% of new mortgages above 60% LTV)",
+        "Effective LTV": "calibrated - US: CLTV incl. piggy-back seconds; Spain: incl. consumer top-ups; Israel: model output = 75% regulatory LTV on NPV-discounted price (0.75/0.88)",
+        "Household debt / GDP": "official - BIS credit to households (US Q4-2007 98.4%; Israel Dec-2025 42.5%); Spain 2007 approximate",
+        "Bank exposure to real estate": "US/Spain: calibrated - stylised share of bank credit tied to real estate; Israel 2026: official - 39% of balance-sheet business credit to construction & real estate, 2025 (Bank of Israel, boi2026_recredit; supersedes ~40% in BOI FSR 2024H1)"
+      }
+    },
+    "fig7_bank_cet1_erosion": {
+      "points": {
+        "baseline_A": {
+          "d": 0.05,
+          "q": 0.05,
+          "m": 0,
+          "x": 0.0533,
+          "PF": 0.0021,
+          "loss_rate_pct": 0.02,
+          "Leumi": {
+            "net_loss_nis_m": 0,
+            "cet1_drop_bp_post_tax": 0.0,
+            "cet1_drop_bp_pre_tax": 0.0,
+            "cet1_after_pct": 11.38,
+            "gap_to_min_bp": 115.0
+          },
+          "Hapoalim": {
+            "net_loss_nis_m": 0,
+            "cet1_drop_bp_post_tax": 0.0,
+            "cet1_drop_bp_pre_tax": 0.0,
+            "cet1_after_pct": 11.62,
+            "gap_to_min_bp": 138.3
+          },
+          "Mizrahi-Tefahot": {
+            "net_loss_nis_m": 0,
+            "cet1_drop_bp_post_tax": 0.0,
+            "cet1_drop_bp_pre_tax": 0.0,
+            "cet1_after_pct": 10.1,
+            "gap_to_min_bp": 49.7
+          },
+          "Discount": {
+            "net_loss_nis_m": 0,
+            "cet1_drop_bp_post_tax": 0.0,
+            "cet1_drop_bp_pre_tax": 0.0,
+            "cet1_after_pct": 10.32,
+            "gap_to_min_bp": 111.1
+          },
+          "First International": {
+            "net_loss_nis_m": 0,
+            "cet1_drop_bp_post_tax": 0.0,
+            "cet1_drop_bp_pre_tax": 0.0,
+            "cet1_after_pct": 10.28,
+            "gap_to_min_bp": 104.0
+          },
+          "system": {
+            "net_loss_nis_bn": 0.0,
+            "loss_to_equity_pct": 0.0,
+            "loss_to_equity_post_tax_pct": 0.0,
+            "cet1_drop_bp_post_tax": 0.0,
+            "cet1_after_pct": 10.96,
+            "banks_below_minimum": [],
+            "banks_below_6.5": []
+          }
+        },
+        "baseline_B": {
+          "d": 0.05,
+          "q": 0.05,
+          "m": 0,
+          "x": 0.0533,
+          "PF": 0.0021,
+          "loss_rate_pct": 0.0,
+          "Leumi": {
+            "net_loss_nis_m": 0,
+            "cet1_drop_bp_post_tax": 0.0,
+            "cet1_drop_bp_pre_tax": 0.0,
+            "cet1_after_pct": 11.38,
+            "gap_to_min_bp": 115.0
+          },
+          "Hapoalim": {
+            "net_loss_nis_m": 0,
+            "cet1_drop_bp_post_tax": 0.0,
+            "cet1_drop_bp_pre_tax": 0.0,
+            "cet1_after_pct": 11.62,
+            "gap_to_min_bp": 138.3
+          },
+          "Mizrahi-Tefahot": {
+            "net_loss_nis_m": 0,
+            "cet1_drop_bp_post_tax": 0.0,
+            "cet1_drop_bp_pre_tax": 0.0,
+            "cet1_after_pct": 10.1,
+            "gap_to_min_bp": 49.7
+          },
+          "Discount": {
+            "net_loss_nis_m": 0,
+            "cet1_drop_bp_post_tax": 0.0,
+            "cet1_drop_bp_pre_tax": 0.0,
+            "cet1_after_pct": 10.32,
+            "gap_to_min_bp": 111.1
+          },
+          "First International": {
+            "net_loss_nis_m": 0,
+            "cet1_drop_bp_post_tax": 0.0,
+            "cet1_drop_bp_pre_tax": 0.0,
+            "cet1_after_pct": 10.28,
+            "gap_to_min_bp": 104.0
+          },
+          "system": {
+            "net_loss_nis_bn": 0.0,
+            "loss_to_equity_pct": 0.0,
+            "loss_to_equity_post_tax_pct": 0.0,
+            "cet1_drop_bp_post_tax": 0.0,
+            "cet1_after_pct": 10.96,
+            "banks_below_minimum": [],
+            "banks_below_6.5": []
+          }
+        },
+        "grid_centre_A": {
+          "d": 0.2,
+          "q": 0.2,
+          "m": 12,
+          "x": 0.4828,
+          "PF": 0.5172,
+          "loss_rate_pct": 12.41,
+          "Leumi": {
+            "net_loss_nis_m": 12153,
+            "cet1_drop_bp_post_tax": 127.2,
+            "cet1_drop_bp_pre_tax": 195.0,
+            "cet1_after_pct": 10.11,
+            "gap_to_min_bp": -12.3
+          },
+          "Hapoalim": {
+            "net_loss_nis_m": 8748,
+            "cet1_drop_bp_post_tax": 98.3,
+            "cet1_drop_bp_pre_tax": 150.7,
+            "cet1_after_pct": 10.64,
+            "gap_to_min_bp": 40.0
+          },
+          "Mizrahi-Tefahot": {
+            "net_loss_nis_m": 4743,
+            "cet1_drop_bp_post_tax": 84.1,
+            "cet1_drop_bp_pre_tax": 128.8,
+            "cet1_after_pct": 9.26,
+            "gap_to_min_bp": -34.3
+          },
+          "Discount": {
+            "net_loss_nis_m": 4524,
+            "cet1_drop_bp_post_tax": 85.1,
+            "cet1_drop_bp_pre_tax": 130.3,
+            "cet1_after_pct": 9.47,
+            "gap_to_min_bp": 26.0
+          },
+          "First International": {
+            "net_loss_nis_m": 1421,
+            "cet1_drop_bp_post_tax": 64.7,
+            "cet1_drop_bp_pre_tax": 99.2,
+            "cet1_after_pct": 9.63,
+            "gap_to_min_bp": 39.3
+          },
+          "system": {
+            "net_loss_nis_bn": 31.59,
+            "loss_to_equity_pct": 14.02,
+            "loss_to_equity_post_tax_pct": 9.15,
+            "cet1_drop_bp_post_tax": 99.9,
+            "cet1_after_pct": 9.97,
+            "banks_below_minimum": [
+              "Leumi",
+              "Mizrahi-Tefahot"
+            ],
+            "banks_below_6.5": []
+          }
+        },
+        "grid_centre_B": {
+          "d": 0.2,
+          "q": 0.2,
+          "m": 12,
+          "x": 0.4828,
+          "PF": 0.5172,
+          "loss_rate_pct": 3.11,
+          "Leumi": {
+            "net_loss_nis_m": 2009,
+            "cet1_drop_bp_post_tax": 21.0,
+            "cet1_drop_bp_pre_tax": 32.2,
+            "cet1_after_pct": 11.17,
+            "gap_to_min_bp": 93.9
+          },
+          "Hapoalim": {
+            "net_loss_nis_m": 1400,
+            "cet1_drop_bp_post_tax": 15.7,
+            "cet1_drop_bp_pre_tax": 24.1,
+            "cet1_after_pct": 11.47,
+            "gap_to_min_bp": 122.6
+          },
+          "Mizrahi-Tefahot": {
+            "net_loss_nis_m": 969,
+            "cet1_drop_bp_post_tax": 17.2,
+            "cet1_drop_bp_pre_tax": 26.3,
+            "cet1_after_pct": 9.93,
+            "gap_to_min_bp": 32.5
+          },
+          "Discount": {
+            "net_loss_nis_m": 749,
+            "cet1_drop_bp_post_tax": 14.1,
+            "cet1_drop_bp_pre_tax": 21.6,
+            "cet1_after_pct": 10.18,
+            "gap_to_min_bp": 97.0
+          },
+          "First International": {
+            "net_loss_nis_m": 212,
+            "cet1_drop_bp_post_tax": 9.6,
+            "cet1_drop_bp_pre_tax": 14.8,
+            "cet1_after_pct": 10.18,
+            "gap_to_min_bp": 94.4
+          },
+          "system": {
+            "net_loss_nis_bn": 5.34,
+            "loss_to_equity_pct": 2.37,
+            "loss_to_equity_post_tax_pct": 1.55,
+            "cet1_drop_bp_post_tax": 16.9,
+            "cet1_after_pct": 10.8,
+            "banks_below_minimum": [],
+            "banks_below_6.5": []
+          }
+        },
+        "severe_REQ_A": {
+          "d": 0.25,
+          "q": 0.2,
+          "m": 24,
+          "x": 0.7582,
+          "PF": 0.7602,
+          "loss_rate_pct": 18.24,
+          "Leumi": {
+            "net_loss_nis_m": 18510,
+            "cet1_drop_bp_post_tax": 193.7,
+            "cet1_drop_bp_pre_tax": 296.9,
+            "cet1_after_pct": 9.44,
+            "gap_to_min_bp": -78.8
+          },
+          "Hapoalim": {
+            "net_loss_nis_m": 13353,
+            "cet1_drop_bp_post_tax": 150.1,
+            "cet1_drop_bp_pre_tax": 230.0,
+            "cet1_after_pct": 10.12,
+            "gap_to_min_bp": -11.7
+          },
+          "Mizrahi-Tefahot": {
+            "net_loss_nis_m": 7107,
+            "cet1_drop_bp_post_tax": 126.0,
+            "cet1_drop_bp_pre_tax": 193.1,
+            "cet1_after_pct": 8.84,
+            "gap_to_min_bp": -76.2
+          },
+          "Discount": {
+            "net_loss_nis_m": 6890,
+            "cet1_drop_bp_post_tax": 129.5,
+            "cet1_drop_bp_pre_tax": 198.5,
+            "cet1_after_pct": 9.03,
+            "gap_to_min_bp": -18.5
+          },
+          "First International": {
+            "net_loss_nis_m": 2179,
+            "cet1_drop_bp_post_tax": 99.2,
+            "cet1_drop_bp_pre_tax": 152.1,
+            "cet1_after_pct": 9.29,
+            "gap_to_min_bp": 4.8
+          },
+          "system": {
+            "net_loss_nis_bn": 48.04,
+            "loss_to_equity_pct": 21.32,
+            "loss_to_equity_post_tax_pct": 13.91,
+            "cet1_drop_bp_post_tax": 152.0,
+            "cet1_after_pct": 9.44,
+            "banks_below_minimum": [
+              "Leumi",
+              "Hapoalim",
+              "Mizrahi-Tefahot",
+              "Discount"
+            ],
+            "banks_below_6.5": []
+          }
+        },
+        "severe_REQ_B": {
+          "d": 0.25,
+          "q": 0.2,
+          "m": 24,
+          "x": 0.7582,
+          "PF": 0.7602,
+          "loss_rate_pct": 12.51,
+          "Leumi": {
+            "net_loss_nis_m": 12261,
+            "cet1_drop_bp_post_tax": 128.3,
+            "cet1_drop_bp_pre_tax": 196.7,
+            "cet1_after_pct": 10.1,
+            "gap_to_min_bp": -13.4
+          },
+          "Hapoalim": {
+            "net_loss_nis_m": 8826,
+            "cet1_drop_bp_post_tax": 99.2,
+            "cet1_drop_bp_pre_tax": 152.0,
+            "cet1_after_pct": 10.63,
+            "gap_to_min_bp": 39.1
+          },
+          "Mizrahi-Tefahot": {
+            "net_loss_nis_m": 4783,
+            "cet1_drop_bp_post_tax": 84.8,
+            "cet1_drop_bp_pre_tax": 129.9,
+            "cet1_after_pct": 9.25,
+            "gap_to_min_bp": -35.0
+          },
+          "Discount": {
+            "net_loss_nis_m": 4564,
+            "cet1_drop_bp_post_tax": 85.8,
+            "cet1_drop_bp_pre_tax": 131.5,
+            "cet1_after_pct": 9.46,
+            "gap_to_min_bp": 25.3
+          },
+          "First International": {
+            "net_loss_nis_m": 1434,
+            "cet1_drop_bp_post_tax": 65.3,
+            "cet1_drop_bp_pre_tax": 100.1,
+            "cet1_after_pct": 9.63,
+            "gap_to_min_bp": 38.7
+          },
+          "system": {
+            "net_loss_nis_bn": 31.87,
+            "loss_to_equity_pct": 14.15,
+            "loss_to_equity_post_tax_pct": 9.23,
+            "cet1_drop_bp_post_tax": 100.8,
+            "cet1_after_pct": 9.96,
+            "banks_below_minimum": [
+              "Leumi",
+              "Mizrahi-Tefahot"
+            ],
+            "banks_below_6.5": []
+          }
+        },
+        "beyond_severe_A": {
+          "d": 0.4,
+          "q": 0.4,
+          "m": 24,
+          "x": 1.0338,
+          "PF": 1.0,
+          "loss_rate_pct": 43.0,
+          "Leumi": {
+            "net_loss_nis_m": 45494,
+            "cet1_drop_bp_post_tax": 476.2,
+            "cet1_drop_bp_pre_tax": 729.8,
+            "cet1_after_pct": 6.62,
+            "gap_to_min_bp": -361.2
+          },
+          "Hapoalim": {
+            "net_loss_nis_m": 32900,
+            "cet1_drop_bp_post_tax": 369.8,
+            "cet1_drop_bp_pre_tax": 566.7,
+            "cet1_after_pct": 7.93,
+            "gap_to_min_bp": -231.4
+          },
+          "Mizrahi-Tefahot": {
+            "net_loss_nis_m": 17144,
+            "cet1_drop_bp_post_tax": 303.9,
+            "cet1_drop_bp_pre_tax": 465.7,
+            "cet1_after_pct": 7.06,
+            "gap_to_min_bp": -254.2
+          },
+          "Discount": {
+            "net_loss_nis_m": 16932,
+            "cet1_drop_bp_post_tax": 318.3,
+            "cet1_drop_bp_pre_tax": 487.8,
+            "cet1_after_pct": 7.14,
+            "gap_to_min_bp": -207.3
+          },
+          "First International": {
+            "net_loss_nis_m": 5396,
+            "cet1_drop_bp_post_tax": 245.7,
+            "cet1_drop_bp_pre_tax": 376.6,
+            "cet1_after_pct": 7.82,
+            "gap_to_min_bp": -141.7
+          },
+          "system": {
+            "net_loss_nis_bn": 117.87,
+            "loss_to_equity_pct": 52.32,
+            "loss_to_equity_post_tax_pct": 34.14,
+            "cet1_drop_bp_post_tax": 372.9,
+            "cet1_after_pct": 7.24,
+            "banks_below_minimum": [
+              "Leumi",
+              "Hapoalim",
+              "Mizrahi-Tefahot",
+              "Discount",
+              "First International"
+            ],
+            "banks_below_6.5": []
+          }
+        },
+        "beyond_severe_B": {
+          "d": 0.4,
+          "q": 0.4,
+          "m": 24,
+          "x": 1.0338,
+          "PF": 1.0,
+          "loss_rate_pct": 25.47,
+          "Leumi": {
+            "net_loss_nis_m": 26390,
+            "cet1_drop_bp_post_tax": 276.2,
+            "cet1_drop_bp_pre_tax": 423.4,
+            "cet1_after_pct": 8.62,
+            "gap_to_min_bp": -161.3
+          },
+          "Hapoalim": {
+            "net_loss_nis_m": 19061,
+            "cet1_drop_bp_post_tax": 214.2,
+            "cet1_drop_bp_pre_tax": 328.3,
+            "cet1_after_pct": 9.48,
+            "gap_to_min_bp": -75.9
+          },
+          "Mizrahi-Tefahot": {
+            "net_loss_nis_m": 10038,
+            "cet1_drop_bp_post_tax": 177.9,
+            "cet1_drop_bp_pre_tax": 272.7,
+            "cet1_after_pct": 8.32,
+            "gap_to_min_bp": -128.2
+          },
+          "Discount": {
+            "net_loss_nis_m": 9822,
+            "cet1_drop_bp_post_tax": 184.7,
+            "cet1_drop_bp_pre_tax": 283.0,
+            "cet1_after_pct": 8.47,
+            "gap_to_min_bp": -73.6
+          },
+          "First International": {
+            "net_loss_nis_m": 3118,
+            "cet1_drop_bp_post_tax": 142.0,
+            "cet1_drop_bp_pre_tax": 217.6,
+            "cet1_after_pct": 8.86,
+            "gap_to_min_bp": -38.0
+          },
+          "system": {
+            "net_loss_nis_bn": 68.43,
+            "loss_to_equity_pct": 30.38,
+            "loss_to_equity_post_tax_pct": 19.82,
+            "cet1_drop_bp_post_tax": 216.5,
+            "cet1_after_pct": 8.8,
+            "banks_below_minimum": [
+              "Leumi",
+              "Hapoalim",
+              "Mizrahi-Tefahot",
+              "Discount",
+              "First International"
+            ],
+            "banks_below_6.5": []
+          }
+        }
+      },
+      "transmission_test_buyer_default_only": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "transmission_test_d100_only": {
+        "A": 0.0,
+        "B": 0.0
+      },
+      "grid_axis": [
+        0.15,
+        0.175,
+        0.2,
+        0.225,
+        0.25
+      ],
+      "grid_A_m0_loss_to_equity_pct": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.31
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.55
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.8
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.02,
+          1.04
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.05,
+          1.29
+        ]
+      ],
+      "grid_A_m0_cet1_drop_bp": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          2.2
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          3.9
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          5.7
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.1,
+          7.4
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.3,
+          9.2
+        ]
+      ],
+      "grid_A_m12_loss_to_equity_pct": [
+        [
+          7.52,
+          10.31,
+          13.47,
+          16.9,
+          19.33
+        ],
+        [
+          7.7,
+          10.54,
+          13.75,
+          17.01,
+          19.47
+        ],
+        [
+          7.87,
+          10.76,
+          14.02,
+          17.13,
+          19.6
+        ],
+        [
+          8.05,
+          10.98,
+          14.3,
+          17.24,
+          19.74
+        ],
+        [
+          8.23,
+          11.21,
+          14.57,
+          17.36,
+          19.88
+        ]
+      ],
+      "grid_A_m12_cet1_drop_bp": [
+        [
+          53.6,
+          73.5,
+          96.0,
+          120.4,
+          137.8
+        ],
+        [
+          54.9,
+          75.1,
+          98.0,
+          121.3,
+          138.7
+        ],
+        [
+          56.1,
+          76.7,
+          99.9,
+          122.1,
+          139.7
+        ],
+        [
+          57.4,
+          78.3,
+          101.9,
+          122.9,
+          140.7
+        ],
+        [
+          58.6,
+          79.9,
+          103.9,
+          123.7,
+          141.7
+        ]
+      ],
+      "grid_A_m24_loss_to_equity_pct": [
+        [
+          15.42,
+          18.09,
+          20.89,
+          23.95,
+          27.22
+        ],
+        [
+          15.48,
+          18.17,
+          20.99,
+          24.1,
+          27.4
+        ],
+        [
+          15.54,
+          18.25,
+          21.08,
+          24.24,
+          27.57
+        ],
+        [
+          15.6,
+          18.32,
+          21.2,
+          24.39,
+          27.74
+        ],
+        [
+          15.67,
+          18.4,
+          21.32,
+          24.54,
+          27.92
+        ]
+      ],
+      "grid_A_m24_cet1_drop_bp": [
+        [
+          109.9,
+          128.9,
+          148.9,
+          170.7,
+          194.0
+        ],
+        [
+          110.3,
+          129.5,
+          149.6,
+          171.8,
+          195.3
+        ],
+        [
+          110.8,
+          130.0,
+          150.3,
+          172.8,
+          196.5
+        ],
+        [
+          111.2,
+          130.6,
+          151.1,
+          173.8,
+          197.7
+        ],
+        [
+          111.7,
+          131.2,
+          152.0,
+          174.9,
+          199.0
+        ]
+      ],
+      "grid_B_m0_loss_to_equity_pct": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "grid_B_m0_cet1_drop_bp": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "grid_B_m12_loss_to_equity_pct": [
+        [
+          0.52,
+          1.26,
+          2.1,
+          3.05,
+          4.08
+        ],
+        [
+          0.6,
+          1.36,
+          2.23,
+          3.22,
+          4.27
+        ],
+        [
+          0.69,
+          1.47,
+          2.37,
+          3.38,
+          4.45
+        ],
+        [
+          0.77,
+          1.58,
+          2.51,
+          3.55,
+          4.64
+        ],
+        [
+          0.86,
+          1.69,
+          2.65,
+          3.72,
+          4.83
+        ]
+      ],
+      "grid_B_m12_cet1_drop_bp": [
+        [
+          3.7,
+          8.9,
+          15.0,
+          21.8,
+          29.1
+        ],
+        [
+          4.3,
+          9.7,
+          15.9,
+          22.9,
+          30.4
+        ],
+        [
+          4.9,
+          10.5,
+          16.9,
+          24.1,
+          31.7
+        ],
+        [
+          5.5,
+          11.3,
+          17.9,
+          25.3,
+          33.1
+        ],
+        [
+          6.1,
+          12.0,
+          18.9,
+          26.5,
+          34.4
+        ]
+      ],
+      "grid_B_m24_loss_to_equity_pct": [
+        [
+          10.73,
+          12.02,
+          13.34,
+          14.71,
+          16.13
+        ],
+        [
+          10.88,
+          12.19,
+          13.54,
+          14.94,
+          16.38
+        ],
+        [
+          11.03,
+          12.37,
+          13.74,
+          15.17,
+          16.64
+        ],
+        [
+          11.18,
+          12.54,
+          13.94,
+          15.39,
+          16.9
+        ],
+        [
+          11.34,
+          12.72,
+          14.15,
+          15.63,
+          17.16
+        ]
+      ],
+      "grid_B_m24_cet1_drop_bp": [
+        [
+          76.5,
+          85.7,
+          95.1,
+          104.8,
+          114.9
+        ],
+        [
+          77.6,
+          86.9,
+          96.5,
+          106.5,
+          116.8
+        ],
+        [
+          78.6,
+          88.1,
+          98.0,
+          108.1,
+          118.6
+        ],
+        [
+          79.7,
+          89.4,
+          99.4,
+          109.7,
+          120.4
+        ],
+        [
+          80.8,
+          90.7,
+          100.8,
+          111.4,
+          122.3
+        ]
+      ],
+      "sensitivity": {
+        "grid_centre": {
+          "base": {
+            "A": {
+              "loss_to_equity_pct": 14.02,
+              "cet1_drop_bp_post_tax": 99.9
+            },
+            "B": {
+              "loss_to_equity_pct": 2.37,
+              "cet1_drop_bp_post_tax": 16.9
+            }
+          },
+          "zeta_0.5": {
+            "A": {
+              "loss_to_equity_pct": 6.25,
+              "cet1_drop_bp_post_tax": 44.6
+            },
+            "B": {
+              "loss_to_equity_pct": 0.43,
+              "cet1_drop_bp_post_tax": 3.0
+            }
+          },
+          "zeta_0.25": {
+            "A": {
+              "loss_to_equity_pct": 2.37,
+              "cet1_drop_bp_post_tax": 16.9
+            },
+            "B": {
+              "loss_to_equity_pct": 0.01,
+              "cet1_drop_bp_post_tax": 0.1
+            }
+          },
+          "s_projects_only_0.188": {
+            "A": {
+              "loss_to_equity_pct": 9.97,
+              "cet1_drop_bp_post_tax": 71.0
+            },
+            "B": {
+              "loss_to_equity_pct": 1.97,
+              "cet1_drop_bp_post_tax": 14.0
+            }
+          },
+          "s_1.0": {
+            "A": {
+              "loss_to_equity_pct": 24.88,
+              "cet1_drop_bp_post_tax": 177.4
+            },
+            "B": {
+              "loss_to_equity_pct": 3.44,
+              "cet1_drop_bp_post_tax": 24.5
+            }
+          },
+          "delta_0": {
+            "A": {
+              "loss_to_equity_pct": 7.51,
+              "cet1_drop_bp_post_tax": 53.5
+            },
+            "B": {
+              "loss_to_equity_pct": 0.74,
+              "cet1_drop_bp_post_tax": 5.3
+            }
+          },
+          "delta_0.5": {
+            "A": {
+              "loss_to_equity_pct": 10.77,
+              "cet1_drop_bp_post_tax": 76.7
+            },
+            "B": {
+              "loss_to_equity_pct": 1.55,
+              "cet1_drop_bp_post_tax": 11.1
+            }
+          },
+          "EAD_total_credit_risk": {
+            "A": {
+              "loss_to_equity_pct": 32.24,
+              "cet1_drop_bp_post_tax": 229.8
+            },
+            "B": {
+              "loss_to_equity_pct": 5.28,
+              "cet1_drop_bp_post_tax": 37.6
+            }
+          },
+          "k_10pct (A only)": {
+            "A": {
+              "loss_to_equity_pct": 16.61,
+              "cet1_drop_bp_post_tax": 118.4
+            },
+            "B": {
+              "loss_to_equity_pct": 2.37,
+              "cet1_drop_bp_post_tax": 16.9
+            }
+          },
+          "absorption_base_full_value": {
+            "A": {
+              "loss_to_equity_pct": 1.87,
+              "cet1_drop_bp_post_tax": 13.3
+            },
+            "B": {
+              "loss_to_equity_pct": 0.0,
+              "cet1_drop_bp_post_tax": 0.0
+            }
+          }
+        },
+        "severe_REQ": {
+          "base": {
+            "A": {
+              "loss_to_equity_pct": 21.32,
+              "cet1_drop_bp_post_tax": 152.0
+            },
+            "B": {
+              "loss_to_equity_pct": 14.15,
+              "cet1_drop_bp_post_tax": 100.8
+            }
+          },
+          "zeta_0.5": {
+            "A": {
+              "loss_to_equity_pct": 9.9,
+              "cet1_drop_bp_post_tax": 70.6
+            },
+            "B": {
+              "loss_to_equity_pct": 6.31,
+              "cet1_drop_bp_post_tax": 45.0
+            }
+          },
+          "zeta_0.25": {
+            "A": {
+              "loss_to_equity_pct": 4.19,
+              "cet1_drop_bp_post_tax": 29.9
+            },
+            "B": {
+              "loss_to_equity_pct": 2.4,
+              "cet1_drop_bp_post_tax": 17.1
+            }
+          },
+          "s_projects_only_0.188": {
+            "A": {
+              "loss_to_equity_pct": 14.98,
+              "cet1_drop_bp_post_tax": 106.8
+            },
+            "B": {
+              "loss_to_equity_pct": 10.05,
+              "cet1_drop_bp_post_tax": 71.7
+            }
+          },
+          "s_1.0": {
+            "A": {
+              "loss_to_equity_pct": 38.32,
+              "cet1_drop_bp_post_tax": 273.1
+            },
+            "B": {
+              "loss_to_equity_pct": 25.11,
+              "cet1_drop_bp_post_tax": 179.0
+            }
+          },
+          "delta_0": {
+            "A": {
+              "loss_to_equity_pct": 11.75,
+              "cet1_drop_bp_post_tax": 83.7
+            },
+            "B": {
+              "loss_to_equity_pct": 7.58,
+              "cet1_drop_bp_post_tax": 54.0
+            }
+          },
+          "delta_0.5": {
+            "A": {
+              "loss_to_equity_pct": 16.54,
+              "cet1_drop_bp_post_tax": 117.9
+            },
+            "B": {
+              "loss_to_equity_pct": 10.86,
+              "cet1_drop_bp_post_tax": 77.4
+            }
+          },
+          "EAD_total_credit_risk": {
+            "A": {
+              "loss_to_equity_pct": 49.13,
+              "cet1_drop_bp_post_tax": 350.2
+            },
+            "B": {
+              "loss_to_equity_pct": 32.53,
+              "cet1_drop_bp_post_tax": 231.8
+            }
+          },
+          "k_10pct (A only)": {
+            "A": {
+              "loss_to_equity_pct": 25.13,
+              "cet1_drop_bp_post_tax": 179.1
+            },
+            "B": {
+              "loss_to_equity_pct": 14.15,
+              "cet1_drop_bp_post_tax": 100.8
+            }
+          },
+          "absorption_base_full_value": {
+            "A": {
+              "loss_to_equity_pct": 9.98,
+              "cet1_drop_bp_post_tax": 71.1
+            },
+            "B": {
+              "loss_to_equity_pct": 0.61,
+              "cet1_drop_bp_post_tax": 4.3
+            }
+          }
+        }
+      },
+      "breakeven_loss_rate": {
+        "Leumi": {
+          "to_minimum_loss_rate_pct": 11.34,
+          "to_6.5_loss_rate_pct": 44.03,
+          "headroom_bp": 115.0
+        },
+        "Hapoalim": {
+          "to_minimum_loss_rate_pct": 16.92,
+          "to_6.5_loss_rate_pct": 59.07,
+          "headroom_bp": 138.3
+        },
+        "Mizrahi-Tefahot": {
+          "to_minimum_loss_rate_pct": 7.63,
+          "to_6.5_loss_rate_pct": 50.77,
+          "headroom_bp": 49.7
+        },
+        "Discount": {
+          "to_minimum_loss_rate_pct": 15.82,
+          "to_6.5_loss_rate_pct": 51.36,
+          "headroom_bp": 111.1
+        },
+        "First International": {
+          "to_minimum_loss_rate_pct": 19.06,
+          "to_6.5_loss_rate_pct": 65.36,
+          "headroom_bp": 104.0
+        },
+        "system_10pct_equity_loss_rate_pct": 9.2,
+        "system_ead_nis_bn": 282.1,
+        "system_prov_nis_bn": 3.42
+      },
+      "breakeven_price_fall_pct_d25": {
+        "m0_A": {
+          "Leumi": 33.1,
+          "Hapoalim": 37.2,
+          "Mizrahi-Tefahot": 30.2,
+          "Discount": 36.5,
+          "First International": 38.7,
+          "system_10pct_equity": 31.5,
+          "first_bank_below_6.5": 59.8
+        },
+        "m0_B": {
+          "Leumi": 62.1,
+          "Hapoalim": 73.6,
+          "Mizrahi-Tefahot": 53.4,
+          "Discount": 71.5,
+          "First International": 77.6,
+          "system_10pct_equity": 57.2,
+          "first_bank_below_6.5": null
+        },
+        "m12_A": {
+          "Leumi": 18.7,
+          "Hapoalim": 24.9,
+          "Mizrahi-Tefahot": 14.9,
+          "Discount": 23.5,
+          "First International": 27.4,
+          "system_10pct_equity": 16.6,
+          "first_bank_below_6.5": 50.0
+        },
+        "m12_B": {
+          "Leumi": 40.5,
+          "Hapoalim": 52.0,
+          "Mizrahi-Tefahot": 31.8,
+          "Discount": 49.9,
+          "First International": 56.0,
+          "system_10pct_equity": 35.6,
+          "first_bank_below_6.5": null
+        },
+        "m24_A": {
+          "Leumi": 12.2,
+          "Hapoalim": 18.7,
+          "Mizrahi-Tefahot": 7.3,
+          "Discount": 17.5,
+          "First International": 20.9,
+          "system_10pct_equity": 9.4,
+          "first_bank_below_6.5": 41.2
+        },
+        "m24_B": {
+          "Leumi": 17.5,
+          "Hapoalim": 29.0,
+          "Mizrahi-Tefahot": 8.8,
+          "Discount": 26.9,
+          "First International": 32.9,
+          "system_10pct_equity": 12.5,
+          "first_bank_below_6.5": 74.3
+        }
+      },
+      "REQ_H3_01_condition2": {
+        "loss_to_equity_pct": {
+          "A": 21.32,
+          "B": 14.15
+        },
+        "threshold_pct": 10,
+        "result": "not met"
+      },
+      "reference_BoI_2025_survey_stress": {
+        "cet1_drop_pp": 1.5,
+        "cre_cumulative_loss_rate_pct": 3.3,
+        "cre_loss_nis_bn": 17.6,
+        "source_key": "boi_survey2025"
+      }
+    }
+  },
+  "figures": {
+    "fig1_payment_shock_2080_vs_teaser": "figures/fig1_payment_shock_2080_vs_teaser.png",
+    "fig2_unsold_inventory_vs_rates": "figures/fig2_unsold_inventory_vs_rates.png",
+    "fig3_npv_price_discount_gap": "figures/fig3_npv_price_discount_gap.png",
+    "fig4_pti_monte_carlo": "figures/fig4_pti_monte_carlo.png",
+    "fig5_delivery_wall_resilience_heatmap": "figures/fig5_delivery_wall_resilience_heatmap.png",
+    "fig6_comparative_risk_2008_vs_2026": "figures/fig6_comparative_risk_2008_vs_2026.png",
+    "fig7_bank_cet1_erosion": "figures/fig7_bank_cet1_erosion.png"
+  }
+}

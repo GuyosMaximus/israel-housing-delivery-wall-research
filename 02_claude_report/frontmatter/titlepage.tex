@@ -1,0 +1,51 @@
+% =====================================================================
+%  frontmatter/titlepage.tex — bilingual cover (counts as page i, number
+%  not printed). Edit metadata in preamble.tex only. No research question,
+%  abstract or keywords here (R03).
+% =====================================================================
+\begin{titlepage}
+\thispagestyle{empty}
+% Double decorative frame (R02)
+\begin{tikzpicture}[remember picture, overlay]
+  \draw[brandNavy, line width=2.4pt]
+    ([xshift=1.2cm,yshift=1.2cm]current page.south west) rectangle
+    ([xshift=-1.2cm,yshift=-1.2cm]current page.north east);
+  \draw[brandSteel, line width=0.7pt]
+    ([xshift=1.45cm,yshift=1.45cm]current page.south west) rectangle
+    ([xshift=-1.45cm,yshift=-1.45cm]current page.north east);
+\end{tikzpicture}%
+\centering
+\vspace*{0.4cm}
+{\Large\bfseries\color{brandNavy} \Institution\par}
+\vspace{0.2cm}
+{\large \CourseLine\par}
+\vspace{0.3cm}
+{\large \ReportType\par}
+
+\vfill
+{\color{brandSteel}\rule{0.7\textwidth}{0.8pt}\par}
+\vspace{0.6cm}
+{\fontsize{26}{36}\selectfont\bfseries\color{brandNavy} \ReportTitle\par}
+\vspace{0.4cm}
+{\leftskip=1.8cm plus 1fil\rightskip=1.8cm plus 1fil
+ \Large\color{brandSteel} \ReportSubtitle\par}
+\vspace{0.9cm}
+{\color{brandSteel}\rule{0.25\textwidth}{0.4pt}\par}
+\vspace{0.9cm}
+\begin{english}
+{\fontsize{20}{27}\selectfont\bfseries\color{brandNavy} \ReportTitleEn\par}
+\vspace{0.4cm}
+{\leftskip=1.8cm plus 1fil\rightskip=1.8cm plus 1fil
+ \large\color{brandSteel} \ReportSubtitleEn\par}
+\end{english}
+\vspace{0.6cm}
+{\color{brandSteel}\rule{0.7\textwidth}{0.8pt}\par}
+
+\vfill
+\begin{tabular}{@{}r r@{}}
+\textbf{מגישים:} & \Authors \\
+\textbf{מנחה:}   & \Supervisor \\
+\textbf{תאריך:}  & \ReportDate \\
+\end{tabular}
+\vspace{1cm}
+\end{titlepage}

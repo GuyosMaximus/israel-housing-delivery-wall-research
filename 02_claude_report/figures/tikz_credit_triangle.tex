@@ -1,0 +1,69 @@
+% =====================================================================
+%  figures/tikz_credit_triangle.tex — Buyer / Developer / Lending bank:
+%  money flows and risk transfers in 20/80 and 20/50/30 deals.
+%  Built in an English (LTR) environment; Hebrew labels wrapped in \he{}
+%  (BiDi rule 6). NOTE: no `text width` on Hebrew nodes — automatic
+%  wrapping of RTL text inside TikZ nodes is mis-measured under LuaLaTeX;
+%  every line break is explicit (\\). Usage in a chapter:
+%    \begin{figure}[htbp]\centering
+%      \input{figures/tikz_credit_triangle.tex}
+%      \caption{משולש האשראי: זרמי כסף וסיכון בעסקאות \en{20/80} ו־\en{20/50/30}}
+%      \label{fig:credit-triangle}
+%    \end{figure}
+% =====================================================================
+\begin{english}
+\begin{tikzpicture}[
+  font=\small,
+  actor/.style={rectangle, rounded corners=4pt, draw=brandNavy, line width=1pt,
+    fill=brandPale, align=center, minimum width=3.9cm, minimum height=1.9cm,
+    drop shadow={opacity=0.15}},
+  money/.style={-{Stealth[length=3mm]}, line width=1.3pt, brandGreen!85!black},
+  risk/.style={-{Stealth[length=3mm]}, line width=1.3pt, brandRed, dashed},
+  guar/.style={-{Stealth[length=3mm]}, line width=1.1pt, brandSteel, densely dotted},
+  lbl/.style={fill=white, inner sep=2pt, align=center, font=\footnotesize},
+]
+% --- actors (Hebrew reading order: buyer on the right) ---
+\node[actor] (buyer) at (9.0,0)
+  {\he{\textbf{הרוכש}}\\[2pt]\he{משלם \pct{20} הון עצמי}\\\he{היתרה נדחית למסירה}};
+\node[actor] (dev) at (0,0)
+  {\he{\textbf{היזם / הקבלן}}\\[2pt]\he{סופג ריבית והצמדה}\\\he{ממונף בליווי בנקאי}};
+\node[actor, fill=gray!8] (bank) at (4.5,6.3)
+  {\he{\textbf{הבנק המלווה}}\\[2pt]\he{ליווי סגור ומשכנתא}\\\he{(לעיתים הלוואת בלון)}};
+
+% --- deal-structure badge ---
+\node[draw=brandNavy, fill=white, rounded corners=3pt, align=center, font=\footnotesize,
+      inner sep=4pt] at (4.5,3.1)
+  {\he{\textbf{מבנה העסקה}}\\[3pt]
+   \en{\textbf{20/80}}\\
+   \he{\pct{20} בחתימה, \pct{80} במסירה}\\[3pt]
+   \en{\textbf{20/50/30}}\\
+   \he{\pct{20} בחתימה, \pct{50} בבנייה,}\\
+   \he{\pct{30} במסירה}};
+
+% --- Buyer <-> Developer (bottom edge) ---
+\draw[money] ([yshift=4mm]buyer.west) -- node[lbl, above=1mm]{\he{מקדמה של \pct{20} בחתימה}} ([yshift=4mm]dev.east);
+\draw[risk]  ([yshift=-4mm]dev.east) -- node[lbl, below=1mm]
+  {\he{סבסוד ריבית והצמדה (הנחה סמויה)}\\\he{סיכון ביטול עסקה}} ([yshift=-4mm]buyer.west);
+
+% --- Bank <-> Developer (left edge) ---
+\draw[money] ([xshift=6mm]bank.south west) -- coordinate[pos=0.22] (lm) ([xshift=8mm]dev.north);
+\draw[risk]  ([xshift=-2mm]dev.north) -- coordinate[pos=0.3] (lr) ([xshift=-4mm]bank.south west);
+
+% --- Bank <-> Buyer (right edge) ---
+\draw[money] ([xshift=-6mm]bank.south east) -- coordinate[pos=0.22] (rm) ([xshift=-8mm]buyer.north);
+\draw[guar]  ([xshift=2mm]buyer.north) -- coordinate[pos=0.3] (rg) ([xshift=4mm]bank.south east);
+
+% --- side labels drawn last so their white fill sits above all arrows ---
+\node[lbl, left=2mm, text=brandGreen!70!black] at (lm) {\he{ליווי פיננסי}\\\he{(אשראי לבנייה)}};
+\node[lbl, left=2mm, text=brandRed] at (lr) {\he{ריכוזיות אשראי;}\\\he{כשל יזם פוגע בתיק}};
+\node[lbl, right=2mm, text=brandGreen!70!black] at (rm) {\he{משכנתא / הלוואת בלון}\\\he{על \pct{80} או \pct{30} במסירה}};
+\node[lbl, right=2mm, text=brandSteel] at (rg) {\he{ערבות חוק המכר;}\\\he{סיכון סירוב מימון במסירה}};
+
+% --- legend ---
+\begin{scope}[shift={(0,-2.4)}, font=\footnotesize]
+  \draw[money] (8.6,0) -- (9.6,0); \node[anchor=east] at (8.5,0) {\he{זרם כספי}};
+  \draw[risk]  (5.4,0) -- (6.4,0); \node[anchor=east] at (5.3,0) {\he{העברת סיכון}};
+  \draw[guar]  (1.9,0) -- (2.9,0); \node[anchor=east] at (1.8,0) {\he{ערבות / תלות}};
+\end{scope}
+\end{tikzpicture}
+\end{english}

@@ -1,0 +1,294 @@
+% ==============================================================================
+% chapters/ch07_risks_and_gantt.tex
+% פרק ז': מגבלות המחקר, ניהול סיכונים ולוח זמנים לביצוע (Gantt)
+% ==============================================================================
+
+\chapter{מגבלות המחקר, ניהול סיכונים ולוח זמנים לביצוע (\en{Gantt})}
+\label{ch:risks_and_gantt}
+
+דוח מכין מקצועי אינו שלם ללא תוכנית עבודה הנדסית סדורה ומערך ניהול סיכונים כמותי המבטיחים כי המחקר ניתן לביצוע מלא במסגרת המשאבים והזמן הנתונים. בהתאם להנחיות פרקים \num{8}, \num{9} ו-\num{10} בספר \en{"}מהבעיה אל ה-\en{PDF}\en{"} \cite{segal2026prep} ולתקני ניהול הפרויקטים והסיכונים הבין-לאומיים (\en{PMBOK} \cite{pmbok2021} ו-\en{ISO 31000} \cite{iso31000}), פרק זה מציג את מבנה תכולת העבודה (\en{WBS}), מטריצת האחריות (\en{RACI}), תרשים הגאנט ל-\num{14} שבועות ביצוע (כולל נתיב קריטי, אבני דרך ומרווחי ביטחון), ניתוח מגבלות מתודולוגיות ומטריצת סיכונים כפולה (לפני ואחרי הפחתה), וחותם בהצהרת מוכנות תכנונית (\en{Design Readiness}).
+
+\section{תוכנית עבודה: מבנה תכולת העבודה (\en{WBS}) ומטריצת אחריות (\en{RACI})}
+\label{sec:wbs_and_raci}
+
+תכולת המחקר פורקה לחמש חבילות עבודה ראשיות (\en{Work Packages: WP 1.0 -- WP 5.0}) ול-\num{11} משימות ביצוע בנות-מדידה (\en{TSK-1.1} עד \en{TSK-5.2}), המוצגות בתרשים ה-\en{WBS} ההיררכי באיור~\ref{fig:wbs_tree}.
+
+\begin{figure}[htbp]
+\centering
+\begin{english}
+\begin{tikzpicture}[
+    node distance=0.45cm and 0.25cm,
+    root/.style={
+        rectangle, rounded corners=4pt, draw=BrandNavy, line width=1.2pt, fill=BrandNavy,
+        text=white, text width=11.5cm, minimum height=0.85cm, align=center, font=\small\bfseries
+    },
+    wp/.style={
+        rectangle, rounded corners=3pt, draw=BrandBlue, line width=1.0pt, fill=BrandLightBlue,
+        text width=2.65cm, minimum height=1.35cm, align=center, font=\scriptsize\bfseries
+    },
+    tsk/.style={
+        rectangle, rounded corners=2pt, draw=BrandTeal, line width=0.8pt, fill=white,
+        text width=2.65cm, minimum height=1.55cm, align=center, font=\scriptsize
+    },
+    line/.style={-{Stealth[length=2.0mm]}, line width=0.9pt, color=BrandNavy}
+]
+    \node[root] (top) {Project WBS: Contractor Financing Promotions \& The 2026--2027 Delivery Wall};
+
+    \node[wp, below=0.65cm of top, xshift=-5.8cm] (wp1) {\color{BrandNavy}WP 1.0\\[2pt]\texthebrew{קליטת נתונים וטיוב אמפירי}};
+    \node[wp, right=0.22cm of wp1] (wp2) {\color{BrandNavy}WP 2.0\\[2pt]\texthebrew{מודל \en{NPV} ומונטה-קרלו משקי בית}};
+    \node[wp, right=0.22cm of wp2] (wp3) {\color{BrandNavy}WP 3.0\\[2pt]\texthebrew{מבחני קיצון ליזמים ולבנקים}};
+    \node[wp, right=0.22cm of wp3] (wp4) {\color{BrandNavy}WP 4.0\\[2pt]\texthebrew{תיקוף השוואתי וניתוח רגישות}};
+    \node[wp, right=0.22cm of wp4] (wp5) {\color{BrandNavy}WP 5.0\\[2pt]\texthebrew{סינתזת מדיניות וספר המחקר}};
+
+    \node[tsk, below=0.45cm of wp1] (t1) {\textbf{TSK-1.1:} \texthebrew{כרמ"ן והלמ"ס}\\[2pt]\textbf{TSK-1.2:} \texthebrew{דוחות מאי"ה ובנק ישראל}};
+    \node[tsk, below=0.45cm of wp2] (t2) {\textbf{TSK-2.1:} \texthebrew{עקומות \en{NPV}}\\[2pt]\textbf{TSK-2.2:} \texthebrew{סימולציית \en{PTI} ($N=10K$)}};
+    \node[tsk, below=0.45cm of wp3] (t3) {\textbf{TSK-3.1:} \texthebrew{מודל \en{DSCR} יזמים}\\[2pt]\textbf{TSK-3.2:} \texthebrew{מודל \en{CET1} בנקאי}};
+    \node[tsk, below=0.45cm of wp4] (t4) {\textbf{TSK-4.1:} \texthebrew{השוואת ארה"ב \num{2008}}\\[2pt]\textbf{TSK-4.2:} \texthebrew{רגישות וכיול פרמטרים}};
+    \node[tsk, below=0.45cm of wp5] (t5) {\textbf{TSK-5.1:} \texthebrew{המלצות רגולציה}\\[2pt]\textbf{TSK-5.2:} \texthebrew{עריכת ספר ה-\en{\LaTeX}}};
+
+    \foreach \i in {1,2,3,4,5} {
+        \draw[line] (top.south) -- (wp\i.north);
+        \draw[line] (wp\i.south) -- (t\i.north);
+    }
+\end{tikzpicture}
+\end{english}
+\caption{עץ מבנה תכולת העבודה (\en{WBS -- Work Breakdown Structure}) של פרויקט המחקר בחלוקה לחמש חבילות עבודה (\en{WP 1.0--5.0}) \cite{segal2026prep,pmbok2021}}
+\label{fig:wbs_tree}
+\end{figure}
+
+בהתאם לכללי הברזל בסעיף \num{8.2} בספר של ד"ר סגל \cite{segal2026prep}, טבלה~\ref{tab:wbs_raci_matrix} מגדירה את מטריצת האחריות (\en{RACI}) של צוות המחקר, תוך הקפדה על כך שבכל שורת משימה מוגדר **אחראי-על אחד ויחיד (\en{A -- Accountable})** ולפחות **מבצע ישיר אחד (\en{R -- Responsible})**, לצד גורמים מתייעצים (\en{C -- Consulted}) ומיודעים (\en{I -- Informed}).
+
+\begin{table}[htbp]
+\caption{פירוט חבילות העבודה (\en{WBS}), תוצרים כמותיים ומטריצת אחריות (\en{RACI}) של צוות המחקר \cite{segal2026prep,pmbok2021}}
+\label{tab:wbs_raci_matrix}
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.24}
+\rowcolors{2}{BrandGray}{white}
+\begin{tabularx}{\textwidth}{R{1.4cm} R{3.4cm} Y C{1.3cm} C{1.3cm} C{1.3cm} C{1.3cm}}
+\toprule
+\rowcolor{TableHeaderBg}
+\textbf{מזהה} & \textbf{שם חבילת העבודה / משימה} & \textbf{תוצר כמותי בר-בדיקה (\en{Deliverable})} & \textbf{חוקר ראשי (\en{PI})} & \textbf{אנליסט פייתון} & \textbf{אנליסט מימון} & \textbf{מנחה אקדמי} \\
+\midrule
+\textbf{\en{TSK-1.1}} & מיצוי וניקוי נתוני כרמ"ן והלמ"ס & קובץ עסקאות מכויל (\num{2022}--\num{2026}) וסדרת מלאי (\num{87.4K}) & \textbf{\en{A}} & \textbf{\en{R}} & \en{C} & \en{I} \\
+\textbf{\en{TSK-1.2}} & מיפוי דוחות מאי"ה (\num{25} חברות) ובנק ישראל & בסיס נתונים מאזני ליזמי \en{Tiers 1--3} וליחסי \en{CET1} & \en{C} & \en{I} & \textbf{\en{A / R}} & \en{I} \\
+\textbf{\en{TSK-2.1}} & פיתוח מודל תמחור מהוון (\en{NPV}) למבצעים & עקומות $\delta_{\text{NPV}}$ ל-\num{20/80}, \num{10/90} ו-\num{20/50/30} (איור~\ref{fig:npv_discount_curves}) & \en{C} & \textbf{\en{R}} & \textbf{\en{A}} & \en{I} \\
+\textbf{\en{TSK-2.2}} & הרצת סימולציית מונטה-קרלו למשקי בית & התפלגות \en{PTI} והלם החזר ל-$N=10,000$ (איור~\ref{fig:payment_shock_mc}) & \en{C} & \textbf{\en{A / R}} & \en{C} & \en{I} \\
+\textbf{\en{TSK-3.1}} & מבחני קיצון ל-\en{DSCR} יזמים ואשראי מזנין & עקומות שרידות יזמים תחת ביטולי \pct{10}--\pct{30} (איור~\ref{fig:developer_stress_test}) & \en{C} & \textbf{\en{R}} & \textbf{\en{A}} & \en{I} \\
+\textbf{\en{TSK-3.2}} & סימולציית ליבת ההון הבנקאית (\en{CET1}) & מסלול \en{CET1} ב-\num{12} רבעונים מול רצפת \pct{9.0} (איור~\ref{fig:bank_cet1_resilience}) & \textbf{\en{A}} & \textbf{\en{R}} & \textbf{\en{R}} & \en{C} \\
+\textbf{\en{TSK-4.1}} & ניתוח השוואתי כמותי ישראל \num{2026} מול ארה"ב \num{2008} & מטריצת \num{8} ממדים ופרופיל פגיעות (טבלה~\ref{tab:us_vs_israel_comparison}) & \textbf{\en{A / R}} & \en{I} & \textbf{\en{R}} & \en{C} \\
+\textbf{\en{TSK-4.2}} & מבחני רגישות רב-פרמטריים וכיול אקונומטרי & טבלאות רגישות לריבית, אינפלציה ומשקולות פיו & \en{C} & \textbf{\en{A / R}} & \textbf{\en{R}} & \en{I} \\
+\textbf{\en{TSK-5.1}} & גיבוש המלצות מדיניות לבנק ישראל ולאוצר & פרק מסקנות ומפת התערבות רגולטורית ממוקדת & \textbf{\en{A / R}} & \en{I} & \en{C} & \en{C} \\
+\textbf{\en{TSK-5.2}} & כתיבה, עימוד ב-\en{\LaTeX} ובקרת איכות (\en{Detector}) & ספר מחקר מקומפל (\num{40}+ עמודים) + \en{\texttt{detector\_report.md}} & \textbf{\en{A / R}} & \textbf{\en{R}} & \textbf{\en{R}} & \en{I} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{לוח זמנים לביצוע (\en{Gantt}), נתיב קריטי ואבני דרך}
+\label{sec:gantt_schedule}
+
+לוח הזמנים לביצוע המחקר מתפרס על פני סמסטר אקדמי מלא בן \textbf{\num{14} שבועות}. בהתאם להנחיות סעיף \num{8.3} בספר \cite{segal2026prep}, תרשים הגאנט באיור~\ref{fig:gantt_chart_14weeks} מציג ויזואלית את התלויות ההנדסיות בין המשימות, מסמן באדום את **הנתיב הקריטי (\en{Critical Path}: $\text{TSK-1.1} \to \text{TSK-2.1} \to \text{TSK-2.2} \to \text{TSK-3.1} \to \text{TSK-3.2} \to \text{TSK-4.2} \to \text{TSK-5.2}$)**, משבץ שני **מרווחי ביטחון (\en{Safety Buffers})** של שבוע שלם לפני צומתי ההכרעה (בשבוע \num{6} ובשבוע \num{12}), וקובע שתי **אבני דרך (\en{Milestones})** רשמיות:
+\begin{itemize}[rightmargin=0.6cm]
+  \item \textbf{\en{Milestone M1} (סוף שבוע \num{5}):} הקפאת בסיס הנתונים האמפירי המכויל (\en{Data Freeze}) ואישור מודל הנחת ה-\en{NPV}.
+  \item \textbf{\en{Milestone M2} (סוף שבוע \num{10}):} השלמת הרצות המונטה-קרלו ומבחני הקיצון (\en{DSCR/CET1}) ואימות השערות $H_1$--$H_3$.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\begin{english}
+\begin{tikzpicture}[x=0.72cm, y=0.52cm, font=\scriptsize]
+    % Grid and Week Headers
+    \fill[TableHeaderBg] (-4.5, 0.5) rectangle (14.3, 1.4);
+    \node[anchor=west, font=\scriptsize\bfseries, color=BrandNavy] at (-4.3, 0.95) {Task / WBS ID};
+    \foreach \w in {1,...,14} {
+        \node[font=\scriptsize\bfseries, color=BrandNavy] at (\w - 0.5, 0.95) {W\w};
+        \draw[gray!30, dashed] (\w, -12.5) -- (\w, 0.5);
+    }
+    \draw[BrandNavy, line width=1.0pt] (-4.5, 1.4) rectangle (14.3, -12.5);
+    \draw[BrandNavy, line width=0.8pt] (-4.5, 0.5) -- (14.3, 0.5);
+    \draw[BrandNavy, line width=0.8pt] (0, 1.4) -- (0, -12.5);
+
+    % Tasks (Critical path in BrandRed, Parallel in BrandBlue, Buffers in BrandGold)
+    % Row -1: TSK-1.1 (W1-W3, Critical)
+    \node[anchor=west, font=\scriptsize\bfseries] at (-4.3, -0.2) {TSK-1.1 (CARMAN/CBS)};
+    \fill[BrandRed!85, rounded corners=2pt] (0.1, -0.5) rectangle (2.9, 0.1);
+
+    % Row -2: TSK-1.2 (W1-W3, Parallel)
+    \node[anchor=west] at (-4.3, -1.2) {TSK-1.2 (TASE/BOI)};
+    \fill[BrandBlue!80, rounded corners=2pt] (0.1, -1.5) rectangle (2.9, -0.9);
+
+    % Row -3: TSK-2.1 (W3-W5, Critical)
+    \node[anchor=west, font=\scriptsize\bfseries] at (-4.3, -2.2) {TSK-2.1 (NPV Model)};
+    \fill[BrandRed!85, rounded corners=2pt] (2.1, -2.5) rectangle (4.9, -1.9);
+
+    % Row -4: Milestone M1 (End of W5) + Buffer 1 (W6)
+    \node[anchor=west, font=\scriptsize\bfseries, color=BrandTeal] at (-4.3, -3.2) {M1 \& Buffer 1 (Data)};
+    \node[diamond, fill=BrandTeal, draw=BrandNavy, inner sep=2.2pt] at (4.95, -3.2) {};
+    \fill[BrandGold!80, rounded corners=2pt] (5.1, -3.5) rectangle (5.9, -2.9);
+
+    % Row -5: TSK-2.2 (W6-W8, Critical)
+    \node[anchor=west, font=\scriptsize\bfseries] at (-4.3, -4.2) {TSK-2.2 (MC Households)};
+    \fill[BrandRed!85, rounded corners=2pt] (5.1, -4.5) rectangle (7.9, -3.9);
+
+    % Row -6: TSK-4.1 (W5-W8, Parallel)
+    \node[anchor=west] at (-4.3, -5.2) {TSK-4.1 (US 2008 Comp)};
+    \fill[BrandBlue!80, rounded corners=2pt] (4.1, -5.5) rectangle (7.9, -4.9);
+
+    % Row -7: TSK-3.1 (W8-W9, Critical)
+    \node[anchor=west, font=\scriptsize\bfseries] at (-4.3, -6.2) {TSK-3.1 (Dev DSCR)};
+    \fill[BrandRed!85, rounded corners=2pt] (7.1, -6.5) rectangle (8.9, -5.9);
+
+    % Row -8: TSK-3.2 (W9-W10, Critical)
+    \node[anchor=west, font=\scriptsize\bfseries] at (-4.3, -7.2) {TSK-3.2 (Bank CET1)};
+    \fill[BrandRed!85, rounded corners=2pt] (8.1, -7.5) rectangle (9.9, -6.9);
+
+    % Row -9: Milestone M2 (End of W10)
+    \node[anchor=west, font=\scriptsize\bfseries, color=BrandTeal] at (-4.3, -8.2) {M2 (Models Frozen)};
+    \node[diamond, fill=BrandTeal, draw=BrandNavy, inner sep=2.2pt] at (9.95, -8.2) {};
+
+    % Row -10: TSK-4.2 (W10-W11, Critical) + Buffer 2 (W12)
+    \node[anchor=west, font=\scriptsize\bfseries] at (-4.3, -9.2) {TSK-4.2 \& Buffer 2};
+    \fill[BrandRed!85, rounded corners=2pt] (9.1, -9.5) rectangle (10.9, -8.9);
+    \fill[BrandGold!80, rounded corners=2pt] (11.1, -9.5) rectangle (11.9, -8.9);
+
+    % Row -11: TSK-5.1 (W11-W13, Parallel)
+    \node[anchor=west] at (-4.3, -10.2) {TSK-5.1 (Policy Synthesis)};
+    \fill[BrandBlue!80, rounded corners=2pt] (10.1, -10.5) rectangle (12.9, -9.9);
+
+    % Row -12: TSK-5.2 (W12-W14, Critical)
+    \node[anchor=west, font=\scriptsize\bfseries] at (-4.3, -11.2) {TSK-5.2 (LaTeX \& QA)};
+    \fill[BrandRed!85, rounded corners=2pt] (11.1, -11.5) rectangle (13.9, -10.9);
+
+    % Legend at bottom
+    \fill[BrandRed!85] (0.3, -12.25) rectangle (0.9, -11.85);
+    \node[anchor=west] at (1.0, -12.05) {\textbf{Critical Path}};
+    \fill[BrandBlue!80] (4.0, -12.25) rectangle (4.6, -11.85);
+    \node[anchor=west] at (4.7, -12.05) {Parallel Task};
+    \fill[BrandGold!80] (7.5, -12.25) rectangle (8.1, -11.85);
+    \node[anchor=west] at (8.2, -12.05) {Safety Buffer (1w)};
+    \node[diamond, fill=BrandTeal, draw=BrandNavy, inner sep=1.8pt] at (11.6, -12.05) {};
+    \node[anchor=west] at (11.9, -12.05) {\textbf{Milestone}};
+\end{tikzpicture}
+\end{english}
+\caption{תרשים גאנט (\en{Gantt Chart}) ל-\num{14} שבועות ביצוע המחקר: סימון הנתיב הקריטי באדום, משימות מקבילות בכחול, שני מרווחי ביטחון בזהב ושתי אבני דרך בירוק \cite{segal2026prep,pmbok2021}}
+\label{fig:gantt_chart_14weeks}
+\end{figure}
+
+\section{מגבלות המחקר וניהול סיכונים מתודולוגיים (\en{Double Risk Quantification})}
+\label{sec:risk_management}
+
+בהתאם למתודולוגיית ניהול הסיכונים בפרק \num{9} בספר \en{"}מהבעיה אל ה-\en{PDF}\en{"} \cite{segal2026prep,iso31000}, כל סיכון מתודולוגי או תפעולי במחקר נמדד פעמיים על סולם חמש-דרגתי ($P, I \in \{1,\dots,5\}$): פעם ראשונה כ**סיכון גולמי התחלתי** לפני התערבות ($R_{\text{initial}} = P_{\text{pre}} \times I_{\text{pre}}$), ופעם שנייה כ**סיכון שיורי (\en{Residual Risk})** לאחר הפעלת מנגנוני ההפחתה המונעים ($R_{\text{residual}} = P_{\text{post}} \times I_{\text{post}}$):
+\begin{equation}
+\label{eq:risk_quantification}
+R_{\text{initial}} = P_{\text{pre}} \times I_{\text{pre}} \;\in [1, 25] \quad \xrightarrow{\text{Mitigation Actions}} \quad R_{\text{residual}} = P_{\text{post}} \times I_{\text{post}} \;\le 6
+\end{equation}
+
+איור~\ref{fig:risk_matrix_5x5} מציג את מפת הסיכונים הדו-ממדית (\num{5x5}), וטבלה~\ref{tab:risk_register_mitigation} מפרטת את ששת הסיכונים המרכזיים של המחקר. בהתאם לכלל המחייב בסעיף \num{9.3} בספר \cite{segal2026prep}, לכל סיכון בעל דירוג התחלתי גבוה ($R_{\text{initial}} \ge 12$) הוגדרו הן **תוכנית הפחתה מונעת (\en{Mitigation Plan})** והן **תוכנית מגירה (\en{Contingency Plan})** הנכנסת לפעולה אוטומטית אם הסיכון מתממש.
+
+\begin{figure}[htbp]
+\centering
+\begin{english}
+\begin{tikzpicture}[scale=0.92, font=\scriptsize]
+    % 5x5 Color Zones
+    \foreach \p in {1,...,5} {
+        \foreach \i in {1,...,5} {
+            \pgfmathtruncatemacro{\score}{\p * \i}
+            \ifnum\score>11
+                \fill[BrandRed!28] (\i-1, \p-1) rectangle (\i, \p);
+            \else
+                \ifnum\score>5
+                    \fill[BrandGold!25] (\i-1, \p-1) rectangle (\i, \p);
+                \else
+                    \fill[BrandTeal!22] (\i-1, \p-1) rectangle (\i, \p);
+                \fi
+            \fi
+            \draw[gray!60] (\i-1, \p-1) rectangle (\i, \p);
+            \node[gray!70, font=\tiny] at (\i-0.18, \p-0.82) {\score};
+        }
+    }
+    \draw[BrandNavy, line width=1.2pt] (0,0) rectangle (5,5);
+    \node[font=\footnotesize\bfseries, color=BrandNavy] at (2.5, -0.65) {Impact Severity ($I$: 1 = Negligible, 5 = Critical)};
+    \node[font=\footnotesize\bfseries, color=BrandNavy, rotate=90] at (-0.65, 2.5) {Probability ($P$: 1 = Rare, 5 = Very High)};
+
+    \foreach \x in {1,...,5} {
+        \node[font=\scriptsize\bfseries] at (\x-0.5, -0.25) {\x};
+        \node[font=\scriptsize\bfseries] at (-0.25, \x-0.5) {\x};
+    }
+
+    % Initial Risks (Red circles) and Residual Risks (Teal squares)
+    % RSK-01: (I=4, P=5) -> (I=3, P=2)
+    \node[circle, fill=BrandRed, text=white, inner sep=1.2pt, font=\tiny\bfseries] (r1pre) at (3.5, 4.5) {R1};
+    \node[rectangle, fill=BrandTeal, text=white, inner sep=1.8pt, font=\tiny\bfseries] (r1post) at (2.5, 1.5) {R1'};
+    \draw[-{Stealth[length=1.8mm]}, dashed, BrandNavy, line width=0.9pt] (r1pre) -- (r1post);
+
+    % RSK-02: (I=4, P=4) -> (I=2, P=2)
+    \node[circle, fill=BrandRed, text=white, inner sep=1.2pt, font=\tiny\bfseries] (r2pre) at (3.3, 3.6) {R2};
+    \node[rectangle, fill=BrandTeal, text=white, inner sep=1.8pt, font=\tiny\bfseries] (r2post) at (1.5, 1.6) {R2'};
+    \draw[-{Stealth[length=1.8mm]}, dashed, BrandNavy, line width=0.9pt] (r2pre) -- (r2post);
+
+    % RSK-03: (I=4, P=4) -> (I=3, P=2)
+    \node[circle, fill=BrandRed, text=white, inner sep=1.2pt, font=\tiny\bfseries] (r3pre) at (3.7, 3.3) {R3};
+    \node[rectangle, fill=BrandTeal, text=white, inner sep=1.8pt, font=\tiny\bfseries] (r3post) at (2.7, 1.3) {R3'};
+    \draw[-{Stealth[length=1.8mm]}, dashed, BrandNavy, line width=0.9pt] (r3pre) -- (r3post);
+
+    % RSK-04: (I=4, P=3) -> (I=2, P=2)
+    \node[circle, fill=BrandRed, text=white, inner sep=1.2pt, font=\tiny\bfseries] (r4pre) at (3.5, 2.5) {R4};
+    \node[rectangle, fill=BrandTeal, text=white, inner sep=1.8pt, font=\tiny\bfseries] (r4post) at (1.7, 1.3) {R4'};
+    \draw[-{Stealth[length=1.8mm]}, dashed, BrandNavy, line width=0.9pt] (r4pre) -- (r4post);
+\end{tikzpicture}
+\end{english}
+\caption{מטריצת סיכונים כמותית \num{5x5} המציגה את נדידת הסיכונים מרמת הסיכון ההתחלתית (\en{R1--R4} בעיגולים אדומים, $R \ge 12$) אל רמת הסיכון השיורי הנמוכה (\en{R1'--R4'} בריבועים ירוקים, $R_{\text{res}} \le 6$) לאחר הפעלת תוכניות ההפחתה \cite{segal2026prep,iso31000}}
+\label{fig:risk_matrix_5x5}
+\end{figure}
+
+\begin{table}[htbp]
+\caption{מרשם הסיכונים המתודולוגיים של המחקר: כימות כפול ($R_{\text{initial}} \to R_{\text{residual}}$), תוכנית הפחתה מונעת (\en{Mitigation}) ותוכנית מגירה (\en{Contingency}) לכל סיכון \cite{segal2026prep,iso31000}}
+\label{tab:risk_register_mitigation}
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.26}
+\rowcolors{2}{BrandGray}{white}
+\begin{tabularx}{\textwidth}{R{1.2cm} R{2.4cm} C{1.6cm} Y Y C{1.5cm}}
+\toprule
+\rowcolor{TableHeaderBg}
+\textbf{מזהה} & \textbf{תיאור הסיכון / מגבלה מתודולוגית} & \textbf{סיכון גולמי ($P \times I = R$)} & \textbf{תוכנית הפחתה מונעת (\en{Preventive Mitigation})} & \textbf{תוכנית מגירה מופעלת-טריגר (\en{Contingency Plan})} & \textbf{סיכון שיורי ($P' \times I' = R'$)} \\
+\midrule
+\textbf{\en{RSK-01}} & \textbf{אי-שקיפות מבצעי קבלן בכרמ"ן:} מחיר העסקה המדווח לרשות המסים אינו מפרט את תנאי ה-\num{20/80} או סבסוד הבלון. & $5 \times 4 = \mathbf{20}$ (\textbf{\color{BrandRed}קריטי}) & הצלבת נתוני כרמ"ן מול שיעור הגבייה מרוכשים מראש בדוחות מאי"ה (\pct{15}--\pct{20}) ומול סדרות ביצועי הלוואות בולט של בנק ישראל. & אמידת תחום אי-ודאות פרמטרי ($\delta_{\text{NPV}} \in [8\%, 14\%]$) והצגת ממצאים ברצועות ביטחון סטטיסטיות של \pct{95}. & $2 \times 3 = \mathbf{6}$ (\color{BrandTeal}נמוך-בינוני) \\
+\textbf{\en{RSK-02}} & \textbf{הטיית בחירה (\en{Selection Bias}) ביזמי \en{Tier-3}:} יזמים קטנים פרטיים אינם מפרסמים דוחות כספיים בבורסה. & $4 \times 4 = \mathbf{16}$ (\textbf{\color{BrandRed}גבוה}) & בניית פרופיל מאזני סינתטי ליזמי \en{Tier-3} מתוך דוחות קרנות אשראי חוץ-בנקאיות ציבוריות המעמידות אשראי מזנין ליזמים פרטיים. & הרצת סימולציית רגישות על יחס המינוף ההתחלתי של יזמים פרטיים (\pct{75}--\pct{90} חוב ל-\en{CAP}). & $2 \times 2 = \mathbf{4}$ (\color{BrandTeal}נמוך) \\
+\textbf{\en{RSK-03}} & \textbf{מוטציות חוזיות חדשות (\num{2026}):} פיתוח מכשירי מימון חדשים עוקפי רגולציה מעבר ל-\num{20/50/30}. & $4 \times 4 = \mathbf{16}$ (\textbf{\color{BrandRed}גבוה}) & ניסוח מודל ה-\en{NPV} (משוואה~\ref{eq:npv_discount_rate}) בצורה גנרית לחלוטין כפונקציה של וקטור מועדי התשלום $\{\alpha_k, t_k\}$ לכל מבנה חוזה. & עדכון וקטור התזרימים בקובץ הקונפיגורציה בפייתון והרצה מחדש של העקומות תוך פחות מ-\num{10} דקות. & $2 \times 3 = \mathbf{6}$ (\color{BrandTeal}נמוך-בינוני) \\
+\textbf{\en{RSK-04}} & \textbf{רגישות להנחת התפלגות הזנב במונטה-קרלו:} תלות בתורת ההתפלגות המשותפת של הכנסה ומחיר דירה. & $3 \times 4 = \mathbf{12}$ (\textbf{\color{BrandRed}גבוה}) & כיול התפלגות ה-\en{PTI} וה-\en{LTV} מול העשירונים הרשמיים המדווחים בדוח היציבות הפיננסית של בנק ישראל \cite{boi2025stability}. & החלפת ההתפלגות הלוג-נורמלית בהתפלגות \en{Student-$t$} עבת-זנב (\en{Fat-Tailed}) לבדיקת עמידות הממצאים. & $2 \times 2 = \mathbf{4}$ (\color{BrandTeal}נמוך) \\
+\textbf{\en{RSK-05}} & \textbf{שינוי משטר מאקרו-כלכלי חד:} הפחתת ריבית מהירה של בנק ישראל או זעזוע גיאופוליטי נוסף ב-\num{2026}. & $3 \times 4 = \mathbf{12}$ (\textbf{\color{BrandRed}גבוה}) & בניית המודלים מראש תחת שלושה תרחישי מאקרו מובחנים (נחיתה רכה, קיר מסירות חמור, והדבקה קיצונית). & הוספת תרחיש רביעי של \en{"}חתך ריבית מהיר ל-\pct{2.75}\en{"} ובחינת מידת ההקלה על שיעור חציית ה-\en{PTI}. & $2 \times 2 = \mathbf{4}$ (\color{BrandTeal}נמוך) \\
+\textbf{\en{RSK-06}} & \textbf{כשלי קומפילציה וכיווניות \en{BiDi} ב-\en{\LaTeX}:} היפוך מספרי משוואות או גלישת טבלאות במבנה הספר. & $3 \times 3 = \mathbf{9}$ (\color{BrandGold}בינוני) & שימוש בפקודות מאקרו מוגנות (\en{\texttt{\textbackslash num}}, \en{\texttt{\textbackslash pct}}, \en{\texttt{\textbackslash en}}) ובתיבות עטופות \en{LTR} ב-\en{\texttt{preamble.tex}}. & הפעלת סוכן ה-\en{Detector} לביצוע ביקורת \num{9} משפחות הליקויים מפרק \num{19} בספר לפני מסירה סופית. & $1 \times 3 = \mathbf{3}$ (\color{BrandTeal}נמוך מאוד) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{סיכום, מוכנות תכנונית (\en{Design Readiness}) ושלוש פעולות מיידיות}
+\label{sec:design_readiness}
+
+דוח מכין זה הקים תשתית תיאורטית, אמפירית ומתודולוגית מלאה לחקר תופעת מבצעי המימון הקבלניים בשוק הדיור הישראלי (\num{2022}--\num{2026}) ובחינת עמידות המערכת לקראת \en{"}קיר המסירות\en{"} של שנות \num{2026}--\num{2027} בהשוואה למשבר הסאב-פריים בארה"ב (\num{2008}). כל רכיבי המחקר — משאלת המחקר והשערות $H_1, H_2, H_3$, דרך מודל ה-\en{NPV}, סימולציית המונטה-קרלו ($N=10,000$) ומבחני הקיצון ל-\en{DSCR} ול-\en{CET1}, ועד תוכנית העבודה וניהול הסיכונים — אומתו והודגמו הלכה למעשה.
+
+בהתאם להנחיות סעיף \num{10.2} ואיור \num{10.1} בספר \en{"}מהבעיה אל ה-\en{PDF}\en{"} \cite{segal2026prep}, הפרויקט מצוי ב**מוכנות תכנונית מלאה (\en{100\% Design Readiness})**, ואיור~\ref{fig:three_immediate_actions} מציג את שלוש הפעולות המיידיות לביצוע עם אישור הדוח המכין.
+
+\begin{figure}[htbp]
+\centering
+\begin{english}
+\begin{tikzpicture}[
+    node distance=0.5cm,
+    action/.style={
+        rectangle, rounded corners=4pt, draw=BrandNavy, line width=1.1pt, fill=BrandLightBlue,
+        text width=4.35cm, minimum height=2.2cm, align=center, font=\footnotesize
+    },
+    arrow/.style={-{Stealth[length=2.8mm,width=2.2mm]}, line width=1.2pt, color=BrandTeal}
+]
+    \node[action] (a1) {\textbf{\color{BrandNavy}Action 1 (Week 1):}\\[3pt]\texthebrew{פתיחת מאגר הנתונים המלא בפייתון וטעינת חתכי כרמ"ן והלמ"ס לתוך צינור הטיוב האוטומטי (\en{TSK-1.1})}};
+    \node[action, right=0.55cm of a1] (a2) {\textbf{\color{BrandNavy}Action 2 (Weeks 2--3):}\\[3pt]\texthebrew{חילוץ הפרמטרים המאזניים מ-\num{25} דוחות הבורסה (\en{TASE}) וכיול סופי של מטריצת יזמי \en{Tiers 1--3} (\en{TSK-1.2})}};
+    \node[action, right=0.55cm of a2] (a3) {\textbf{\color{BrandNavy}Action 3 (Weeks 4--5):}\\[3pt]\texthebrew{הרצת סדרת רגישות מורחבת ($N=100,000$ איטרציות) והגעה לאבן דרך \en{M1} להקפאת מודל ה-\en{NPV}}};
+
+    \draw[arrow] (a1.east) -- (a2.west);
+    \draw[arrow] (a2.east) -- (a3.west);
+\end{tikzpicture}
+\end{english}
+\caption{שלוש הפעולות המיידיות לביצוע עם אישור הדוח המכין (בהתאם לאיור \num{10.1} בספר \en{"}מהבעיה אל ה-\en{PDF}\en{"} \cite{segal2026prep})}
+\label{fig:three_immediate_actions}
+\end{figure}

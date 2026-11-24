@@ -1,0 +1,213 @@
+% ==============================================================================
+% chapters/ch02_us_subprime_2008.tex
+% פרק ב': מבוא היסטורי I – אנטומיה של משבר הסאב-פריים בארה"ב (2001–2008)
+% ==============================================================================
+
+\chapter{מבוא היסטורי \en{I} – אנטומיה של משבר הסאב-פריים בארה"ב (\num{2001}--\num{2008})}
+\label{ch:us_subprime}
+
+הבנת הסיכונים האורבים לשוק הנדל"ן הישראלי לקראת \en{"}קיר המסירות\en{"} של שנות \num{2026}--\num{2027} מחייבת פירוק אנליטי מדויק של אב-הטיפוס ההיסטורי המובהק ביותר של משבר נדל"ן מונע-הנדסה-פיננסית: משבר הסאב-פריים בארצות הברית (\num{2001}--\num{2008}). בניגוד לתפיסה הפופולרית הרואה במשבר \num{2008} תוצאה של \en{"}תאוות בצע\en{"} אמורפית בלבד, המחקר האמפירי המודרני מראה כי המשבר נבע משילוב הנדסי של ארבעה רכיבים מבניים: (א) סביבת ריבית מרחיבה שיצרה תיאבון לתשואה והנפחת הון עצמי; (ב) חוזי משכנתאות היברידיים דחויי-תשלום (\en{Hybrid ARMs}) שסבסדו מלאכותית את ההחזר החודשי בשנתיים הראשונות; (ג) שרשרת איגוח (\en{Originate-to-Distribute}) שניתקה את מעניק האשראי מסיכון החדלות; ו-(ד) משטר משפטי של הלוואות \en{Non-Recourse} שהפך ירידת מחירים מתונה לאופציית נטישה רציונלית (\en{Put Option}) עבור הלווה \cite{mian2009consequences,mayer2009rise,keys2010did,gorton2009securitized}. פרק זה מנתח רכיבים אלו לעומקם, מנסח מתמטית את מנגנון \en{"}קיר איפוס הריביות\en{"} (\en{Rate Reset Wall}), ומניח את תשתית הייחוס (\en{Benchmark}) להשוואה מול מבצעי הקבלנים בישראל בפרקים הבאים.
+
+\section{הרקע המאקרו-כלכלי: סביבת הריבית הנמוכה וצמיחת אשראי הסאב-פריים}
+\label{sec:subprime_macro}
+
+שורשיו המאקרו-כלכליים של משבר הסאב-פריים נעוצים בתגובה המוניטרית של הבנק הפדרלי (\en{Federal Reserve}) להתפוצצות בועת הדוט-קום בשנת \num{2000} ולאירועי ה-\num{11} בספטמבר \num{2001}. בין ינואר \num{2001} ליוני \num{2003} הפחית הפדרל ריזרב את ריבית היעד הפדרלית (\en{Federal Funds Rate}) מ-\pct{6.50} לשפל היסטורי של \pct{1.00}, והותיר אותה ברמה זו במשך שנה שלמה \cite{bernanke2010monetary}. במקביל, עודפי חיסכון עולמיים ממדינות מזרח אסיה ויצואניות נפט (\en{Global Saving Glut}) זרמו אל שוק האג"ח האמריקאי והורידו את תשואות איגרות החוב הממשלתיות ל-\num{10} שנים מרמה של \pct{6.2} בשנת \num{2000} לכ-\pct{3.3} בשנת \num{2003} \cite{bernanke2010monetary,reinhart2009this}.
+
+סביבת הריבית הנמוכה חוללה שני תהליכים מקבילים בשוק הדיור והאשראי האמריקאי:
+\begin{enumerate}[label=\textbf{\arabic*.},rightmargin=0.6cm]
+  \item \textbf{מיצוי קהל הלווים האיכותיים (\en{Prime Saturation}):} בשנים \num{2001}--\num{2003} מרבית משקי הבית בעלי דירוג האשראי הגבוה (\en{Prime Borrowers}, בעלי ציון \en{FICO} מעל \num{660} ויחס החזר להכנסה מתועדת תקין) השלימו מחזורי משכנתא (\en{Refinancing}) או רכישת דירה. כדי לשמר את נפח ההנפקות והעמלות של תעשיית המשכנתאות, נדרשו הבנקים וחברות המימון החוץ-בנקאיות להרחיב את גבולות החיתום אל עבר פלחי אוכלוסייה בעלי הון עצמי אפסי והיסטוריית אשראי פגומה (\en{Subprime}, ציון \en{FICO} מתחת ל-\num{620}) או לווים בעלי תיעוד הכנסה חלקי (\en{Alt-A}) \cite{mian2009consequences,mayer2009rise}.
+  \item \textbf{מדיניות עידוד הבעלות על דירות (\en{Homeownership Push}):} ממשלי ארה"ב קידמו מאז שלהי שנות ה-\num{90} יעד פוליטי של העלאת שיעור הבעלות על דירות לשיא היסטורי (שחצה ב-\num{2004} את רף ה-\pct{69.2}). יעדי הדיור בר-ההשגה שהושתו על סוכנויות המשכנתאות הממשלתיות למחצה (\en{Fannie Mae} ו-\en{Freddie Mac}) לצד הקלות רגולטוריות על בנקאי משכנתאות עצמאיים (\en{Independent Mortgage Originators}) יצרו תמריץ מוסדי להענקת אשראי בשיעורי מימון של \pct{95}--\pct{100} משווי הנכס \cite{foote2008subprime,reinhart2009this}.
+\end{enumerate}
+
+הנתונים הכמותיים משקפים שינוי מבני חד בהרכב השוק: היקף העמדת משכנתאות הסאב-פריים בארה"ב זינק מ-\usd{120} מיליארד בשנת \num{2001} (כ-\pct{7.9} מסך הנפקות המשכנתאות בארה"ב) ל-\usd{625} מיליארד בשנת \num{2005} ו-\usd{600} מיליארד בשנת \num{2006} — שיעור של \pct{20.1} מסך השוק \cite{mayer2009rise,foote2008subprime}. יחד עם הלוואות \en{Alt-A} (שצמחו מ-\pct{2.0} ל-\pct{13.4} מהשוק), הלוואות בסיכון גבוה (\en{Non-Prime}) היוו בשנת \num{2006} למעלה משליש (\pct{33.5}) מכלל המשכנתאות החדשות בארה"ב.
+
+\begin{managerbox}[תובנה השוואתית למנהל: דמיון במחזור הריבית והנפחים]
+התנהגות שוק המשכנתאות האמריקאי בשנים \num{2004}--\num{2006} מדגימה תופעה מבנית החוזרת על עצמה בשוק הדיור הישראלי בשנים \num{2023}--\num{2026}: כאשר העלאת ריבית של הבנק המרכזי (בארה"ב מ-\pct{1.00} ל-\pct{5.25} בין \num{2004} ל-\num{2006}; בישראל מ-\pct{0.10} ל-\pct{4.75} בין \num{2022} ל-\num{2023}) פוגשת מחירי שיא של דירות, הקונים הרגילים נפלטים מהשוק בגלל מגבלת ההחזר החודשי. כדי למנוע ירידת מחירים נומינלית וצניחה בנפח העסקאות, השוק מפתח \textbf{מכשירי מימון דחויי-תשלום} שנועדו להסוות את עליית הריבית בטווח הקצר \cite{mayer2009rise,boi2025stability}.
+\end{managerbox}
+
+\section{מנגנוני הכשל בפועל: הלוואות \en{ARM}, הלוואות \en{NINJA}, איגוח וכשל הדירוג}
+\label{sec:subprime_mechanisms}
+
+התרחבות אשראי הסאב-פריים לא התבצעה באמצעות משכנתאות קלאסיות בריבית קבועה ל-\num{30} שנה (\en{30-Year Fixed-Rate Mortgage}), אלא באמצעות חוזים היברידיים מתוחכמים שתוכננו להקטין מלאכותית את ההחזר החודשי בשנתיים-שלוש הראשונות של ההלוואה.
+
+\subsection{הנדסת חוזי הטיזר (\en{Hybrid 2/28 \& 3/27 ARMs}) והלוואות \en{NINJA}}
+המכשיר הנפוץ ביותר בשוק הסאב-פריים (למעלה מ-\pct{75} מהנפקות הסאב-פריים בשנים \num{2004}--\num{2006}) היה משכנתת \en{Hybrid ARM} במבנה \num{2/28} או \num{3/27} \cite{mayer2009rise,foote2008subprime}. בחוזה \num{2/28}, הריבית מקובעת למשך \num{24} החודשים הראשונים ברמת \en{"}פיתיון\en{"} נמוכה (\en{Teaser Rate}, לרוב בין \pct{5.2} ל-\pct{6.5}), המאפשרת ללווה לעמוד לכאורה במבחן ההחזר החודשי הראשוני. אולם בתום \num{24} חודשים (\en{Reset Date}), ההלוואה עוברת ל-\num{28} השנים הנותרות למסלול ריבית משתנה המחושבת כריבית בסיס (\en{6-Month LIBOR}) בתוספת מרווח סיכון גבוה (\en{Margin} של \pct{5.5} עד \pct{6.75}), מה שהקפיץ את הריבית האפקטיבית ל-\pct{9.8}--\pct{11.5}.
+
+במקביל התפתחו שלושה מכשירים קיצוניים עוד יותר, המרוכזים בטבלה~\ref{tab:subprime_products}:
+\begin{enumerate}[label=\textbf{\arabic*.},rightmargin=0.6cm]
+  \item \textbf{הלוואות \en{Option ARM (Pick-a-Pay)}:} חוזים שאפשרו ללווה לבחור מדי חודש לשלם החזר נמוך אף מריבית ההלוואה השוטפת. הפער שלא שולם הוון והתווסף לקרן ההלוואה (\en{Negative Amortization}), עד שהקרן תפחה ל-\pct{110}--\pct{115} מהסכום המקורי וכפתה איפוס אוטומטי אלים של ההחזר החודשי \cite{mayer2009rise}.
+  \item \textbf{מימון משלים (\en{Piggyback Loans / 80-20})}: כדי לעקוף את הצורך בהון עצמי של \pct{20} ולחסוך ביטוח משכנתא (\en{PMI}), העמידו המלווים משכנתא ראשונה של \pct{80} והלוואת גישור שנייה של \pct{20} (\en{Silent Second Lien}), כך שיחס המינוף המצרפי (\en{CLTV -- Combined Loan-to-Value}) הגיע ל-\pct{95}--\pct{100} \cite{mayer2009rise,foote2008subprime}.
+  \item \textbf{הלוואות \en{Stated Income} ו-\en{NINJA} (\en{No Income, No Job, and Assets}):} חיתום מבוסס הצהרה עצמית ללא אימות תלושי שכר או דוחות מס (\en{"Liar Loans"}). שיעור ההלוואות עם תיעוד חסר או אפסי זינק מ-\pct{28} בשנת \num{2001} ל-\pct{50.8} במשכנתאות הסאב-פריים ולמעלה מ-\pct{80} בהלוואות ה-\en{Alt-A} בשנת \num{2006} \cite{keys2010did,mayer2009rise}.
+\end{enumerate}
+
+\begin{table}[htbp]
+\caption{אנטומיה השוואתית של מכשירי האשראי המרכזיים במשבר הסאב-פריים בארה"ב (\num{2004}--\num{2006}) \cite{mayer2009rise,foote2008subprime,keys2010did}}
+\label{tab:subprime_products}
+\centering
+\small
+\renewcommand{\arraystretch}{1.28}
+\rowcolors{2}{BrandGray}{white}
+\begin{tabularx}{\textwidth}{R{2.6cm} Y R{1.8cm} R{2.1cm} R{2.1cm} R{2.0cm}}
+\toprule
+\rowcolor{TableHeaderBg}
+\textbf{מכשיר אשראי} & \textbf{מנגנון הנדסי ותקופת גרייס / טיזר} & \textbf{\en{CLTV} חציוני} & \textbf{שיעור תיעוד חסר (\en{Low/No-Doc})} & \textbf{זינוק בהחזר באיפוס (\en{Payment Shock})} & \textbf{שיעור כשל מצטבר (\num{2009})} \\
+\midrule
+\textbf{\en{Hybrid 2/28 ARM}} & ריבית טיזר קבועה ל-\num{24} חודשים; איפוס ל-\en{LIBOR + 6\%} בחודש \num{25} & \pct{95.0} & \pct{50.4} & \pct{+32}--\pct{+48} & \pct{38.4} \\
+\textbf{\en{Hybrid 3/27 ARM}} & ריבית טיזר קבועה ל-\num{36} חודשים; איפוס לריבית משתנה בחודש \num{37} & \pct{92.5} & \pct{46.2} & \pct{+28}--\pct{+40} & \pct{31.7} \\
+\textbf{\en{Option ARM}} & תשלום מינימלי נמוך מהריבית; צבירת קרן שלילית (\en{Neg-Am}) עד תקרת \pct{115} & \pct{90.0} & \pct{78.5} & \pct{+60}--\pct{+95} & \pct{44.2} \\
+\textbf{\en{Piggyback 80/20}} & משכנתא ראשונה (\pct{80}) + הלוואה שנייה (\pct{20}) בריבית גבוהה ללא הון עצמי & \pct{100.0} & \pct{54.0} & \pct{+35}--\pct{+55} & \pct{49.6} \\
+\textbf{\en{NINJA / Stated Alt-A}} & הלוואת \en{Interest-Only} ללא אימות הכנסה, תעסוקה או נכסים נזילים & \pct{95.0} & \pct{100.0} & \pct{+45}--\pct{+70} & \pct{52.8} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{מודל מתמטי של הלם ההחזר (\en{Payment Shock}) ואופציית הנטישה (\en{Non-Recourse Put})}
+כדי להבין מדוע חוזי ה-\en{ARM} פעלו כפצצת זמן מתקתקת, ננסח מתמטית את דינמיקת התשלומים של הלווה. נסמן ב-$L_0$ את קרן ההלוואה המקורית ל-$N=360$ חודשים (\num{30} שנה), וב-$r_{\text{teaser}}$ את הריבית החודשית המסובסדת בשנתיים הראשונות ($t \in [1, 24]$). ההחזר החודשי הראשוני $M_{\text{initial}}$ עומד על:
+\begin{equation}
+\label{eq:arm_initial}
+M_{\text{initial}} = L_0 \cdot \frac{r_{\text{teaser}}\left(1 + r_{\text{teaser}}\right)^{360}}{\left(1 + r_{\text{teaser}}\right)^{360} - 1}
+\end{equation}
+
+בתום \num{24} חודשים ($t = 24$), יתרת הקרן הבלתי-מסולקת $L_{24}$ (אשר בהלוואות \en{Interest-Only} שווה ל-$L_0$, ובהלוואות \en{Option ARM} אף עולה ל-$1.10 L_0$) עוברת לחישוב מחדש ל-\num{336} החודשים הנותרים לפי ריבית האיפוס החודשית $r_{\text{reset}} = \left(\text{LIBOR}_{24} + m_{\text{subprime}}\right)/12$. שיעור הלם ההחזר היחסי ($\Delta M_{\text{shock}}$) במועד האיפוס מוגדר על ידי משוואה~\eqref{eq:arm_shock}:
+\begin{equation}
+\label{eq:arm_shock}
+\Delta M_{\text{shock}} = \frac{M_{\text{reset}} - M_{\text{initial}}}{M_{\text{initial}}} = \left(\frac{L_{24}}{L_0}\right) \cdot \frac{r_{\text{reset}}\left(1 + r_{\text{reset}}\right)^{336}}{\left(1 + r_{\text{reset}}\right)^{336} - 1} \cdot \frac{\left(1 + r_{\text{teaser}}\right)^{360} - 1}{r_{\text{teaser}}\left(1 + r_{\text{teaser}}\right)^{360}} - 1
+\end{equation}
+
+כל עוד מחירי הבתים בארה"ב עלו בקצב של \pct{10}--\pct{14} בשנה (\num{2002}--\num{2005}), הלווה לא נדרש לשלם את $M_{\text{reset}}$ בפועל: לפני חודש \num{24}, הלווה מיחזר את המשכנתא (\en{Refinance}) מול שמאות חדשה וגבוהה יותר של הבית, והתחיל מחדש תקופת טיזר של \num{24} חודשים \cite{gorton2009securitized,foote2008subprime}. במילים אחרות, חוזה הסאב-פריים לא תוכנן להיפרע מהכנסת העבודה של הלווה, אלא תפקד כ\textbf{חוזה גישור ספקולטיבי התלוי בהמשך עליית מחירי הנדל"ן} \cite{gorton2009securitized}.
+
+יתרה מכך, במדינות מפתח בארה"ב (כגון קליפורניה, אריזונה, נבאדה ופלורידה), משכנתאות דיור הן הלוואות \textbf{\en{Non-Recourse}} (ללא זכות חזרה לנכסים האישיים או להכנסות העתידיות של הלווה מעבר לבית הממושכן עצמו) \cite{ghent2011recourse}. במונחי תורת המימון, משכנתת \en{Non-Recourse} מעניקה ללווה אופציית מכר אירופית/אמריקאית (\en{Put Option}) על הבית במחיר מימוש השווה ליתרת החוב $L_t$. ערך ההון העצמי האפקטיבי של הלווה בנכס בזמן $t$, המסומן ב-$E_t^{\text{US}}$, מקיים את משוואה~\eqref{eq:non_recourse_put}:
+\begin{equation}
+\label{eq:non_recourse_put}
+E_t^{\text{US}} = \max\left(P_t - L_t - C_{\text{default}},\, 0\right) \quad \Longrightarrow \quad \text{Default Trigger: } P_t < L_t - C_{\text{default}}
+\end{equation}
+כאשר $P_t$ הוא שווי השוק של הבית בזמן $t$ ו-$C_{\text{default}}$ היא עלות החיכוך של פגיעה בדירוג האשראי (\en{FICO}) והמעבר לדיור חלופי. כאשר ההון העצמי ההתחלתי היה אפסי ($L_0 \approx P_0$), אפילו ירידת מחירים מתונה של \pct{5}--\pct{10} ב-$P_t$ הכניסה את הלווה למצב של \textbf{הון עצמי שלילי (\en{Negative Equity / Underwater}: $P_t < L_t$)}, חסמה את יכולתו למחזר את המשכנתא במועד האיפוס ($t=24$), והפכה את מסירת המפתחות לבנק (\en{Strategic Default / Jingle Mail}) לבחירה כלכלית רציונלית \cite{foote2008subprime,ghent2011recourse}.
+
+\subsection{שרשרת האיגוח (\en{Originate-to-Distribute}) וכשל סוכנויות הדירוג}
+השאלה המרכזית בספרות המימונית היא מדוע בנקים ומשקיעים מוסדיים הסכימו לממן הלוואות שבהן הסיכון במשוואות~\eqref{eq:arm_shock}--\eqref{eq:non_recourse_put} היה כה שקוף. התשובה טמונה בפירוק האנכי של שרשרת האשראי במודל \en{Originate-to-Distribute (OTD)}, המוצג באיור~\ref{fig:otd_securitization_chain}.
+
+\begin{figure}[htbp]
+\centering
+\begin{english}
+\begin{tikzpicture}[
+    node distance=0.45cm,
+    stage/.style={
+        rectangle,
+        rounded corners=4pt,
+        draw=BrandNavy,
+        line width=1.0pt,
+        fill=BrandLightBlue,
+        text width=14.4cm,
+        minimum height=1.02cm,
+        align=center,
+        font=\small
+    },
+    dangerstage/.style={
+        rectangle,
+        rounded corners=4pt,
+        draw=BrandRed,
+        line width=1.1pt,
+        fill=BrandLightRed,
+        text width=14.4cm,
+        minimum height=1.05cm,
+        align=center,
+        font=\small
+    },
+    arrow/.style={-{Stealth[length=2.8mm,width=2.2mm]}, line width=1.1pt, color=BrandBlue},
+    redarrow/.style={-{Stealth[length=2.8mm,width=2.2mm]}, line width=1.2pt, color=BrandRed}
+]
+    \node[stage] (s1) {\textbf{\color{BrandNavy}1. Origination (2/28 ARM \& NINJA Loans):} \texthebrew{לווי סאב-פריים חותמים על הלוואות טיזר ב-\en{CLTV} של \pct{95}--\pct{100} מול ברוקרים מתוגמלי-עמלות ללא בדיקת החזר אמיתית}};
+    
+    \node[stage, below=of s1] (s2) {\textbf{\color{BrandNavy}2. Warehouse Lines \& MBS Pooling:} \texthebrew{בנקי השקעות רוכשים אלפי משכנתאות, אורזים אותן באיגוח מגובה משכנתאות (\en{Private-Label RMBS}) ומוציאים אותן מהמאזן}};
+    
+    \node[stage, below=of s2] (s3) {\textbf{\color{BrandNavy}3. CDO Tranching \& Rating Agency Stamp:} \texthebrew{פיצול ה-\en{RMBS} לשכבות (\en{Senior AAA 80\%, Mezzanine BBB 15\%, Equity 5\%}); איגוח חוזר של שכבות ה-\en{BBB} לתוך \en{Abs CDO} בדירוג \en{AAA} כוזב}};
+    
+    \node[stage, below=of s3] (s4) {\textbf{\color{BrandNavy}4. CDS Leverage \& Repo Shadow Banking:} \texthebrew{הנפקת חוזי ביטוח אשראי (\en{CDS}) סינתטיים ומימון החזקות ה-\en{MBS/CDO} באשראי \en{Repo} overnight קצר-מועד במערכת הבנקאות המקבילה}};
+    
+    \node[dangerstage, below=of s4] (s5) {\textbf{\color{BrandRed}5. Rate Reset Wall (2007--2008) \& Negative Equity:} \texthebrew{איפוס ריביות ב-\usd{1.2} טריליון הלוואות \en{ARM} + ירידת מחירי בתים חוסמים מחזור משכנתא ומציתים גל עיקולים (\en{Foreclosures})}};
+    
+    \node[dangerstage, below=of s5] (s6) {\textbf{\color{BrandRed}6. Systemic Contagion \& Liquidity Freeze:} \texthebrew{קריסת שווי ה-\en{CDO}, דרישות ביטחונות (\en{Margin Calls / Repo Haircuts}), נפילת \en{Bear Stearns} ו-\en{Lehman Brothers} ושיתוק אשראי עולמי}};
+
+    \draw[arrow] (s1.south) -- (s2.north);
+    \draw[arrow] (s2.south) -- (s3.north);
+    \draw[arrow] (s3.south) -- (s4.north);
+    \draw[redarrow] (s4.south) -- (s5.north);
+    \draw[redarrow] (s5.south) -- (s6.north);
+\end{tikzpicture}
+\end{english}
+\caption{שרשרת האיגוח (\en{Originate-to-Distribute}) ומנגנון ההדבקה המערכתית במשבר הסאב-פריים בארה"ב (\num{2001}--\num{2008}) \cite{keys2010did,gorton2009securitized}}
+\label{fig:otd_securitization_chain}
+\end{figure}
+
+כפי שממחיש איור~\ref{fig:otd_securitization_chain}, בכל חוליה בשרשרת פעל כשל תמריצים חריף:
+\begin{itemize}[rightmargin=0.6cm]
+  \item \textbf{ניתוק החיתום מסיכון האשראי (\en{Moral Hazard in Origination}):} מחקרם הקלאסי של \en{Keys et al. (2010)} \cite{keys2010did} הוכיח כי עצם היכולת לאגח ולמכור הלוואות סאב-פריים למשקיעים חיצוניים הקטינה את מאמץ הסינון (\en{Screening}) של הבנקאים והגדילה ב-\pct{20} את שיעור חדלות הפירעון של לווים בעלי מאפיינים זהים.
+  \item \textbf{אלכימיית הטראנשים (\en{CDO Tranching}) וכשל סוכנויות הדירוג:} בנקי ההשקעות קיבצו אלפי הלוואות סאב-פריים לתוך איגרות חוב מגובות משכנתאות (\en{RMBS}), וחילקו את תזרימי המזומנים לשכבות (\en{Tranches}) לפי קדימות בספיגת הפסדים. כאשר שכבות הביניים (\en{Mezzanine BBB}) לא נמכרו, הן אוגחו מחדש לתוך מכשיר נגזר מסדר שני — \en{Collateralized Debt Obligation (CDO)} \cite{gorton2009securitized}. סוכנויות הדירוג (\en{Moody's, S\&P, Fitch}), אשר תוגמלו ישירות על ידי המנפיקים (\en{Issuer-Pays Conflict}), העניקו ל-\pct{75}--\pct{80} מתוך ה-\en{CDO} דירוג אשראי מושלם של \en{AAA}. הדירוג התבסס על מודל קופולה גאוסית (\en{Gaussian Copula}) שהניח כי מתאם חדלות הפירעון ($\rho_{\text{default}}$) בין משכנתאות במדינות שונות בארה"ב הוא נמוך מאוד ($\rho \approx 0.15$), תוך התעלמות מהעובדה שירידה ארצית במחירי הדיור או עליית ריבית פדרלית מזניקה את המתאם קרוב ל-$\rho \to 1.0$ \cite{gorton2009securitized,reinhart2009this}.
+\end{itemize}
+
+\section{אפקט הדומינו: \en{"}קיר איפוס הריביות\en{"} (\num{2007}--\num{2008}) וקריסת המערכת}
+\label{sec:subprime_domino}
+
+המפנה הדרמטי התרחש כאשר הפדרל ריזרב העלה את הריבית ב-\num{17} פעימות רצופות מ-\pct{1.00} ביוני \num{2004} ל-\pct{5.25} ביוני \num{2006}. העלאת הריבית ייקרה את עלות המשכנתאות החדשות ובלמה את עליית מחירי הבתים, שהגיעו לשיאם ברבעון השני של \num{2006} והחלו לרדת.
+
+בשנים \num{2007}--\num{2008} הגיע מועד האיפוס (\en{24-Month / 36-Month Reset}) של הלוואות ה-\en{Hybrid ARM} שהונפקו בשנות השיא \num{2005}--\num{2006} בהיקף מצרפי של כ-\usd{1.2} טריליון — אירוע שכונה בשווקים הפיננסיים \textbf{\en{"}קיר איפוס הריביות\en{"} (\en{The Rate Reset Wall})} \cite{mayer2009rise,foote2008subprime}. איור~\ref{fig:us_subprime_delinquency} מציג את הדינמיקה האמפירית של המפגש בין קיר איפוס הריביות לבין היפוך מגמת מחירי הבתים בארה"ב.
+
+\begin{figure}[htbp]
+\centering
+\begin{english}
+\begin{tikzpicture}
+\begin{axis}[
+    width=14.2cm,
+    height=7.2cm,
+    xlabel={\textbf{Year}},
+    ylabel={\textbf{Delinquency Rate 90+ Days / Foreclosure (\%)}},
+    xmin=2001, xmax=2009,
+    ymin=0, ymax=30,
+    xtick={2001,2002,2003,2004,2005,2006,2007,2008,2009},
+    xticklabel style={/pgf/number format/1000 sep={}},
+    ytick={0,5,10,15,20,25,30},
+    grid=major,
+    grid style={dashed, gray!35},
+    legend pos=north west,
+    legend style={font=\small, draw=BrandNavy, fill=white},
+    title={\textbf{\color{BrandNavy}US Mortgage Serious Delinquency Rates by Segment (2001--2009)}}
+]
+\addplot[color=BrandRed, line width=2.0pt, mark=square*, mark size=2.2pt] coordinates {
+    (2001, 7.2) (2002, 7.8) (2003, 6.9) (2004, 5.6) (2005, 6.2) (2006, 9.8) (2007, 16.4) (2008, 23.8) (2009, 28.4)
+};
+\addlegendentry{Subprime Adjustable-Rate (Hybrid ARM)}
+
+\addplot[color=BrandGold, line width=1.8pt, mark=triangle*, mark size=2.4pt] coordinates {
+    (2001, 5.1) (2002, 5.4) (2003, 4.8) (2004, 4.1) (2005, 4.3) (2006, 5.5) (2007, 8.9) (2008, 14.2) (2009, 18.6)
+};
+\addlegendentry{Subprime Fixed-Rate \& Alt-A}
+
+\addplot[color=BrandBlue, line width=1.8pt, mark=*, mark size=2.0pt] coordinates {
+    (2001, 0.8) (2002, 0.9) (2003, 0.8) (2004, 0.7) (2005, 0.8) (2006, 0.9) (2007, 1.4) (2008, 3.1) (2009, 5.4)
+};
+\addlegendentry{Prime Conventional Mortgages}
+
+\draw[dashed, line width=1.2pt, color=BrandNavy] (axis cs:2006.5,0) -- (axis cs:2006.5,30);
+\node[anchor=west, font=\footnotesize\bfseries, color=BrandNavy] at (axis cs:2006.6, 26.5) {Rate Reset Wall \& Price Peak};
+\end{axis}
+\end{tikzpicture}
+\end{english}
+\caption{שיעורי פיגורים חמורים (\num{90}+ יום ובהליכי עיקול) במשכנתאות בארה"ב לפי פלח שוק בשנים \num{2001}--\num{2009}: הזינוק החד בפיגורי ה-\en{Subprime ARM} עם ההגעה לקיר איפוס הריביות ב-\num{2007}--\num{2008} \cite{mayer2009rise,foote2008subprime}}
+\label{fig:us_subprime_delinquency}
+\end{figure}
+
+כפי שעולה מאיור~\ref{fig:us_subprime_delinquency}, ברגע שמחירי הבתים הפסיקו לעלות באמצע \num{2006}, נסגר חלון המחזור (\en{Refinancing Window}) בפני לווי הסאב-פריים. שיעור הפיגורים החמורים (\num{90} יום ומעלה ובהליכי עיקול) בהלוואות ה-\en{Subprime ARM} זינק מ-\pct{5.6} בשנת \num{2004} ל-\pct{16.4} בשנת \num{2007} ול-\pct{28.4} בשנת \num{2009}. מעגל ההיזון החוזר (\en{Feedback Loop}) פעל בשלושה שלבים הרסניים \cite{mian2009consequences,gorton2009securitized}:
+\begin{enumerate}[label=\textbf{\arabic*.},rightmargin=0.6cm]
+  \item \textbf{ספירלת מכירות חיסול (\en{Foreclosure Fire-Sales}):} מיליוני בתים שעוקלו על ידי הבנקים נזרקו לשוק במכירות כפויות, מה שהאיץ את צניחת מדד מחירי הבתים הלאומי (\en{S\&P/Case-Shiller 20-City Index}) ב-\pct{31.8} מהשיא של \num{2006} (ובמעל \pct{50} בלאס וגאס, פיניקס ומיאמי). ירידת המחירים דחפה מיליוני לווים נוספים אל מתחת למים ($P_t < L_t$) והציתה גל עיקולים שני.
+  \item \textbf{ריצה על בנקאות הצללים (\en{Run on Repo}):} כפי שהראה \en{Gorton (2009)} \cite{gorton2009securitized}, חוסר השקיפות באשר למיקום חשיפות הסאב-פריים בתוך מכשירי ה-\en{CDO} גרם למלווים בשוק ה-\en{Repo} לדרוש תספורות ביטחונות (\en{Haircuts}) שעלו מ-\pct{0} ל-\pct{45} ואף ל-\pct{100}. בנקי השקעות שמימנו נכסים ארוכי-טווח באשראי \en{Overnight} (\en{Bear Stearns} במרץ \num{2008} ו-\en{Lehman Brothers} בספטמבר \num{2008}) איבדו את נזילותם תוך ימים ספורים.
+  \item \textbf{שחיקת הון הבנקים המסחריים:} מחיקות שווי (\en{Mark-to-Market Writedowns}) על איגרות \en{RMBS/CDO} והפרשות להפסדי אשראי מחקו למעלה מ-\usd{1.1} טריליון מהון המערכת הפיננסית ושחקו את יחס הון רובד \num{1} האפקטיבי (\en{Tier-1 / CET1}) של הבנקים הגדולים מתחת ל-\pct{5.5}, מה שחייב חילוץ ממשלתי פדרלי חסר תקדים (\en{TARP}) \cite{reinhart2009this,bernanke2010monetary}.
+\end{enumerate}
+
+\begin{projectbox}[גזירת הלקחים המבניים לפרק ג' ולפרק ד' בפרויקט המחקר]
+הניתוח ההיסטורי בפרק זה חושף כי משבר הסאב-פריים לא נגרם מעצם קיומן של משכנתאות בריבית משתנה, אלא מצירוף של \textbf{שני תנאים הכרחיים}:
+\begin{enumerate}[label=\textbf{(\alph*)},rightmargin=0.5cm]
+  \item \textbf{תנאי ההצתה המיקרו-כלכלי:} חוזי מימון דחויי-תשלום המבוססים על הנחה סמויה שהלווה יוכל למכור את הנכס או למחזר את החוב בריבית נמוכה יותר במועד האיפוס/המסירה (\textbf{תנאי זה מתקיים במלואו במבצעי הקבלנים בישראל \num{2022}--\num{2026}}).
+  \item \textbf{תנאי ההדבקה המערכתית:} היעדר חיתום בנקאי, משטר \en{Non-Recourse} ושרשרת איגוח ממונפת (\en{MBS/CDO/Repo}) שהעבירה את ההפסד ישירות לליבת ההון של הבנקים (\textbf{תנאי זה שונה מהותית בישראל בזכות חוק המכר, מגבלות בנק ישראל ומשטר ה-\en{Full Recourse}}).
+\end{enumerate}
+בפרק ג' ננתח כיצד נבנה תנאי ההצתה בשוק הדיור הישראלי בשנים \num{2022}--\num{2026}, ובפרק ד' נעמיד את שני השווקים למבחן השוואתי כמותי מדויק.
+\end{projectbox}

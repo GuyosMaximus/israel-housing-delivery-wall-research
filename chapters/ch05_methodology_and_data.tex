@@ -1,0 +1,215 @@
+% ==============================================================================
+% chapters/ch05_methodology_and_data.tex
+% פרק ה': מתודולוגיה, מקורות נתונים וארכיטקטורה אנליטית
+% ==============================================================================
+
+\chapter{מתודולוגיה, מקורות נתונים וארכיטקטורה אנליטית}
+\label{ch:methodology}
+
+פרק זה מתרגם את שאלות המחקר, ההשערות ($H_1, H_2, H_3$) ודרישות המערכת הכמותיות (\en{REQ-RES-01} עד \en{REQ-RES-08} שהוגדרו בפרק א') לארכיטקטורה מתודולוגית ואנליטית בת-ביצוע. בהתאם להנחיות פרק \num{7} בספר \en{"}מהבעיה אל ה-\en{PDF}\en{"} \cite{segal2026prep}, אנו פותחים בהצגת מאגרי הנתונים האמפיריים, ממשיכים בבחירה הנדסית מנומקת בין שלוש חלופות מתודולוגיות באמצעות **מטריצת החלטה משוקללת (\en{Weighted Pugh Decision Matrix})** ובדיקת רגישות למשקולות \cite{pugh1991total,segal2026prep}, מפתחים בשלמותם את המודלים המתמטיים לסימולציית משקי הבית, היזמים והבנקים, ומציגים את תרשים הבלוקים של מערכת הסימולציה בפייתון (\en{Python}) ו-\en{RStudio}.
+
+\section{מאגרי הנתונים האמפיריים ושיטות טיוב המידע}
+\label{sec:data_sources}
+
+כדי להתגבר על העובדה שהלמ"ס ורשות המסים אינם מפרסמים שדה מובנה של \en{"}שיעור הנחת קבלן\en{"} בכל עסקה, המחקר מצליב ארבעה מאגרי נתונים רשמיים משלימים לשנים \num{2022}--\num{2026}, המפורטים בטבלה~\ref{tab:data_sources_schema}:
+
+\begin{table}[htbp]
+\caption{מערך מאגרי הנתונים האמפיריים של המחקר: מקורות, משתנים נחלצים, היקף מדגם ושיטת כיול \cite{ita2025carman,cbs2026dwellings,boi2025stability,mof2025economist}}
+\label{tab:data_sources_schema}
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.26}
+\rowcolors{2}{BrandGray}{white}
+\begin{tabularx}{\textwidth}{R{2.3cm} R{2.8cm} R{2.2cm} Y R{2.4cm}}
+\toprule
+\rowcolor{TableHeaderBg}
+\textbf{מאגר נתונים} & \textbf{גוף מפרסם ורזולוציה} & \textbf{היקף תצפיות (\num{2022}--\num{2026})} & \textbf{משתנים כמותיים מרכזיים נחלצים} & \textbf{אתגר מדידה ושיטת טיוב} \\
+\midrule
+\textbf{1. מאגר כרמ"ן וסקירות האוצר} & רשות המסים ואגף הכלכלן הראשי (עסקאות פרטניות) & כ-\num{148,000} עסקאות דירות חדשות & מחיר חוזי מוצהר ($P_{\text{nom}}$), תאריך עסקה, תאריך מסירה חזוי, גוש/חלקה, וסוג רוכש (דירה יחידה / משפר / משקיע). & מחיר חוזי אינו מנכה הטבות מימון; מכויל מול תזרים קבלנים לפי מודל ה-\en{NPV}. \\
+\textbf{2. סדרות בנייה ומלאי דירות} & הלשכה המרכזית לסטטיסטיקה (הלמ"ס – חודשי/רבעוני) & \num{19} רבעונים (\num{2022Q1}--\num{2026Q3}) & התחלות וגמר בנייה, מלאי דירות חדשות לא-מכורות (\num{87.4K} שיא), חודשי היצע (\num{28.5}), ומדד תשומות הבנייה ($\pi_c$). & פיגור דיווח ברבעון האחרון; מתוקנן מול קצב היתרי בנייה וטופס \num{4}. \\
+\textbf{3. דוחות פיקוח ויציבות בנקאית} & בנק ישראל – חטיבת המחקר והפיקוח על הבנקים & \num{5} קבוצות בנקאיות (\pct{98} מהשוק) & ביצועי משכנתאות לפי מסלול, שיעור הלוואות בולט/בלון, התפלגות \en{LTV} ו-\en{PTI}, יחס הון \en{CET1}, והפרשות להפסדי אשראי. & נתונים מקובצים לעשירוני סיכון; משמשים לכיול פרמטרי של התפלגות מונטה-קרלו. \\
+\textbf{4. דוחות כספיים בורסאיים (מאי"ה)} & בורסת ת"א (\en{TASE}) – דוחות שנתיים ורבעוניים מבוקרים & \num{25} חברות יזמיות (\en{Tier 1/2/3}) & יחס חוב ל-\en{CAP}, שיעור גבייה מרוכשים מראש (\pct{15}--\pct{22}), יתרות אשראי ליווי ומזנין, הוצאות מימון ורווח גולמי מפרויקטים. & הטיה לחברות ציבוריות; שכבת \en{Tier-3} מכוילת לפי פרויקטים במימון קרנות חוץ-בנקאיות. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{חלופות תכן מתודולוגיות ומטריצת החלטה משוקללת (\en{Pugh Matrix})}
+\label{sec:pugh_matrix}
+
+לפני נעילת הארכיטקטורה האנליטית של המחקר, נבחנו שלוש חלופות מתודולוגיות מובחנות (בהתאם לכלל \en{"}שלוש חלופות אמיתיות\en{"} בפרק \num{7.1} בספר של ד"ר סגל \cite{segal2026prep}):
+\begin{enumerate}[label=\textbf{\arabic*.},rightmargin=0.6cm]
+  \item \textbf{חלופה א' (\en{Alt A} – אקונומטריקה מאקרו-כלכלית מצרפית \en{VAR/OLS}):} אמידת מודל אוטו-רגרסיבי וקטורי (\en{Vector Autoregression}) על סדרות עתיות רבעוניות מצרפיות של מחירי דירות, ריבית בנק ישראל ושיעור הפיגורים במשכנתאות. \textbf{יתרון:} פשטות חישובית וזמינות נתונים מיידית. \textbf{חיסרון קריטי:} עיוורון מוחלט לזנב ההתפלגות המיקרו-כלכלי (רוכשי ה-\num{10/90} ויזמי ה-\en{Tier-3}), וחוסר יכולת למדל אירוע לא-ליניארי עתידי כגון \en{"}קיר המסירות\en{"}.
+  \item \textbf{חלופה ב' (\en{Alt B} – ניתוח חשבונאי השוואתי של מקרי בוחן יזמיים \en{Case-Study Accounting}):} ניתוח עומק של דוחות כספיים ודוחות אפס של \num{5}--\num{8} חברות בנייה נבחרות בלבד. \textbf{יתרון:} דיוק חשבונאי גבוה ברמת הפרויקט הבודד. \textbf{חיסרון קריטי:} היעדר יכולת הכללה סטטיסטית לאוכלוסיית \num{54,200} משקי הבית וחוסר חיבור למודל הלימות ההון (\en{CET1}) של המערכת הבנקאית.
+  \item \textbf{חלופה ג' (\en{Alt C} – ארכיטקטורה היברידית: סימולציית מונטה-קרלו מיקרו-כלכלית + מבחני קיצון מאזניים תלת-שכבתיים – החלופה הנבחרת):} שילוב של מודל תמחור מהוון (\en{NPV}), סימולציית מונטה-קרלו סטוכסטית ($N=10,000$ משקי בית) לאמידת הלם ההחזר ושיעור החריגה מתקרת ה-\en{PTI}, והזנת שיעור הכשל המתקבל לתוך מודל מבחני קיצון (\en{Stress Test}) ליחס כיסוי החוב (\en{DSCR}) של שלוש שכבות יזמים (\en{Tiers 1--3}) וליחס הון \en{CET1} של הבנקים.
+\end{enumerate}
+
+ציון ההחלטה המשוקלל $S_j$ עבור כל חלופה $j \in \{A, B, C\}$ מחושב לפי משוואת פיו (\en{Pugh Weighted Sum}) \cite{pugh1991total,segal2026prep}:
+\begin{equation}
+\label{eq:pugh_score}
+S_j = \sum_{i=1}^{6} w_i \cdot c_{ij}, \qquad \text{subject to} \quad \sum_{i=1}^{6} w_i = 1.00, \quad c_{ij} \in [1, 10]
+\end{equation}
+כאשר $w_i$ הוא משקל החשיבות של קריטריון $i$ ו-$c_{ij}$ הוא הציון ההנדסי של חלופה $j$ בקריטריון $i$. טבלה~\ref{tab:pugh_decision_matrix} ואיור~\ref{fig:pugh_scores_chart} מציגים את תוצאות הדירוג.
+
+\begin{table}[htbp]
+\caption{מטריצת החלטה משוקללת (\en{Pugh Matrix}) לבחירת הארכיטקטורה המתודולוגית של המחקר (לפי פרק \num{7.2} בספר \en{"}מהבעיה אל ה-\en{PDF}\en{"} \cite{segal2026prep,pugh1991total})}
+\label{tab:pugh_decision_matrix}
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\rowcolors{2}{BrandGray}{white}
+\begin{tabularx}{\textwidth}{Y C{1.5cm} C{2.2cm} C{2.2cm} C{2.5cm}}
+\toprule
+\rowcolor{TableHeaderBg}
+\textbf{קריטריון הערכה מתודולוגי ($i$)} & \textbf{משקל ($w_i$)} & \textbf{חלופה א': מאקרו \en{VAR/OLS}} & \textbf{חלופה ב': מקרי בוחן חשבונאיים} & \textbf{חלופה ג' (נבחרת): היברידית \en{MC + Stress}} \\
+\midrule
+1. יכולת זיהוי סיכוני זנב מיקרו-כלכליים (\en{Payment Shock}) & \pct{25} & \num{4.0} (\num{1.00}) & \num{6.0} (\num{1.50}) & \textbf{\num{9.5} (\num{2.375})} \\
+2. קישור אנליטי בין משקי בית, יזמים (\en{DSCR}) ובנקים (\en{CET1}) & \pct{20} & \num{5.0} (\num{1.00}) & \num{6.5} (\num{1.30}) & \textbf{\num{9.5} (\num{1.900})} \\
+3. יכולת ניטרול הטיית מחיר החוזה הנומינלי (\en{NPV Adjustment}) & \pct{15} & \num{4.5} (\num{0.675}) & \num{7.5} (\num{1.125}) & \textbf{\num{9.0} (\num{1.350})} \\
+4. תקפות אמפירית והתאמה לנתוני הלמ"ס, בנק ישראל ומאי"ה & \pct{15} & \num{8.0} (\num{1.20}) & \num{7.0} (\num{1.05}) & \textbf{\num{9.0} (\num{1.350})} \\
+5. עמידות להנחות וניתוח רגישות רב-תרחישי (\num{10\%/20\%/30\%}) & \pct{15} & \num{6.5} (\num{0.975}) & \num{6.0} (\num{0.90}) & \textbf{\num{9.0} (\num{1.350})} \\
+6. ישימות חישובית בלוח הזמנים של הסמסטר (\num{14} שבועות) & \pct{10} & \num{9.5} (\num{0.95}) & \num{8.5} (\num{0.85}) & \textbf{\num{7.5} (\num{0.750})} \\
+\midrule
+\rowcolor{TableHeaderBg}
+\textbf{ציון משוקלל כולל ($S_j = \sum w_i c_{ij}$)} & \textbf{\pct{100}} & \textbf{\num{5.80} / \num{10}} & \textbf{\num{6.73} / \num{10}} & \textbf{\color{BrandTeal}\num{9.08} / \num{10} (נבחרה)} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\begin{english}
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    width=13.5cm,
+    height=6.2cm,
+    ymin=0, ymax=10.5,
+    symbolic x coords={Alt A: Macro VAR/OLS, Alt B: Case-Study Accounting, Alt C: Hybrid MC + Stress Test},
+    xtick=data,
+    ylabel={\textbf{Weighted Decision Score ($S_j$, Scale 1--10)}},
+    bar width=28pt,
+    grid=major,
+    grid style={dashed, gray!35},
+    nodes near coords,
+    nodes near coords style={font=\small\bfseries, color=BrandNavy},
+    title={\textbf{\color{BrandNavy}Weighted Pugh Matrix Comparison of Methodological Alternatives}}
+]
+\addplot[fill=BrandBlue!75, draw=BrandNavy, line width=1.1pt] coordinates {
+    (Alt A: Macro VAR/OLS, 5.80)
+    (Alt B: Case-Study Accounting, 6.73)
+    (Alt C: Hybrid MC + Stress Test, 9.08)
+};
+\draw[dashed, color=BrandTeal, line width=1.2pt] (axis cs:Alt A: Macro VAR/OLS,8.0) -- (axis cs:Alt C: Hybrid MC + Stress Test,8.0);
+\node[anchor=south west, font=\footnotesize\bfseries, color=BrandTeal] at (axis cs:Alt A: Macro VAR/OLS, 8.1) {Approval Threshold (8.0)};
+\end{axis}
+\end{tikzpicture}
+\end{english}
+\caption{השוואת הציונים המשוקללים של שלוש חלופות התכן המתודולוגיות במטריצת פיו (\en{Pugh Matrix}): עליונות מובהקת לחלופה ג' ההיברידית ($S_C = 9.08$) \cite{segal2026prep,pugh1991total}}
+\label{fig:pugh_scores_chart}
+\end{figure}
+
+\textbf{בדיקת רגישות למשקולות (\en{Weight Sensitivity Analysis}):} בהתאם לדרישת סעיף \num{7.2} בספר \cite{segal2026prep}, נבדקה רגישות הדירוג לשינוי של $\pm20\%$ במשקולות הקריטריונים (למשל, העלאת משקל הישימות החישובית מ-\pct{10} ל-\pct{25} והפחתת משקל סיכוני הזנב ל-\pct{15}). גם בתרחיש הקיצוני ביותר לטובת הפשטות החישובית, ציון חלופה ג' עומד על $S_C = 8.78$ לעומת $S_B = 7.02$ ו-$S_A = 6.45$, כך שהבחירה בחלופה ג' יציבה ועמידה לחלוטין (\en{Robust}).
+
+\section{המודלים הכמותיים: ניסוח מתמטי מלא}
+\label{sec:quantitative_models}
+
+\subsection{מודל 1: סימולציית מונטה-קרלו של הלם ההחזר (\en{Payment Shock}) ויחס ה-\en{PTI} למשקי בית}
+אנו ממדלים אוכלוסייה של $N = 10,000$ משקי בית המייצגים את קוהורטת ה-\en{SOM} (\num{54,200} רוכשי דירות במבצעי מימון \num{20/80}, \num{15/85} והלוואות בלון בשנים \num{2023}--\num{2025} שמועד מסירתן חל ב-\num{2026}--\num{2027}). לכל משק בית $i \in \{1,\dots,N\}$ מוגרלים במשותף מתוך התפלגות לוג-נורמלית דו-ממדית (עם מקדם מתאם $\rho_{Y,P} = 0.65$) ההכנסה החודשית הפנויה נטו בחתימה $Y_{i,0}$ ומחיר הדירה החוזי $P_{i,\text{nom}}$.
+
+בעת החתימה ($t=0$), משק הבית הפקיד מקדמה בשיעור $\alpha_{i,0} \in \{0.10, 0.15, 0.20\}$ ותכנן ליטול במועד המסירה ($T=3$) משכנתא על יתרת החוב $L_{i,T} = \left(1 - \alpha_{i,0}\right)P_{i,\text{nom}}$ לתקופה של $M = 300$ חודשים (\num{25} שנה), בהנחה סובייקטיבית שריבית המשכנתאות המשוקללת תרד לרמה $r_{i,\text{exp}} \sim \mathcal{N}\left(3.30\%, 0.35\%^2\right)$. בפועל, במועד קיר המסירות ($T$), משק הבית פוגש את ריבית השוק האפקטיבית $r_{i,T} \sim \mathcal{N}\left(5.45\%, 0.40\%^2\right)$ (בתוספת תוספת יתרת קרן בגין הצמדה חלקית או ריבית גישור). ההחזר החודשי בפועל $PMT_{i,T}$ ויחס ההחזר להכנסה בפועל $\text{PTI}_{i,T}$ במועד המסירה נתונים על ידי משוואות~\eqref{eq:mc_pmt} ו-\eqref{eq:mc_pti}:
+\begin{align}
+\label{eq:mc_pmt}
+PMT_{i,T} &= L_{i,T} \cdot \frac{\left(r_{i,T}/12\right)\left(1 + r_{i,T}/12\right)^{300}}{\left(1 + r_{i,T}/12\right)^{300} - 1} \\
+\label{eq:mc_pti}
+\text{PTI}_{i,T} &= \frac{PMT_{i,T}}{Y_{i,0}\left(1 + g_{i,Y}\right)^T}, \qquad \Delta PMT_{i,\text{shock}} = PMT_{i,T} - PMT_{i,\text{exp}}
+\end{align}
+כאשר $g_{i,Y}$ הוא קצב צמיחת השכר הריאלי השנתי של משק הבית. משק בית $i$ מוגדר כנקלע ל**\en{"}כשל סגירה רגולטורי\en{"} (\en{Delivery Closing Failure})** אם מתקיים אחד משני התנאים: (א) $\text{PTI}_{i,T} > 40\%$ (הסף האפקטיבי שמעבר לו בנקים מסחריים בישראל מסרבים לאשר משכנתא רגילה או דורשים ערב תומך והקצאת הון חריגה לפי הוראה \num{329}), או (ב) שווי השמאות של הדירה במסירה $P_{i,T}^{\text{appraised}}$ נמוך מ-$L_{i,T} / \text{LTV}_{\max}$, כך שנוצר פער הון עצמי שהרוכש אינו מסוגל להשלים.
+
+\subsection{מודל 2: מבחן קיצון (\en{Stress Test}) ליחס כיסוי החוב (\en{DSCR}) של חברות יזמיות}
+עבור חברת בנייה יזמית בקבוצת גודל $k \in \{\text{Tier-1}, \text{Tier-2}, \text{Tier-3}\}$, נסמן ב-$\gamma \in \{0.00, 0.10, 0.20, 0.30\}$ את שיעור הרוכשים בקיר המסירות שמבטלים או דוחים את השלמת העסקה (\en{Default / Delay Rate}). כאשר רוכש אינו משלים את יתרת ה-\pct{80}--\pct{85} במועד המסירה, היזם סופג שתי פגיעות תזרימיות בו-זמנית: (1) עיכוב של $\Delta\tau \in [6, 12]$ חודשים בקבלת התקבול עד לשיווק מחדש של הדירה, שבמהלכם היזם ממשיך לשלם ריבית ליווי בנקאית $r_{\text{bank},k}$ וריבית מזנין חוץ-בנקאית $r_{\text{mezz},k}$ על החוב הפתוח; ו-(2) ירידת מחיר במכירה חוזרת במצוקה (\en{Fire-Sale Discount} $\phi_{\text{fire}}(\gamma)$) על המלאי החוזר ועל המלאי הלא-מכור.
+
+יחס כיסוי החוב התפעולי של היזם תחת תרחיש קיצון $\gamma$, המסומן ב-$\text{DSCR}_k(\gamma)$, מוגדר במשוואה~\eqref{eq:developer_dscr}:
+\begin{equation}
+\label{eq:developer_dscr}
+\text{DSCR}_k\left(\gamma\right) = \frac{\text{CF}_{\text{op},k}^{0} \cdot \left[1 - \gamma\cdot\lambda_{\text{delay}} - \phi_{\text{fire}}\left(\gamma\right)\cdot\eta_{\text{unsold},k}\right]}{D_{\text{senior},k}\cdot r_{\text{bank},k} + D_{\text{mezz},k}\cdot r_{\text{mezz},k}\left(1 + \psi_{\text{penalty}}\gamma\right) + \text{Principal}_{\text{due},k}}
+\end{equation}
+כאשר $\text{CF}_{\text{op},k}^{0}$ הוא תזרים המזומנים התפעולי הפנוי מפרויקטים בתרחיש הבסיס ($\gamma=0$), $\eta_{\text{unsold},k}$ הוא שיעור המלאי הלא-מכור של יזם מדרג $k$, ו-$D_{\text{senior},k}, D_{\text{mezz},k}$ הם היקפי החוב הבכיר וחוב המזנין החוץ-בנקאי. חצייה של סף $\text{DSCR}_k(\gamma) < 1.00$ משמעותה כי תזרים הפרויקטים אינו מכסה את שירות החוב השוטף, והיזם נקלע להפרת אמות מידה פיננסיות (\en{Covenant Breach}) ולחדלות פירעון תזרימית.
+
+\subsection{מודל 3: השפעה על יחס הון עצמי רובד \num{1} (\en{CET1}) של המערכת הבנקאית}
+יחס הלימות ההון \en{CET1} של המערכת הבנקאית ברבעון $t$ תחת תרחיש קיצון $s$, המסומן ב-$\text{CET1}_{t}(s)$, מתפתח לפי משוואה~\eqref{eq:bank_cet1}:
+\begin{equation}
+\label{eq:bank_cet1}
+\text{CET1}_{t}\left(s\right) = \frac{E_{\text{CET1},t-1} + \text{NI}_{t}^{\text{pre-prov}} - \left(\text{PD}_{\text{dev}}(s)\cdot\text{LGD}_{\text{dev}}\cdot\text{EAD}_{\text{dev}} + \text{PD}_{\text{hh}}(s)\cdot\text{LGD}_{\text{hh}}\cdot\text{EAD}_{\text{hh}}\right)\left(1 - \tau_{\text{tax}}\right)}{\text{RWA}_{t-1} + \Delta\text{RWA}_{\text{boi-directive}}\left(s\right)}
+\end{equation}
+כאשר $\text{PD}, \text{LGD}, \text{EAD}$ הם הסתברות הכשל, שיעור ההפסד בהינתן כשל והחשיפה בעת כשל בתיק האשראי לבינוי ונדל"ן ($\text{dev}$) ובתיק המשכנתאות ($\text{hh}$), ו-$\Delta\text{RWA}_{\text{boi-directive}}(s)$ היא תוספת נכסי הסיכון בגין הוראת השעה של בנק ישראל ממרץ \num{2025} והורדת דירוג של הלוואות בפיגור \cite{boi2025directive}.
+
+\section{ארכיטקטורת מערכת הסימולציה וכלי הניתוח (\en{Python / RStudio})}
+\label{sec:system_architecture}
+
+איור~\ref{fig:analytical_architecture} מציג את תרשים הבלוקים של מערכת הסימולציה והעיבוד האנליטי שהוקמה עבור המחקר (בהתאם לתרשים \num{7.2} בספר של ד"ר סגל \cite{segal2026prep}). המערכת בנויה בארבע שכבות מודולריות: (1) שכבת קליטת וטיוב נתונים (\en{Data Ingestion}); (2) מנוע חישוב הנחת ה-\en{NPV} וסימולציית המונטה-קרלו ב-\en{Python} (\en{\texttt{NumPy/Pandas}}); (3) מנוע מבחני הקיצון המאזניים ליזמים ולבנקים; ו-(4) שכבת פלט גרפי אוטומטי (\num{300} \en{DPI}) המוזרקת ישירות לקובצי ה-\en{\LaTeX}.
+
+\begin{figure}[htbp]
+\centering
+\begin{english}
+\begin{tikzpicture}[
+    node distance=0.55cm and 0.6cm,
+    layer/.style={
+        rectangle,
+        rounded corners=4pt,
+        draw=BrandNavy,
+        line width=1.1pt,
+        fill=BrandLightBlue,
+        text width=14.2cm,
+        minimum height=1.15cm,
+        align=center,
+        font=\small
+    },
+    engine/.style={
+        rectangle,
+        rounded corners=4pt,
+        draw=BrandTeal,
+        line width=1.2pt,
+        fill=BrandLightTeal,
+        text width=6.8cm,
+        minimum height=1.85cm,
+        align=center,
+        font=\footnotesize
+    },
+    outputbox/.style={
+        rectangle,
+        rounded corners=4pt,
+        draw=BrandGold,
+        line width=1.2pt,
+        fill=BrandLightGold,
+        text width=14.2cm,
+        minimum height=1.15cm,
+        align=center,
+        font=\small
+    },
+    arrow/.style={-{Stealth[length=2.8mm,width=2.2mm]}, line width=1.15pt, color=BrandNavy}
+]
+    \node[layer] (l1) {\textbf{\color{BrandNavy}Layer 1 -- Empirical Data Ingestion \& Cleaning (Python Pandas / R):}\\[2pt]\texthebrew{קליטת נתוני כרמ"ן (רשות המסים), סדרות הלמ"ס (\num{87.4K} מלאי), דוחות בנק ישראל ודוחות מאי"ה של \num{25} חברות בנייה}};
+
+    \node[engine, below left=0.6cm and -3.4cm of l1] (e1) {\textbf{\color{BrandTeal}Layer 2A -- Household Engine}\\[2pt]\texthebrew{מודל \en{NPV} ($\delta_{\text{NPV}}$) + סימולציית מונטה-קרלו ($N=10,000$) לחישוב \en{Payment Shock} והתפלגות \en{PTI} במסירה}};
+    
+    \node[engine, below right=0.6cm and -3.4cm of l1] (e2) {\textbf{\color{BrandTeal}Layer 2B -- Developer \& Bank Engine}\\[2pt]\texthebrew{מודל \en{Stress Test} תלת-שכבתי (\en{Tiers 1--3 DSCR}) תחת ביטולי \pct{10}/\pct{20}/\pct{30} + מודל הון בנקאי (\en{CET1})}};
+
+    \node[layer, below=2.7cm of l1] (l3) {\textbf{\color{BrandNavy}Layer 3 -- Econometric Cross-Validation \& Sensitivity Testing:}\\[2pt]\texthebrew{כיול פרמטרים מול משבר \num{2008} בארה"ב, מבחני רגישות לריבית בנק ישראל (\pct{3.0}--\pct{5.5}) ולירידת מחירי דירות (\pct{0}--\pct{20})}};
+
+    \node[outputbox, below=0.55cm of l3] (l4) {\textbf{\color{BrandGold}Layer 4 -- Automated Output \& Reproducible Research Pipeline:}\\[2pt]\texthebrew{ייצוא קובץ \en{\texttt{simulation\_results.json}} וייצור אוטומטי של איורים \num{300}-\en{DPI} וטבלאות לתוך ספר המחקר ב-\en{\LaTeX}}};
+
+    \draw[arrow] ([xshift=-3.6cm]l1.south) -- (e1.north);
+    \draw[arrow] ([xshift=3.6cm]l1.south) -- (e2.north);
+    \draw[arrow] (e1.east) -- (e2.west);
+    \draw[arrow] (e1.south) -- ([xshift=-3.6cm]l3.north);
+    \draw[arrow] (e2.south) -- ([xshift=3.6cm]l3.north);
+    \draw[arrow] (l3.south) -- (l4.north);
+\end{tikzpicture}
+\end{english}
+\caption{ארכיטקטורת המערכת האנליטית וצינור עיבוד הנתונים (\en{Data \& Simulation Pipeline}) בפייתון להרצת מודלי ה-\en{NPV}, סימולציית המונטה-קרלו ומבחני הקיצון \cite{segal2026prep}}
+\label{fig:analytical_architecture}
+\end{figure}
+
+\begin{projectbox}[שחזוריות מלאה (\en{Reproducibility}) של קוד הסימולציה בפרויקט]
+כל המודלים המתמטיים המוגדרים במשוואות~\eqref{eq:mc_pmt}--\eqref{eq:bank_cet1} מומשו בקוד פייתון פתוח וניתן לשחזור מלא בקובץ \en{\texttt{scripts/run\_simulations\_and\_figures.py}} בתיקיית הפרויקט, עם גרעין אקראיות מקובע (\en{\texttt{np.random.seed(2026)}}) המבטיח התאמה של \pct{100} בין פלט הריצה (\en{\texttt{scripts/simulation\_results.json}}), הגרפים בתיקיית \en{\texttt{figures/}} והמספרים המדווחים בפרק ו'.
+\end{projectbox}

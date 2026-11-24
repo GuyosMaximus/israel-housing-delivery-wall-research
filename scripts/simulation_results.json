@@ -1,0 +1,42 @@
+{
+  "fig01": {
+    "disc_20_80_at_6pct": 9.99,
+    "disc_10_90_at_6pct": 12.36,
+    "disc_20_50_30_at_6pct": 4.44
+  },
+  "fig02": {
+    "mean_pti_expected": 32.97,
+    "mean_pti_actual": 42.62,
+    "mean_monthly_shock_nis": 3079.0,
+    "share_pti_above_40_pct": 54.91,
+    "share_pti_above_50_pct": 22.41
+  },
+  "fig03": {
+    "peak_unsold_k": 87.4,
+    "q3_2026_unsold_k": 85.9
+  },
+  "fig04": {
+    "dscr_tier1": [
+      1.68,
+      1.44,
+      1.21,
+      1.03
+    ],
+    "dscr_tier2": [
+      1.42,
+      1.18,
+      0.96,
+      0.78
+    ],
+    "dscr_tier3": [
+      1.24,
+      0.94,
+      0.71,
+      0.52
+    ]
+  },
+  "fig05": {
+    "min_cet1_extreme": 9.38,
+    "min_cet1_severe": 9.95
+  }
+}

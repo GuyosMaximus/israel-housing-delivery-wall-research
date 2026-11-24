@@ -1,0 +1,202 @@
+\documentclass[12pt,a4paper,oneside]{book}
+
+\input{preamble.tex}
+
+\begin{document}
+
+% ==============================================================================
+% החלקים המקדמיים (Frontmatter) - ממוספרים בספרות רומיות קטנות (פרק 2 ופרק 12)
+% ==============================================================================
+\frontmatter
+
+% ------------------------------------------------------------------------------
+% 1. דף השער (ללא מספר עמוד וללא מילות מפתח - סעיפים 2.1 ו-12.2 בספר של ד"ר סגל)
+% ------------------------------------------------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{english}
+\begin{tikzpicture}[remember picture, overlay]
+  % מסגרת כפולה ממלכתית סביב עמוד השער (איור 12.2)
+  \draw[line width=2.2pt, color=BrandNavy]
+    ($(current page.north west) + (1.2cm,-1.2cm)$)
+    rectangle
+    ($(current page.south east) + (-1.2cm,1.2cm)$);
+  \draw[line width=0.8pt, color=BrandBlue]
+    ($(current page.north west) + (1.42cm,-1.42cm)$)
+    rectangle
+    ($(current page.south east) + (-1.42cm,1.42cm)$);
+\end{tikzpicture}
+\end{english}
+
+\begin{center}
+  \vspace*{0.2cm}
+  {\hebrewfontsf\large\bfseries\color{BrandNavy}
+  אוניברסיטת חיפה / אוניברסיטת בר-אילן --- הפקולטה לניהול וכלכלה\\
+  המחלקה לניהול טכנולוגיות ומימון --- סמינריון מחקרי (\en{5523001})\\[0.5cm]}
+
+  % איור שער וקטורי בסגנון חוברות הקורס (איור 12.2)
+  \begin{english}
+  \begin{tikzpicture}[scale=0.92, transform shape]
+    \fill[BrandNavy] (0,0) rectangle (11.6,4.2);
+    \fill[BrandBlue!85!black] (0.2,0.2) rectangle (11.4,4.0);
+    \node[anchor=north, text=white, font=\Large\bfseries] at (5.8,3.75)
+      {\texthebrew{מהבעיה המאקרו-מימונית אל סימולציית העמידות}};
+
+    % כרטיסייה 1: שוק הדיור 2022-2026
+    \fill[white, rounded corners=4pt] (0.7,0.55) rectangle (3.8,2.85);
+    \fill[BrandGold] (0.7,2.45) rectangle (3.8,2.85);
+    \node[text=white, font=\small\bfseries] at (2.25,2.65) {\texthebrew{מבצעי קבלן }\en{20/80}};
+    \node[text=BrandNavy, font=\small\bfseries] at (2.25,1.85) {\en{>85,000}\ \texthebrew{דירות}};
+    \node[text=BrandRed, font=\footnotesize\bfseries] at (2.25,1.25) {\texthebrew{הנחת }\en{NPV}\ \texthebrew{סמויה}};
+    \node[text=gray!80!black, font=\scriptsize] at (2.25,0.80) {\en{2022--2026}};
+
+    % כרטיסייה 2: המנוע האנליטי
+    \fill[white, rounded corners=4pt] (4.25,0.55) rectangle (7.35,2.85);
+    \fill[BrandTeal] (4.25,2.45) rectangle (7.35,2.85);
+    \node[text=white, font=\small\bfseries] at (5.8,2.65) {\texthebrew{מודל }\en{Monte Carlo}};
+    \node[text=BrandNavy, font=\small\bfseries] at (5.8,1.85) {\en{Payment Shock}};
+    \node[text=BrandTeal, font=\footnotesize\bfseries] at (5.8,1.25) {\en{Stress Test (DSCR)}};
+    \node[text=gray!80!black, font=\scriptsize] at (5.8,0.80) {\en{Python + LaTeX}};
+
+    % כרטיסייה 3: קיר המסירות 2026-2027
+    \fill[white, rounded corners=4pt] (7.8,0.55) rectangle (10.9,2.85);
+    \fill[BrandRed] (7.8,2.45) rectangle (10.9,2.85);
+    \node[text=white, font=\small\bfseries] at (9.35,2.65) {\texthebrew{קיר המסירות}};
+    \node[text=BrandNavy, font=\small\bfseries] at (9.35,1.85) {\en{2026--2027}};
+    \node[text=BrandBlue, font=\footnotesize\bfseries] at (9.35,1.25) {\texthebrew{יציבות }\en{CET1}\ \texthebrew{ויזמים}};
+    \node[text=gray!80!black, font=\scriptsize] at (9.35,0.80) {\texthebrew{מול ארה"ב }\en{2008}};
+  \end{tikzpicture}
+  \end{english}
+
+  \vspace{0.55cm}
+
+  {\hebrewfontsf\LARGE\bfseries\color{BrandNavy}
+  מבצעי המימון הקבלניים, הלוואות הבלון ומינוף היזמים בשוק הדיור הישראלי (\num{2022--2026}) בראי משבר הסאב-פריים האמריקאי (\num{2008})\\[0.25cm]}
+
+  {\hebrewfontsf\Large\bfseries\color{BrandBlue}
+  ניתוח השוואתי ומודל סימולציה לבחינת עמידות המערכת הבנקאית והיזמית לקראת "קיר המסירות" (\num{2026--2027})\\[0.35cm]}
+
+  \begin{english}
+  {\large\bfseries\color{BrandNavy}
+  Developer Financing Promotions, Balloon Loans, and Developer Leverage in the Israeli Housing Market (2022--2026) vs.\ the 2008 U.S.\ Subprime Crisis:\\[0.12cm]
+  \normalsize\bfseries\color{BrandBlue}
+  A Comparative Analysis and Stress-Testing Framework for the 2026--2027 ``Delivery Wall''}
+  \end{english}
+
+  \vspace{0.45cm}
+  {\hebrewfontsf\large\bfseries\color{BrandTeal}
+  דוח מכין לפרויקט מחקר (\en{Preliminary Research \& Design Report})\\[0.4cm]}
+
+  {\normalsize
+  \textbf{מוגש על ידי צוות המחקר:} יחידת המחקר למימון נדל"ן ויציבות פיננסית\\
+  \textbf{מנחה מתודולוגי ואקדמי:} על פי מתווה "מהבעיה אל ה-\en{PDF}" מאת ד"ר יורם סגל (\en{Dr.\ Yoram Segal})\\
+  \textbf{מוסד שותף למחקר:} מעבדת סימולציות סיכוני אשראי ומאקרו-יציבות\\[0.35cm]
+  \textbf{תאריך הגשה:} \num{15-11-2026} (\texthebrew{סמסטר א', שנת הלימודים תשפ"ז})\\[0.35cm]}
+
+  {\small\color{BrandNavy}
+  כל הזכויות שמורות לצוות המחקר ולד"ר יורם סגל \en{\copyright\ 2026}\\
+  \en{\copyright\ 2026 All Rights Reserved --- Research Team \& Dr.\ Yoram Segal.}}
+\end{center}
+\end{titlepage}
+
+% ------------------------------------------------------------------------------
+% 2. עמוד זכויות ושיוך אקדמי (עמוד ii)
+% ------------------------------------------------------------------------------
+\newpage
+\vspace*{\fill}
+\begin{center}
+  \textbf{דוח מכין לפרויקט מחקר כלכלי-מימוני השוואתי (\en{Preliminary Research Report})}\\[0.3cm]
+  נכתב, עומד וקומפל ב-\en{LuaLaTeX} בהתאם לכללי המבנה, הכיווניות (\en{BiDi}) ובקרת האיכות\\
+  מתוך הספר \textbf{"מהבעיה אל ה-\en{PDF}: המדריך לדוח המכין המקצועי"} וסיכום מפגש \en{L03}\\
+  מאת \textbf{ד"ר יורם סגל (\en{Dr.\ Yoram Segal})}\\[0.4cm]
+  כל הנתונים האמפיריים בדוח נשענים על פרסומי הלשכה המרכזית לסטטיסטיקה (הלמ"ס),\\
+  חטיבת המחקר והפיקוח על הבנקים בבנק ישראל, אגף הכלכלן הראשי ומאגר כרמ"ן ברשות המסים,\\
+  הספרות האקדמית השפיטה על משבר הסאב-פריים בארה"ב (\num{2008}), וסימולציות \en{Monte Carlo} ב-\en{Python}.\\[0.4cm]
+  כל הזכויות שמורות \en{\copyright\ 2026}\\
+  \en{All Rights Reserved --- 2026}
+\end{center}
+\vspace*{\fill}
+
+% ------------------------------------------------------------------------------
+% 3. תקציר מנהלים ומילות מפתח (סעיף 2.2 בספר של ד"ר סגל: 250-350 מילים + 5-7 מילות מפתח)
+% ------------------------------------------------------------------------------
+\chapter*{תקציר מנהלים}
+\addcontentsline{toc}{chapter}{תקציר מנהלים}
+
+המעבר החד של המשק הישראלי מסביבת ריבית אפסית (\pct{0.1} ברבעון הראשון של \num{2022}) לסביבת ריבית מרסנת של \pct{4.0} עד \pct{4.75} בשנים \num{2023--2026} חולל זעזוע מבני בשוק הדיור הראשוני בישראל. כדי להימנע מהורדת מחירי המחירון הנומינליים ("מחירי המדף") שעלולה הייתה לשחוק את יחסי הכיסוי בדוחות הליווי הבנקאיים, אימצו קבלנים ויזמים באופן נרחב מבצעי מימון אגרסיביים --- בראשם עסקאות דחיית תשלומים במתכונת \num{20/80} ו-\num{10/90} והלוואות בלון ("בולט") מסובסדות על ידי היזם. תופעה זו הובילה להצטברות שיא היסטורי של מעל \num{85,000} דירות חדשות לא-מכורות ולדחיית מבחן החיתום הבנקאי האמיתי של עשרות אלפי משקי בית אל מועד אכלוס הפרויקטים בשנים \num{2026--2027}, המכונה בדוח זה \textbf{"קיר המסירות" (\en{The Delivery Wall})}.
+
+דוח מכין זה מגדיר כמותית את מרחב הבעיה ובוחן באיזו מידה מבצעי המימון הקבלניים ומינוף היזמים בישראל (\num{2022--2026}) משחזרים את מנגנוני הכשל של משבר הסאב-פריים בארצות הברית (\num{2008}), ומהי עמידות המערכת הבנקאית והיזמית בישראל בפני גל ביטולי חוזים וחדלות פירעון במועד המסירה. לצורך כך גובשה ארכיטקטורה מתודולוגית שנבחרה באמצעות מטריצת החלטה משוקללת (\en{Pugh Decision Matrix}) מתוך שלוש חלופות תכן, והוטמעו במלואם עקרונות התכנון של ד"ר יורם סגל: מפרט דרישות כמותי (\en{REQ-RES}), סקירת ספרות תמטית המעוגנת במאמר הדגל של \en{Mian \& Sufi (2009)}, ופילוח שוק בשלוש שכבות (\en{TAM/SAM/SOM}).
+
+תוצאות הסימולציה המקדימה (\en{Monte Carlo} על \num{10,000} משקי בית ו-\num{500} פרויקטים יזמיים) מלמדות כי מבצעי ה-\num{20/80} מגלמים הנחת ערך נוכחי נקי (\en{NPV}) סמויה של \pct{9.99}, וכי במועד המסירה צפויים \pct{54.91} מרוכשי הבלון לחצות את רף יחס ההחזר להכנסה של \pct{40} (\en{PTI}). עם זאת, בניגוד לארה"ב ב-\num{2008}, מנגנוני ההגנה המוסדיים בישראל --- הלוואות \en{Recourse}, חוק המכר (התשל"ה-\num{1974}), היעדר איגוח סאב-פריים (\en{MBS/CDO}) וכריות ההון של הבנקים (\en{CET1} מעל \pct{9.38} גם בתרחיש קיצון) --- בולמים קריסה בנקאית מערכתית, אך מותירים מוקד סיכון חריף אצל יזמים קטנים ובינוניים הממונפים באשראי חוץ-בנקאי (\en{Mezzanine}), שבהם יחס כיסוי החוב (\en{DSCR}) צונח ל-\num{0.71x} בתרחיש של \pct{20} ביטולים. תוכנית העבודה מפרטת מבנה פירוק עבודה (\en{WBS}), מטריצת \en{RACI}, תרשים גאנט ל-\num{14} שבועות וניהול סיכונים בכימות כפול (\en{$R = P \times I$}).
+
+\vspace{0.4cm}
+\noindent\textbf{מילות מפתח:} דוח מכין (\en{Preliminary Design Report}); מבצעי מימון קבלניים (\en{20/80}); הלוואות בלון וקיר המסירות (\en{Delivery Wall}); משבר הסאב-פריים (\en{Subprime Crisis}); הלם תשלום (\en{Payment Shock}); מבחני קיצון (\en{Stress Testing}); חוק המכר ויציבות בנקאית (\en{CET1}).
+
+% ------------------------------------------------------------------------------
+% 4. תוכן העניינים, רשימת האיורים ורשימת הטבלאות (סעיף 2.3 בספר של ד"ר סגל)
+% ------------------------------------------------------------------------------
+\tableofcontents
+\listoffigures
+\listoftables
+
+% ------------------------------------------------------------------------------
+% 5. רשימת קיצורים ומונחים (טבלה אלפביתית דו-לשונית - סעיף 2.3 בספר של ד"ר סגל)
+% ------------------------------------------------------------------------------
+\chapter*{רשימת קיצורים ומונחים}
+\addcontentsline{toc}{chapter}{רשימת קיצורים ומונחים}
+
+טבלה מקדמית זו מרכזת בסדר אלפביתי את ראשי התיבות והמונחים המקצועיים במימון, בבנקאות ובהנדסת מערכות המופיעים לאורך הדוח המכין, כדי לאפשר קריאה רציפה של מפרט הדרישות, המודלים המתמטיים וסימולציות הקיצון.
+
+\begin{table}[htbp]
+\centering
+\caption*{רשימת קיצורים וראשי תיבות מרכזיים במסמך}
+\small
+\begin{tabularx}{\textwidth}{R{2.4cm} R{4.6cm} Y}
+\toprule
+\rowcolor{TableHeaderBg}
+\textbf{ראשי תיבות} & \textbf{מונח מלא באנגלית} & \textbf{הגדרה ומשמעות בעברית} \\
+\midrule
+\en{ARM} & \en{Adjustable-Rate Mortgage} & משכנתא בריבית משתנה (בעלת תקופת "טיזר" התחלתית קבועה לאחריה מתאפסת הריבית לפי ריבית השוק). \\
+\en{BOI} & \en{Bank of Israel} & בנק ישראל (חטיבת המחקר והפיקוח על הבנקים). \\
+\en{CARMAN} & \en{Israel Tax Authority Real Estate DB} & מאגר כרמ"ן (קובץ רשומות מקרקעין) של רשות המסים לתיעוד עסקאות נדל"ן בישראל. \\
+\en{CBS} & \en{Central Bureau of Statistics} & הלשכה המרכזית לסטטיסטיקה (הלמ"ס). \\
+\en{CDO} & \en{Collateralized Debt Obligation} & איגרת חוב מגובת חובות (מכשיר איגוח מובנה המחלק תזרימי משכנתאות לשכבות סיכון --- \en{Tranches}). \\
+\en{CDS} & \en{Credit Default Swap} & חוזה החלף לסיכוני אשראי (נגזר פיננסי לביטוח מפני חדלות פירעון של איגרות חוב). \\
+\en{CET1} & \en{Common Equity Tier 1} & הון עצמי רובד \num{1} של תאגיד בנקאי ביחס לנכסי הסיכון המשוקללים (\en{RWA}). \\
+\en{DSCR} & \en{Debt-Service Coverage Ratio} & יחס כיסוי שירות החוב בפרויקט יזמי (תזרים מזומנים תפעולי פנוי חלקי תשלומי קרן וריבית). \\
+\en{LGD} & \en{Loss Given Default} & שיעור ההפסד בהינתן חדלות פירעון (לאחר מימוש בטוחות וערבויות). \\
+\en{LTC} & \en{Loan-to-Cost} & יחס ההלוואה לעלות ההקמה הכוללת של פרויקט בנייה בליווי בנקאי. \\
+\en{LTV} & \en{Loan-to-Value} & יחס ההלוואה לשווי הבטוחה (שיעור המימון במשכנתא מתוך שווי הדירה). \\
+\en{MBS} & \en{Mortgage-Backed Security} & נייר ערך מגובה משכנתאות (איגוח תיקי הלוואות דיור והעברתם לשוק ההון). \\
+\en{NINJA} & \en{No Income, No Job, and No Assets} & הלוואות סאב-פריים שניתנו בארה"ב ללווים ללא אימות הכנסה, תעסוקה או נכסים. \\
+\en{NPV} & \en{Net Present Value} & ערך נוכחי נקי (היוון תזרימי המזומנים העתידיים למועד החתימה לפי מחיר ההון). \\
+\en{PD} & \en{Probability of Default} & ההסתברות לחדלות פירעון של לווה או יזם בטווח זמן מוגדר. \\
+\en{PTI} & \en{Payment-to-Income} & יחס ההחזר החודשי בגין המשכנתא מתוך ההכנסה הפנויה נטו של משק הבית. \\
+\en{RACI} & \en{Responsible, Accountable, Consulted, Informed} & מטריצת הגדרת אחריות וסמכויות בצוות המחקר והפיתוח. \\
+\en{TAM/SAM/SOM} & \en{Total / Serviceable / Obtainable Market} & מודל שלוש השכבות לאומדן היקף השוק וגזירת פלח החשיפה הרלוונטי למחקר. \\
+\en{WBS} & \en{Work Breakdown Structure} & מבנה פירוק עבודה היררכי לחבילות עבודה (\en{Work Packages}) ותוצרים מדידים. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ==============================================================================
+% גוף הדוח המכין (Mainmatter) - 7 פרקים ממוספרים 1 עד ~40 (סעיף 1.2 בספר של ד"ר סגל)
+% ==============================================================================
+\mainmatter
+
+\input{chapters/ch01_research_framework}
+\input{chapters/ch02_us_subprime_2008}
+\input{chapters/ch03_israel_housing_2022_2026}
+\input{chapters/ch04_comparative_analysis}
+\input{chapters/ch05_methodology_and_data}
+\input{chapters/ch06_delivery_wall_resilience}
+\input{chapters/ch07_risks_and_gantt}
+
+% ==============================================================================
+% רשימת המקורות הביבליוגרפיים (Backmatter - תקן IEEE אוטומטי באמצעות biber)
+% ==============================================================================
+\backmatter
+\cleardoublepage
+\printbibliography
+
+\end{document}

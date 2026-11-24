@@ -1,0 +1,114 @@
+% ==============================================================================
+% main_template.tex - תבנית קובץ מאסטר לספר אקדמי / דוח מכין לפרויקט מחקר (~40 עמודים)
+% ==============================================================================
+\documentclass[12pt,a4paper,oneside]{book}
+
+\input{preamble}
+
+\begin{document}
+
+% ==============================================================================
+% חלק קדמי (Frontmatter) - שער, זכויות יוצרים, תקציר מנהלים, תוכן עניינים ורשימות
+% ==============================================================================
+\frontmatter
+
+% 1. עמוד שער ממוסגר כפול (ללא מספר עמוד וללא מילות מפתח על השער - פרק 2.1 ופרק 19.1)
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \draw[line width=2.2pt, color=BrandNavy]
+    ($(current page.north west) + (1.5cm,-1.5cm)$)
+    rectangle
+    ($(current page.south east) + (-1.5cm,1.5cm)$);
+  \draw[line width=0.8pt, color=BrandGold]
+    ($(current page.north west) + (1.72cm,-1.72cm)$)
+    rectangle
+    ($(current page.south east) + (-1.72cm,1.72cm)$);
+\end{tikzpicture}
+
+\begin{center}
+  \vspace*{0.8cm}
+  {\Large\hebrewfontsf\bfseries\color{BrandBlue} אוניברסיטת בר-אילן / אוניברסיטת חיפה}\\[0.25cm]
+  {\large\hebrewfontsf\color{BrandNavy} המחלקה לניהול | סמינריון מחקרי בניהול טכנולוגיות ומימון}\\[0.6cm]
+  {\color{BrandGold}\rule{0.75\textwidth}{1.2pt}}\\[0.7cm]
+
+  {\large\hebrewfontsf\bfseries\color{BrandTeal} דוח מכין לפרויקט מחקר (\en{Preliminary Research \& Design Report})}\\[0.5cm]
+
+  {\Huge\hebrewfontsf\bfseries\color{BrandNavy} כותרת הפרויקט הראשית בעברית}\\[0.35cm]
+  {\Large\hebrewfontsf\bfseries\color{BrandBlue} תת-כותרת המפרטת את שאלת המחקר, טווח השנים והמתודולוגיה}\\[0.5cm]
+
+  \begin{english}
+  {\large\bfseries\color{BrandNavy} English Title of the Preparatory Research Report:}\\[0.15cm]
+  {\normalsize\itshape\color{BrandBlue} Subtitle Describing the Quantitative Modeling and Comparative Framework}
+  \end{english}
+
+  \vspace{0.6cm}
+  {\color{BrandGold}\rule{0.75\textwidth}{1.2pt}}\\[0.8cm]
+\end{center}
+
+\vfill
+\begin{center}
+  {\normalsize\hebrewfontsf\bfseries\color{BrandNavy} מוגש על ידי צוות המחקר האנליטי}\\[0.2cm]
+  {\normalsize\hebrewfontsf\color{BrandBlue} בהנחיית מתודולוגיית ד"ר יורם סגל (\en{"}מהבעיה אל ה-\en{PDF}\en{"} ושיעור \en{L03})}\\[0.35cm]
+  {\normalsize\hebrewfontsf\bfseries\color{BrandNavy} שנת לימודים תשפ"ו -- \num{2026}}
+\end{center}
+\vspace*{0.6cm}
+\end{titlepage}
+
+% 2. עמוד זכויות יוצרים וبيانات מערכת
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{flushright}
+{\small\color{BrandNavy}
+\textbf{דוח מכין לפרויקט מחקר: תיעוד מתודולוגי ואנליטי מלא}\\[0.2cm]
+\textenglish{\copyright\ 2026}\ כל הזכויות שמורות לצוות המחקר.\\
+מסמך זה הופק וקומפל באמצעות מנוע \en{LuaLaTeX} תוך יישום מלא של עקרונות הכתיבה האקדמית-הנדסית מתוך הספר \en{"}מהבעיה אל ה-\en{PDF}: המדריך לדוח המכין המקצועי\en{"} מאת ד"ר יורם סגל \cite{segal2026prep,segal2026l03}.
+}
+\end{flushright}
+\cleardoublepage
+
+% 3. תקציר מנהלים (250-350 מילים) + 5-7 מילות מפתח בתחתית העמוד (סעיף 2.2 בספר)
+\chapter*{תקציר מנהלים (\en{Executive Summary})}
+% יש להזין כאן תקציר מנהלים בן 250-350 מילים הכולל: בעיה כמותית, מתודולוגיה, ממצאים עיקריים והמלצות.
+
+\vspace{0.5cm}
+\noindent{\color{BrandNavy}\rule{\textwidth}{0.8pt}}\\[0.15cm]
+\noindent\textbf{\hebrewfontsf\color{BrandNavy} מילות מפתח (\en{Keywords}):}
+% 5-7 מילות מפתח מופרדות בפסיקים
+
+\cleardoublepage
+
+% 4. תוכן עניינים, רשימת איורים, רשימת טבלאות ורשימת קיצורים (סעיפים 2.3-2.5 בספר)
+\tableofcontents
+\cleardoublepage
+
+\listoffigures
+\cleardoublepage
+
+\listoftables
+\cleardoublepage
+
+\chapter*{רשימת קיצורים וראשי תיבות (\en{List of Abbreviations})}
+% טבלת קיצורים ממוינת אלפביתית
+
+% ==============================================================================
+% גוף הדוח המכין (Mainmatter) - 7 פרקים ממוספרים
+% ==============================================================================
+\mainmatter
+
+\input{chapters/ch01_research_framework}
+\input{chapters/ch02_historical_or_theoretical_bg_1}
+\input{chapters/ch03_domain_or_market_analysis_2}
+\input{chapters/ch04_comparative_analysis}
+\input{chapters/ch05_methodology_and_data}
+\input{chapters/ch06_simulations_and_resilience}
+\input{chapters/ch07_risks_and_gantt}
+
+% ==============================================================================
+% רשימת המקורות הביבליוגרפיים (Backmatter - תקן IEEE אוטומטי)
+% ==============================================================================
+\backmatter
+\cleardoublepage
+\printbibliography
+
+\end{document}

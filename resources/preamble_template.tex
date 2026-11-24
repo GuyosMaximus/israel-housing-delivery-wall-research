@@ -1,0 +1,318 @@
+% ==============================================================================
+% preamble_template.tex - תבנית קדם-מסמך מאומתת לספר אקדמי / דוח מכין ב-LuaLaTeX
+% מבוסס על כללי "מהבעיה אל ה-PDF" ושיעור L03 (ד"ר יורם סגל)
+% ==============================================================================
+
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  top=2.5cm,
+  bottom=2.5cm,
+  inner=3.0cm,   % 2.5cm + 0.5cm Gutter (שוליים + תוספת כריכה לפי טבלה 11.1)
+  outer=2.5cm,
+  headheight=16pt
+}
+
+% מתמטיקה ונוסחאות
+\usepackage{amsmath,amssymb,amsfonts}
+
+% כיווניות ושפות ב-LuaLaTeX באמצעות babel + bidi=basic (תקן L03 ופרק 12)
+\usepackage[bidi=basic,provide=*,shorthands=off]{babel}
+\babelprovide[import,main]{hebrew}
+\babelprovide[import]{english}
+\usepackage{fontspec}
+
+% הגדרת גופנים תקניים מתוך מערכת ההפעלה Windows (לפי טבלה 11.1 וטבלה 12.1)
+\babelfont{rm}[
+  Path=C:/Windows/Fonts/,
+  UprightFont=times.ttf,
+  BoldFont=timesbd.ttf,
+  ItalicFont=timesi.ttf,
+  BoldItalicFont=timesbi.ttf
+]{Times New Roman}
+
+\babelfont[hebrew]{rm}[
+  Script=Hebrew,
+  Path=C:/Windows/Fonts/,
+  UprightFont=david.ttf,
+  BoldFont=davidbd.ttf,
+  ItalicFont=david.ttf,
+  BoldItalicFont=davidbd.ttf
+]{David}
+
+\babelfont{sf}[
+  Path=C:/Windows/Fonts/,
+  UprightFont=arial.ttf,
+  BoldFont=arialbd.ttf,
+  ItalicFont=ariali.ttf,
+  BoldItalicFont=arialbi.ttf
+]{Arial}
+
+\babelfont[hebrew]{sf}[
+  Script=Hebrew,
+  Path=C:/Windows/Fonts/,
+  UprightFont=arial.ttf,
+  BoldFont=arialbd.ttf,
+  ItalicFont=ariali.ttf,
+  BoldItalicFont=arialbi.ttf
+]{Arial}
+
+\babelfont{tt}[
+  Path=C:/Windows/Fonts/,
+  UprightFont=cour.ttf,
+  BoldFont=courbd.ttf
+]{Courier New}
+
+\babelfont[hebrew]{tt}[
+  Script=Hebrew,
+  Path=C:/Windows/Fonts/,
+  UprightFont=cour.ttf,
+  BoldFont=courbd.ttf
+]{Courier New}
+
+\newcommand{\hebrewfont}{\rmfamily}
+\newcommand{\hebrewfontsf}{\sffamily}
+\newcommand{\hebrewfonttt}{\ttfamily}
+\newcommand{\englishfont}{\rmfamily}
+\newcommand{\englishfontsf}{\sffamily}
+\newcommand{\englishfonttt}{\ttfamily}
+
+% תאימות מלאה לפקודות polyglossia/babel עבור טקסט דו-כיווני (BiDi) - בטוח גם במצב מתמטיקה
+\providecommand{\texthebrew}[1]{\ifmmode\mbox{\foreignlanguage{hebrew}{#1}}\else\foreignlanguage{hebrew}{#1}\fi}
+\providecommand{\textenglish}[1]{\ifmmode\mathrm{#1}\else\foreignlanguage{english}{#1}\fi}
+\newenvironment{hebrew}{\begin{otherlanguage}{hebrew}}{\end{otherlanguage}}
+\newenvironment{english}{\begin{otherlanguage}{english}}{\end{otherlanguage}}
+
+% ריווח שורות ומניעת כותרות יתומות (טבלה 11.1 ופרק 19.4)
+\linespread{1.28}\selectfont
+\newcommand{\onehalfspacing}{\linespread{1.28}\selectfont}
+\newcommand{\needspace}[1]{\par\nopagebreak\vspace{0pt}}
+
+% תמיכה בפרמטרים אופציונליים ברשימות enumerate ו-itemize
+\let\origenumerate\enumerate
+\let\endorigenumerate\endenumerate
+\renewenvironment{enumerate}[1][]{\origenumerate}{\endorigenumerate}
+\let\origitemize\itemize
+\let\endorigitemize\enditemize
+\renewenvironment{itemize}[1][]{\origitemize}{\endorigitemize}
+
+% צבעים ארגוניים עקביים לכל המסמך (פרק 15 ופרק 16.6)
+\usepackage{xcolor}
+\definecolor{BrandNavy}{RGB}{18, 48, 89}
+\definecolor{BrandBlue}{RGB}{32, 92, 168}
+\definecolor{BrandLightBlue}{RGB}{235, 243, 252}
+\definecolor{BrandTeal}{RGB}{16, 112, 104}
+\definecolor{BrandLightTeal}{RGB}{234, 247, 245}
+\definecolor{BrandGold}{RGB}{184, 115, 20}
+\definecolor{BrandLightGold}{RGB}{253, 247, 234}
+\definecolor{BrandRed}{RGB}{178, 34, 45}
+\definecolor{BrandLightRed}{RGB}{253, 237, 238}
+\definecolor{BrandGray}{RGB}{244, 246, 249}
+\definecolor{TableHeaderBg}{RGB}{218, 229, 244}
+
+% גרפיקה, איורים, TikZ ו-pgfplots (פרק 16)
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,patterns,backgrounds,fit,babel}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% טבלאות מעוצבות (פרק 11 ופרק 16.5)
+\usepackage{array}
+\usepackage{tabularx}
+\newcommand{\toprule}{\noalign{\hrule height 1.1pt\vspace{3pt}}}
+\newcommand{\midrule}{\noalign{\vspace{2pt}\hrule height 0.6pt\vspace{3pt}}}
+\newcommand{\bottomrule}{\noalign{\vspace{2pt}\hrule height 1.1pt}}
+\newcommand{\addlinespace}[1][4pt]{}
+\newcommand{\rowcolors}[3]{}
+\newcommand{\rowcolor}[1]{}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+
+% הגנה מלאה על מספור פרקים, סעיפים, איורים, טבלאות ומשוואות מפני היפוך BiDi (טבלה 14.3 וטבלה 15.5)
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\renewcommand{\thechapter}{\textenglish{\arabic{chapter}}}
+\renewcommand{\thesection}{\textenglish{\arabic{chapter}.\arabic{section}}}
+\renewcommand{\thesubsection}{\textenglish{\arabic{chapter}.\arabic{section}.\arabic{subsection}}}
+\renewcommand{\thesubsubsection}{\textenglish{\arabic{chapter}.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}}
+\renewcommand{\thefigure}{\textenglish{\arabic{chapter}.\arabic{figure}}}
+\renewcommand{\thetable}{\textenglish{\arabic{chapter}.\arabic{table}}}
+\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
+
+% פקודת כותרת רצה הניתנת להתאמה בכל פרויקט
+\providecommand{\ProjectRunningTitle}{\texthebrew{דוח מכין לפרויקט מחקר אקדמי}}
+\providecommand{\ProjectCourseName}{\texthebrew{סמינריון מחקרי בניהול טכנולוגיות ומימון}}
+
+% עיצוב כותרות פרקים וסעיפים וכותרות רצות (ללא תלות בחבילות חיצוניות)
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedleft \normalfont\sffamily
+    \ifnum \c@secnumdepth >\m@ne
+      \Large\bfseries\color{BrandBlue} \@chapapp\space \thechapter
+      \par\nobreak
+      \vskip 6\p@
+    \fi
+    \interlinepenalty\@M
+    {\color{BrandNavy}\hrule height 1.5pt}\vskip 8\p@
+    \Huge \bfseries \color{BrandNavy} #1\par\nobreak
+    \vskip 8\p@
+    {\color{BrandNavy}\hrule height 0.8pt}
+    \vskip 22\p@
+  }}
+\def\@makeschapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ \raggedleft \normalfont\sffamily
+    \interlinepenalty\@M
+    {\color{BrandNavy}\hrule height 1.5pt}\vskip 8\p@
+    \Huge \bfseries \color{BrandNavy} #1\par\nobreak
+    \vskip 8\p@
+    {\color{BrandNavy}\hrule height 0.8pt}
+    \vskip 22\p@
+  }}
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+  {-3.2ex \@plus -1ex \@minus -.2ex}%
+  {1.8ex \@plus.2ex}%
+  {\normalfont\sffamily\Large\bfseries\color{BrandNavy}}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+  {-2.8ex\@plus -1ex \@minus -.2ex}%
+  {1.2ex \@plus .2ex}%
+  {\normalfont\sffamily\large\bfseries\color{BrandBlue}}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+  {-2.2ex\@plus -1ex \@minus -.2ex}%
+  {0.8ex \@plus .2ex}%
+  {\normalfont\sffamily\normalsize\bfseries\color{BrandTeal}}}
+
+% כותרות עליונות ותחתונות עם כיוון מפורש בכל משבצת (טבלה 14.3 ופרק 15.10)
+\def\ps@fancy{%
+  \def\@oddhead{\vbox to \headheight{\hbox to \textwidth{\footnotesize\color{BrandNavy}\ProjectRunningTitle\hfill\color{BrandBlue}\ProjectCourseName}\vss\hrule height 0.5pt}}%
+  \def\@evenhead{\@oddhead}%
+  \def\@oddfoot{\vbox{\hrule height 0.4pt\vskip 3pt\hbox to \textwidth{\footnotesize\color{BrandNavy}\textenglish{\copyright\ 2026}\ \texthebrew{כל הזכויות שמורות לצוות המחקר}\hfill\texthebrew{עמוד }\textenglish{\thepage}}}}%
+  \def\@evenfoot{\@oddfoot}%
+}
+\def\ps@plain{%
+  \def\@oddhead{}%
+  \def\@evenhead{}%
+  \def\@oddfoot{\vbox{\hrule height 0.4pt\vskip 3pt\hbox to \textwidth{\footnotesize\color{BrandNavy}\textenglish{\copyright\ 2026}\ \texthebrew{כל הזכויות שמורות לצוות המחקר}\hfill\texthebrew{עמוד }\textenglish{\thepage}}}}%
+  \def\@evenfoot{\@oddfoot}%
+}
+\makeatother
+\pagestyle{fancy}
+
+% תיבות מעוצבות (tcolorbox) - מסגרת ב-LTR ותוכן ב-RTL לפי כלל 6 בפרומפט B1 (פרק 14.7)
+\usepackage{tcolorbox}
+
+% 1. תיבת "למה זה חשוב למנהל / לקובע המדיניות"
+\newenvironment{managerbox}[1][למה זה חשוב למנהל ולקובע המדיניות]{%
+  \par\medskip%
+  \begin{english}%
+  \begin{tcolorbox}[
+    colback=BrandLightGold,
+    colframe=BrandGold,
+    colbacktitle=BrandGold,
+    coltitle=white,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,right=10pt,top=8pt,bottom=8pt,
+    title={\hfill\textbf{\sffamily\texthebrew{#1}}}
+  ]%
+  \begin{hebrew}%
+}{%
+  \end{hebrew}%
+  \end{tcolorbox}%
+  \end{english}%
+  \par\medskip%
+}
+
+% 2. תיבת הגדרה / מודל מתמטי / מסר מרכזי
+\newenvironment{modelbox}[1][הגדרה ומודל אנליטי]{%
+  \par\medskip%
+  \begin{english}%
+  \begin{tcolorbox}[
+    colback=BrandLightBlue,
+    colframe=BrandNavy,
+    colbacktitle=BrandNavy,
+    coltitle=white,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,right=10pt,top=8pt,bottom=8pt,
+    title={\hfill\textbf{\sffamily\texthebrew{#1}}}
+  ]%
+  \begin{hebrew}%
+}{%
+  \end{hebrew}%
+  \end{tcolorbox}%
+  \end{english}%
+  \par\medskip%
+}
+
+% 3. תיבת מלכודת מתודולוגית / אזהרת סיכון
+\newenvironment{warningbox}[1][מלכודת מתודולוגית ומוקד סיכון]{%
+  \par\medskip%
+  \begin{english}%
+  \begin{tcolorbox}[
+    colback=BrandLightRed,
+    colframe=BrandRed,
+    colbacktitle=BrandRed,
+    coltitle=white,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,right=10pt,top=8pt,bottom=8pt,
+    title={\hfill\textbf{\sffamily\texthebrew{#1}}}
+  ]%
+  \begin{hebrew}%
+}{%
+  \end{hebrew}%
+  \end{tcolorbox}%
+  \end{english}%
+  \par\medskip%
+}
+
+% 4. תיבת יישום בפרויקט המחקר ("בפרויקט שלנו")
+\newenvironment{projectbox}[1][יישום בפרויקט המחקר שלנו]{%
+  \par\medskip%
+  \begin{english}%
+  \begin{tcolorbox}[
+    colback=BrandLightTeal,
+    colframe=BrandTeal,
+    colbacktitle=BrandTeal,
+    coltitle=white,
+    boxrule=1pt,
+    arc=3pt,
+    left=10pt,right=10pt,top=8pt,bottom=8pt,
+    title={\hfill\textbf{\sffamily\texthebrew{#1}}}
+  ]%
+  \begin{hebrew}%
+}{%
+  \end{hebrew}%
+  \end{tcolorbox}%
+  \end{english}%
+  \par\medskip%
+}
+
+% פקודות עזר דו-כיווניות (BiDi) לפי Prompt B1 (פרק 14.7) - בטוחות במצב טקסט ובמצב מתמטיקה
+\newcommand{\en}[1]{\ifmmode\mathrm{#1}\else\foreignlanguage{english}{#1}\fi}
+\newcommand{\num}[1]{\ifmmode#1\else\foreignlanguage{english}{#1}\fi}
+\newcommand{\pct}[1]{\ifmmode#1\%\else\foreignlanguage{english}{#1\%}\fi}
+\newcommand{\nis}[1]{\ifmmode#1\;\mbox{\foreignlanguage{hebrew}{ש"ח}}\else\foreignlanguage{english}{#1}\ \foreignlanguage{hebrew}{ש"ח}\fi}
+\newcommand{\usd}[1]{\ifmmode\$#1\else\foreignlanguage{english}{\$#1}\fi}
+\newcommand{\hebmath}[1]{\mbox{\foreignlanguage{hebrew}{#1}}}
+
+% הדפסת ביבליוגרפיה בתקן IEEE מתוך קובץ references.bib המסונכרן ל-bibliography_items.tex
+\newcommand{\printbibliography}{%
+  \chapter{רשימת מקורות וביבליוגרפיה (\en{References})}%
+  \input{bibliography_items.tex}%
+}
+
+% קישורים פנימיים וחיצוניים (hyperref נטען אחרון)
+\usepackage[unicode]{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=BrandNavy,
+  citecolor=BrandBlue,
+  urlcolor=BrandTeal
+}
